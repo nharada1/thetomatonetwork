@@ -29,14 +29,14 @@ t_early = 9; % Really 10 units, but calculations are easier if
             % this parameter is set to 1 less than the number of
             % time periods constituting early growth
 t_end = 100;
-n = 10;         % Number of systems
+n = 50;         % Number of systems
 lambda = .1;   % Similarity dependence on temperature
-Temp_mean = 0.3*(rand(1,n)-0.5)+0.5; % Temperature means (0.5 +- 0.3)
+Temp_mean = 0.3/0.5*(rand(1,n)-0.5)+0.5; % Temperature means (0.5 +- 0.3)
 tau = 0.005;      % Temperature randomness (standard deviation)
 alpha = 8/n;    % Performance factor
 N = zeros(n,t_end);
-T = diag(Temp_mean)*eye(n,t_end); % Fix an a constant temp of 0.5, randomly 
-                      % vary it later
+T = diag(Temp_mean)*eye(n,t_end); % Fix all temps according to Temp_mean, 
+                                 % randomly vary it later
 P = zeros(n,t_end);
 W = zeros(n);
 
@@ -50,7 +50,8 @@ for t=1:t_end
    n_early_const = 0.5;
    % Get suggestions and similarities
    E = suggest(N,P,T_start,t_early,0,t);
-   S = similarity(N,T,T_start,t_early,t,lambda);
+   %S = similarity(N,T,T_start,t_early,t,lambda);
+   S = zeros(n)+1; % Similarity measure not working well, ignore for now
    % Calc average performance vector
    % (should change this to incremental update for speed)
    P_avg = zeros(1,n);

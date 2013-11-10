@@ -10,11 +10,15 @@ function [ p ] = calc_performance( T,N,t_start,t_early,t )
 % optimal combination of temperature, current nutrient dosage,
 % and average early life nutrient dosage, and have performance fall off
 % continuously in every direction. We choose a tri-variate gaussian
-% distribution with mean at 0.5,0.5,0.5 for this function. 
+% distribution with randomized covariance matrix and arbitary mean.
 
 
-mu = [0.5 0.9 0.5];
-sig = diag([0.3 0.3 0.3]);
+mu = [0.6 0.9 0.5];
+D = diag(rand(1,3));
+A = randn(3);
+[P,ignore] = eig((A+A')/2);
+sig = P*D*P';
+
 
 % Make the optimal performance 1
 scale = 1/mvnpdf(mu,mu,sig);

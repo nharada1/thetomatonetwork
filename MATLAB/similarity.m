@@ -29,7 +29,7 @@ for i=1:n
 end
 
 % Symmetrize
-S = (S+S')/2;
+S = (S+S')-diag(diag(S));
 
 end
 
