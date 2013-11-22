@@ -25,7 +25,8 @@ scale = 1/mvnpdf(mu,mu,sig);
 
 % No bounds checking needed since this is only called when 
 % plant has already started growing
-n_early_avg = mean(N(t_start:min(t_start+t_early,t)));
+%n_early_avg = mean(N(t_start:min(t_start+t_early,t)));
+n_early_avg = 0.5;
 t_avg = mean(T(t_start:t));
 p = scale*mvnpdf([t_avg N(t) n_early_avg],mu,sig);
     
