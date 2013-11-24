@@ -14,16 +14,22 @@ function [ p ] = calc_performance( T,N,t_start,t_early,t,mu,sig )
 % continuously in every direction. We choose a tri-variate gaussian
 % distribution with randomized covariance matrix and arbitary mean.
 
-% Make the optimal performance 1
-scale = 1/mvnpdf(mu,mu,sig);
 
-% No bounds checking needed since this is only called when 
-% plant has already started growing
-%n_early_avg = mean(N(t_start:min(t_start+t_early,t)));
-n_early_avg = 0.5;
-t_avg = mean(T(t_start:t));
-p = scale*mvnpdf([t_avg N(t) n_early_avg],mu,sig);
-    
+    mu = [0.6 0.9 0.5];
+    D = diag(rand(1,3));
+    A = randn(3);
+    [P,ignore] = eig((A+A')/2);
+    sig = P*D*P';
 
+
+    % Make the optimal performance 1
+    scale = 1/mvnpdf(mu,mu,sig);
+
+    % No bounds checking needed since this is only called when 
+    % plant has already started growing
+    n_early_avg = mean(N(t_start:min(t_start+t_early,t)));
+    t_avg = mean(T(t_start:t));
+    p = scale*mvnpdf([t_avg N(t) n_early_avg],mu,sig);
+   
 end
 

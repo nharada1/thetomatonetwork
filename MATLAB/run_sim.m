@@ -92,12 +92,35 @@ end
 %% Plot our results
 % Plot scale from 0..1
 logScale = histeq(P);
-subplot(2,1,1); imagesc(P); xlabel('Performance'); ylabel('Instance Number'); title('Normalized Performance');
+subplot(2,1,1); imagesc(P); xlabel('Iteration'); ylabel('Instance Number'); title('Normalized Performance');
 colormap(Jet);
 colorbar;
 % Plot the same graph using histogram equalization
 % This expands our dynamic range and will better visualize performance for
 % higher values
-subplot(2,1,2); imagesc(logScale); xlabel('Performance'); ylabel('Instance Number'); title('Histogram Equalized Performace');
+subplot(2,1,2); imagesc(logScale); xlabel('Iteration'); ylabel('Instance Number'); title('Histogram Equalized Performace');
 colormap(Jet);
 colorbar;
+
+%% Animated plot of our performance - For use in the video
+logScale = histeq(P);
+fig = figure(); whitebg
+
+writer = VideoWriter('out2.avi');
+open(writer);
+
+for i=1:size(P, 2)
+    subplot(2,1,1); imagesc(P(:,1:i));
+    xlabel('Iteration'); ylabel('Instance Number'); title('Normalized Performance');
+    
+    subplot(2,1,2); imagesc(logScale(:,1:i));
+    xlabel('Iteration'); ylabel('Instance Number'); title('Histogram Equalized Performace');
+    colorbar('location','southoutside'); caxis([0 1]);
+    
+    set(gcf,'position',[100 100 1100 650])
+    
+    frame = getframe(fig);
+    writeVideo(writer, frame);
+end
+
+close(writer);
