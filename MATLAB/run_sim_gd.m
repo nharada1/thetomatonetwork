@@ -71,14 +71,14 @@ for t=1:t_end
            % Now fill Gradient_approx by finding best fit plane among
            % cluster points and taking dP/dN of this plane 
            %("slope w.r.t N")
-           if cluster_end-cluster_begin>1 % Cannot approx grad. with <2 datapoints
+           if cluster_end-cluster_begin>2 % Cannot approx grad. with <3 datapoints
                % Find system indices for current cluster
                cluster_indices = Started_indices(IX(cluster_begin:cluster_end));
                % Calc grad approx. for current cluster
                coeffs = ...
                  coeffvalues(fit([Temp_mean(cluster_indices)' N(cluster_indices,t-1)],...
                         P(cluster_indices,t-1),'poly11'));
-               grad = coeffs(2);
+               grad = coeffs(3);
                if debug
                    disp('Cluster:');
                    disp(i);
@@ -98,6 +98,8 @@ for t=1:t_end
                end
            end
        end
+       plot_perf_samples
+       drawnow
    end
    % Add some random temperature perturbation
    T(:,t) = Temp_mean'+tau*randn(n,1);
@@ -114,7 +116,7 @@ for t=1:t_end
                % Later stage update
                N(i,t) = N(i,t-1)+eta*Gradient_approx(i);
            end
-           P(i,t) = calc_performance(T(i,:),N(i,:),T_start(i),t_early,t);
+           P(i,t) = calc_performance(T(i,:),N(i,:),T_start(i),t_early,t,random_perf);
        end
    end
 end

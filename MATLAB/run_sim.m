@@ -75,7 +75,7 @@ for t=1:t_end
                % Set next nutrient dosage using experts update
                N(i,t) = E*W(i,:)';
            end
-           P(i,t) = calc_performance(T(i,:),N(i,:),T_start(i),t_early,t);
+           P(i,t) = calc_performance(T(i,:),N(i,:),T_start(i),t_early,t,random_perf);
        end
     end
 end

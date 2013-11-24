@@ -1,4 +1,4 @@
-function [ p ] = calc_performance( T,N,t_start,t_early,t )
+function [ p ] = calc_performance( T,N,t_start,t_early,t,random_perf )
 % Return a performance value by "simulating nature"
 % N: nutrient concentration vector
 % T: temperature vector
@@ -14,11 +14,14 @@ function [ p ] = calc_performance( T,N,t_start,t_early,t )
 
 
 mu = [0.6 0.9 0.5];
-D = diag(rand(1,3));
-A = randn(3);
-[P,ignore] = eig((A+A')/2);
-sig = P*D*P';
-
+if random_perf
+    D = diag(rand(1,3));
+    A = randn(3);
+    [P,ignore] = eig((A+A')/2);
+    sig = P*D*P';
+else
+    sig = [0.3303 0.1071 -0.1547;0.1071 0.4741 -0.1151;-0.1547 -0.1151 0.3839];
+end
 
 % Make the optimal performance 1
 scale = 1/mvnpdf(mu,mu,sig);
