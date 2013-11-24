@@ -32,7 +32,8 @@ t_end = 100;
 n = 100;         % Number of systems
 temp_range = 0.3; % Maximum deviation in temperature mean from 0.5
 Temp_mean = temp_range*(rand(1,n)-0.5)+0.5; % Temperature means (0.5 +- 0.3)
-tau = 0.001;      % Temperature randomness (standard deviation)
+temp_sig = 0.001;      % Temperature randomness (standard deviation)
+sig_sig = 0.1;     % Covariance matrix randomness (standard deviation)
 k = n/10;          % Max number of clusters
 L = 0.01;         % Lipschitz constant for P w.r.t N. 
                   % i.e., maximum dP/dN. 
@@ -43,6 +44,10 @@ T = diag(Temp_mean)*eye(n,t_end); % Fix an a constant temp of 0.5, randomly
                       % vary it later
 P = zeros(n,t_end);
 Started = zeros(1,n); % Keep track of which systems have started
+
+% Random mean and covariance matrix for calculating performance
+mu = rand(1,3);
+sig = rand_pos_def_mtx();
 
 % Randomly generate starting times (0-10)
 T_start = floor((rand(1,n)+1)*10); 
@@ -102,7 +107,11 @@ for t=1:t_end
        drawnow
    end
    % Add some random temperature perturbation
-   T(:,t) = Temp_mean'+tau*randn(n,1);
+   T(:,t) = Temp_mean'+temp_sig*randn(n,1);
+   % Add some covariance matrix perturbation
+   if random_perf
+      sig = sig+sig_sig*randn(1,1);
+   end
    % Loop through systems to perform dosage and performance updates
    for i=1:n
        if t >= T_start(i)
@@ -116,7 +125,7 @@ for t=1:t_end
                % Later stage update
                N(i,t) = N(i,t-1)+eta*Gradient_approx(i);
            end
-           P(i,t) = calc_performance(T(i,:),N(i,:),T_start(i),t_early,t,random_perf);
+           P(i,t) = calc_performance(T(i,:),N(i,:),T_start(i),t_early,t,mu,sig);
        end
    end
 end
