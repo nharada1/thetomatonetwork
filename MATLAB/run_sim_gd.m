@@ -110,7 +110,7 @@ for t=1:t_end
    T(:,t) = Temp_mean'+temp_sig*randn(n,1);
    % Add some covariance matrix perturbation
    if random_perf
-      sig = sig+sig_sig*randn(1,1);
+      sig = sig*(1+sig_sig*randn(1,1));
    end
    % Loop through systems to perform dosage and performance updates
    for i=1:n
