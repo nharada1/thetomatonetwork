@@ -76,7 +76,8 @@ if movie
     % been warned.
 
     
-    writer = VideoWriter('Performance.avi');
+    writer = VideoWriter('videos/Performance100.avi');
+    set(writer, 'FrameRate', 5);
     open(writer);
 end
 
@@ -112,7 +113,7 @@ for t=1:t_end
                coeffs = ...
                  coeffvalues(fit([Temp_mean(cluster_indices)' N(cluster_indices,t-1)],...
                         P(cluster_indices,t-1),'poly11'));
-               grad = coeffs(3);
+               grad = coeffs(3);%/coeffs(1);
                if debug
                    disp('Cluster:');
                    disp(i);
@@ -122,13 +123,6 @@ for t=1:t_end
                if isnan(grad) || isinf(grad)
                    disp('Gradient NaN or inf');
                    return;
-               end
-               if grad < 0
-                   % Negative gradients come from when we cluster a few
-                   % points and an outlier creates a negative gradient. If
-                   % the gradient is negative, just make it zero for now.
-                   % Once we add randomness this should even out.
-                   grad = 0;
                end
                Gradient_approx(cluster_indices) = ...
                     zeros(1,cluster_end-cluster_begin+1)+ grad;
@@ -158,7 +152,7 @@ for t=1:t_end
                N(i,t) = rand(1,1);
            else 
                % Later stage update
-               N(i,t) = N(i,t-1)+eta*Gradient_approx(i);
+               N(i,t) = max(N(i,t-1)+eta*Gradient_approx(i),0);
            end
            P(i,t) = calc_performance(T(i,:),N(i,:),T_start(i),t_early,t,mu,sig);
        end
