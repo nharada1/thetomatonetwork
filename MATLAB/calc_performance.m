@@ -16,10 +16,7 @@ function [ p ] = calc_performance( T,N,t_start,t_early,t,mu,sig )
 
 
     mu = [0.6 0.9 0.5];
-    D = diag(rand(1,3));
-    A = randn(3);
-    [P,ignore] = eig((A+A')/2);
-    sig = P*D*P';
+    sig = rand_pos_def_mtx();
 
 
     % Make the optimal performance 1

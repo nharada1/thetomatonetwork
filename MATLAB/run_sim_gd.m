@@ -1,3 +1,6 @@
+clear all;
+close all;
+clf;
 % Variables and parameters: 
 
 % Matrices: normalized between 0 and 1 for simplicity
@@ -29,7 +32,7 @@ t_early = 9; % Really 10 units, but calculations are easier if
             % this parameter is set to 1 less than the number of
             % time periods constituting early growth
 t_end = 100;
-n = 100;         % Number of systems
+n = 10;         % Number of systems
 temp_range = 0.3; % Maximum deviation in temperature mean from 0.5
 Temp_mean = temp_range*(rand(1,n)-0.5)+0.5; % Temperature means (0.5 +- 0.3)
 temp_sig = 0.001;      % Temperature randomness (standard deviation)
@@ -52,6 +55,31 @@ sig = rand_pos_def_mtx();
 % Randomly generate starting times (0-10)
 T_start = floor((rand(1,n)+1)*10); 
 
+% Random changes in covariance (bool)
+random_perf = 0;
+
+% Enable debug output (bool)
+debug = 0;
+
+% Save as a movie
+movie = 1;
+
+if movie
+    f = figure();
+    a = axes('Parent',f);
+    axis(a,'tight');
+    set(a,'nextplot','replacechildren');
+    % SICK BUG ALERT - Matlab's OpenGL rendering has issues creating
+    % renderings with transparency objects in them when the host is using
+    % transparent windows also (lookin at you windows 7). This means to
+    % render the movie you MUST DISABLE TRANSPARENCY IN WINDOWS. You've
+    % been warned.
+
+    
+    writer = VideoWriter('Performance.avi');
+    open(writer);
+end
+
 for t=1:t_end
    % For now, will keep all early nutrient dosages constant and 
    % the same for each plant. Later we can use the same machinery
@@ -61,7 +89,8 @@ for t=1:t_end
    Started_indices = find(Started);
    num_started = numel(Started_indices);
    if t > 1 && num_started>1
-       [C,IX] = sort(clusterdata([Temp_mean(Started_indices)' N(Started_indices,t-1)],k));
+       clusters = clusterdata([Temp_mean(Started_indices)' N(Started_indices,t-1)],k);
+       [C,IX] = sort(clusters);
        num_cluster = max(C);
        Gradient_approx = zeros(1,n); % approx of dP/dN based on regression
        j = 1;
@@ -76,9 +105,9 @@ for t=1:t_end
            % Now fill Gradient_approx by finding best fit plane among
            % cluster points and taking dP/dN of this plane 
            %("slope w.r.t N")
-           if cluster_end-cluster_begin>2 % Cannot approx grad. with <3 datapoints
+           if cluster_end-cluster_begin>5 % Cannot approx grad. with <5 datapoints
                % Find system indices for current cluster
-               cluster_indices = Started_indices(IX(cluster_begin:cluster_end));
+               cluster_indices = Started_indices(IX(cluster_begin:cluster_end));                                        
                % Calc grad approx. for current cluster
                coeffs = ...
                  coeffvalues(fit([Temp_mean(cluster_indices)' N(cluster_indices,t-1)],...
@@ -94,6 +123,13 @@ for t=1:t_end
                    disp('Gradient NaN or inf');
                    return;
                end
+               if grad < 0
+                   % Negative gradients come from when we cluster a few
+                   % points and an outlier creates a negative gradient. If
+                   % the gradient is negative, just make it zero for now.
+                   % Once we add randomness this should even out.
+                   grad = 0;
+               end
                Gradient_approx(cluster_indices) = ...
                     zeros(1,cluster_end-cluster_begin+1)+ grad;
                 % Update Lipschitz constant/learning rate if needed
@@ -104,7 +140,6 @@ for t=1:t_end
            end
        end
        plot_perf_samples
-       drawnow
    end
    % Add some random temperature perturbation
    T(:,t) = Temp_mean'+temp_sig*randn(n,1);
@@ -129,3 +164,9 @@ for t=1:t_end
        end
    end
 end
+
+if movie
+    close(writer);
+end
+
+disp('Sim complete');
