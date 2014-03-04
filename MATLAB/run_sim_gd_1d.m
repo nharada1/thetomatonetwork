@@ -20,9 +20,9 @@
 %                            scalar t_early, scalar t)
 
 % Initialize 
-t_end = 100;
-n = 100;         % Number of systems
-k = 15;          % Max number of clusters
+t_end = 20;
+n = 4;         % Number of systems
+k = 1;          % Max number of clusters
 L = 0.01;         % Lipschitz constant for P w.r.t N. 
                   % i.e., maximum dP/dN. 
                   % Continually updated when bigger dP/dN arise
@@ -30,7 +30,7 @@ eta = L/sqrt(t_end);          % Learning rate
 N = zeros(n,t_end);
 P = zeros(n,t_end);
 N_start_mean = .5;
-N_start_sig = .5;
+N_start_sig = .05;
 debug = 0;
 random_perf = 0;
 colors_raw = linspace(0,1,floor(k/2))';
@@ -96,8 +96,8 @@ for t=2:t_end
                 Y_intercepts(cluster_indices) = ...
                     zeros(1,cluster_end-cluster_begin+1)+ y_intercept;
                 % Update Lipschitz constant/learning rate if needed
-               if grad > L
-                   L = grad;
+               if abs(grad) > L
+                   L = abs(grad);
                    eta = L/(sqrt(t_end));
                end
            end
