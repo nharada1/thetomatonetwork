@@ -9,7 +9,6 @@ class Plant(models.Model):
     # Plant Metadata
     initial_date     = models.DateTimeField('Birthday')
 
-
     # User data
     user_name        = models.CharField("User's Name", max_length=20)
     plant_name       = models.CharField("Plant's Name", max_length=20)
