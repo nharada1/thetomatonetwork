@@ -38,7 +38,7 @@ class AlgoMetadata(models.Model):
     '''
 
     L = models.FloatField('Lipschitz Constant')
-    T = models.FloatField('Time of Convergence')
+    T = models.IntegerField('Time of Convergence')
 
     def __unicode__(self):
         return u"{L: %f} {T: %f}" % (self.L, self.T)

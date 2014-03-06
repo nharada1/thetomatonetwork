@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plants/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="0" selection-start="1630" selection-end="1630" vertical-scroll-proportion="0.0" vertical-offset="281" max-vertical-offset="900">
+            <state line="40" column="27" selection-start="1527" selection-end="1527" vertical-scroll-proportion="1.1029412" vertical-offset="0" max-vertical-offset="900">
               <folding />
             </state>
           </provider>
@@ -77,10 +77,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plants/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="24" selection-start="789" selection-end="789" vertical-scroll-proportion="0.52389705" vertical-offset="0" max-vertical-offset="544">
+            <state line="20" column="43" selection-start="718" selection-end="718" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -131,8 +131,8 @@
         <option value="$PROJECT_DIR$/seed/urls.py" />
         <option value="$PROJECT_DIR$/seed/wsgi.py" />
         <option value="$PROJECT_DIR$/seed/settings.py" />
-        <option value="$PROJECT_DIR$/plants/models.py" />
         <option value="$PROJECT_DIR$/plants/admin.py" />
+        <option value="$PROJECT_DIR$/plants/models.py" />
       </list>
     </option>
   </component>
@@ -711,19 +711,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plants/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1630" selection-end="1630" vertical-scroll-proportion="0.0" vertical-offset="281" max-vertical-offset="900">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plants/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="24" selection-start="789" selection-end="789" vertical-scroll-proportion="0.52389705" vertical-offset="0" max-vertical-offset="544">
+        <state line="20" column="43" selection-start="718" selection-end="718" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plants/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="27" selection-start="1527" selection-end="1527" vertical-scroll-proportion="1.1029412" vertical-offset="0" max-vertical-offset="900">
+          <folding />
         </state>
       </provider>
     </entry>
