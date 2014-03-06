@@ -13,7 +13,7 @@ class PlantStateAdmin(admin.ModelAdmin):
 
 class AlgoMetaDetaAdmin(admin.ModelAdmin):
     list_display = ['id', 'L', 'T']
-    fields =     = ['L', 'T']
+    fields       = ['L', 'T']
 
 admin.site.register(English_Ivy, PlantAdmin)
 admin.site.register(Plant_State, PlantStateAdmin)

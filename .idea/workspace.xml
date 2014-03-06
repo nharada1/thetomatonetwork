@@ -80,7 +80,7 @@
       <file leaf-file-name="admin.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plants/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="52" selection-start="822" selection-end="822" vertical-scroll-proportion="0.52389705" vertical-offset="0" max-vertical-offset="544">
+            <state line="15" column="13" selection-start="657" selection-end="657" vertical-scroll-proportion="0.41360295" vertical-offset="0" max-vertical-offset="544">
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -497,7 +497,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32942554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32942554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -720,7 +720,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="52" selection-start="822" selection-end="822" vertical-scroll-proportion="0.52389705" vertical-offset="0" max-vertical-offset="544">
+        <state line="15" column="13" selection-start="657" selection-end="657" vertical-scroll-proportion="0.41360295" vertical-offset="0" max-vertical-offset="544">
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
