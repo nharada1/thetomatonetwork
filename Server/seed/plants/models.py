@@ -25,12 +25,23 @@ class Plant_State(models.Model):
     date            = models.DateTimeField('Date-Time')
     nutrient_value  = models.FloatField('Nutrient Value')
     light_value     = models.FloatField('Light Value')
-    health_rating   = models.IntegerField('Health Rating')
+    health_rating   = models.FloatField('Health Rating')
     plant           = models.ForeignKey(Plant)
 
     def __unicode__(self):
         return u"%s's plant %s's state at time step %d" % (self.plant.user_name, self.plant.plant_name, self.timestep)
 
+class Algo_Metadata(models.Model):
+    ''' Metadata for current state/iteration of algorithm. Contains two variables:
+        - Lipschitz constant of performance function
+        - Expected time of convergence
+    '''
+
+    L = models.FloatField('Lipschitz Constant')
+    T = models.FloatField('Time of Convergence')
+
+    def __unicode__(self):
+        return u"{L: %f} {T: %f}" % (self.L, self.T)
 
 # Specific Plant models
 class Arugula(Plant):
