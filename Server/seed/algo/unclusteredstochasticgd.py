@@ -56,10 +56,10 @@ def calcNutrientUpdate(N_tau,P_tau,L,T):
 				N_regress[i_regress] = N_tau[i,s]
 				P_regress[i_regress] = P_tau[i,s+1]
 				i_regress = i_regress + 1
-
+	print(i_regress)
 	# http://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.lstsq.html#numpy.linalg.lstsq
-	A = np.vstack([N_regress, np.ones(len(N_regress))]).T
-	g, c = np.linalg.lstsq(A, P_regress)[0]
+	A = np.vstack([N_regress[:i_regress], np.ones(len(N_regress[:i_regress]))]).T
+	g, c = np.linalg.lstsq(A, P_regress[:i_regress])[0]
 
 	N_t = N_tau[:,tau-1] + eta*g
 	return g,N_t

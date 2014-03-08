@@ -19,12 +19,12 @@ sig = 0.4505
 mu = 0.7482
 
 for t in range(1,20):
-	N_tau = N[:,t-tau:t]
+	N_tau = N[:,max(t-tau,0):t]
 	P_t = np.zeros((n,))
 	for i in range(0,n):
 		P_t[i] = gaussian(N[i,t-1],mu,sig)
 	P[:,t] = P_t.T
-	P_tau = P[:,t-tau:t+1]
+	P_tau = P[:,max(t-tau,0):t+1]
 	g,N_t = unclusteredstochasticgd.calcNutrientUpdate(N_tau,P_tau,L,T)
 	L = abs(g) if abs(g) > L else L
 	N[:,t] = N_t.T
