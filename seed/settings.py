@@ -15,10 +15,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'seed_db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': 'samzeckendorf',
-        'PASSWORD': 'mintyfresh',
+        'USER': 'postgres',
+        'PASSWORD': 'pass',
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'PORT': '5432',                      # Set to empty string for default.
     }
 }
 
@@ -161,7 +161,7 @@ LOGGING = {
 import dj_database_url
 
 DATABASE_URL='postgres://localhost/seed_db'
-DATABASES['default'] =  dj_database_url.config(default=DATABASE_URL)
+#DATABASES['default'] =  dj_database_url.config(default=DATABASE_URL)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
