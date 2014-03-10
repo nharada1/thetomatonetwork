@@ -10,13 +10,13 @@ class PlantAdmin(admin.ModelAdmin):
 
 
 class PlantStateAdmin(admin.ModelAdmin):
-    list_display = ['id', 'timestep', 'date', 'nutrient_value', 'light_value', 'health_rating', 'plant']
-    fields       = ['timestep', 'date', 'nutrient_value', 'light_value', 'health_rating', 'plant']
+    list_display = ['id', 'timestep', 'date', 'nutrient_value', 'light_value', 'performance_value', 'plant']
+    fields       = ['timestep', 'date', 'nutrient_value', 'light_value', 'performance_value', 'plant']
 
 
 class AlgoMetaDataAdmin(admin.ModelAdmin):
-    list_display = ['id', 'L', 'T']
-    fields       = ['L', 'T']
+    list_display = ['id', 'date', 'L', 'T', 'tau']
+    fields       = ['date', 'L', 'T', 'tau']
 
 admin.site.register(EnglishIvy, PlantAdmin)
 admin.site.register(PlantState, PlantStateAdmin)

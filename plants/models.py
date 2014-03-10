@@ -7,7 +7,7 @@ class Plant(models.Model):
             - English Ivy
     '''
     # Plant Metadata
-    initial_date     = models.DateTimeField('Birthday')
+    initial_date     = models.DateTimeField('Birthday',auto_now=True)
 
     # User data
     user_name        = models.CharField("User's Name", max_length=20)
@@ -22,10 +22,10 @@ class PlantState(models.Model):
         Currently we control nutrient flow, and measure ambient light
     '''
     timestep        = models.IntegerField('Timestep')
-    date            = models.DateTimeField('Date-Time')
-    nutrient_value  = models.FloatField('Nutrient Value')
-    light_value     = models.FloatField('Light Value')
-    health_rating   = models.FloatField('Health Rating')
+    date            = models.DateTimeField('Date-Time',auto_now=True)
+    nutrient_value  = models.FloatField('Nutrient Value',default=0.0)
+    light_value     = models.FloatField('Light Value',default=0.0)
+    performance_value   = models.FloatField('Performance Value',default=0.0)
     plant           = models.ForeignKey(Plant)
 
     def __unicode__(self):
@@ -36,9 +36,10 @@ class AlgoMetadata(models.Model):
         - Lipschitz constant of performance function
         - Expected time of convergence
     '''
-
+    date = models.DateTimeField('Date-Time',auto_now=True)
     L = models.FloatField('Lipschitz Constant')
     T = models.IntegerField('Time of Convergence')
+    tau = models.IntegerField('Time Memory')
 
     def __unicode__(self):
         return u"{L: %f} {T: %f}" % (self.L, self.T)
