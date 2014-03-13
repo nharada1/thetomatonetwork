@@ -7,7 +7,8 @@ class Plant(models.Model):
             - English Ivy
     '''
     # Plant Metadata
-    initial_date     = models.DateTimeField('Birthday',auto_now=True)
+    initial_date     = models.DateTimeField('Birthday', auto_now=True)
+    initial_date.editable = True
 
     # User data
     user_name        = models.CharField("User's Name", max_length=20)
@@ -21,12 +22,15 @@ class PlantState(models.Model):
     ''' Plant states represent the different parameters we are keeping track of
         Currently we control nutrient flow, and measure ambient light
     '''
-    timestep        = models.IntegerField('Timestep')
-    date            = models.DateTimeField('Date-Time',auto_now=True)
-    nutrient_value  = models.FloatField('Nutrient Value',default=0.0)
-    light_value     = models.FloatField('Light Value',default=0.0)
-    performance_value   = models.FloatField('Performance Value',default=0.0)
-    plant           = models.ForeignKey(Plant)
+
+    date                = models.DateTimeField('Date-Time', auto_now=True)
+    date.editable = True
+
+    timestep            = models.IntegerField('Timestep')
+    nutrient_value      = models.FloatField('Nutrient Value', default=0.0)
+    light_value         = models.FloatField('Light Value', default=0.0)
+    performance_value   = models.FloatField('Performance Value', default=0.0)
+    plant               = models.ForeignKey(Plant)
 
     def __unicode__(self):
         return u"%s's plant %s's state at time step %d" % (self.plant.user_name, self.plant.plant_name, self.timestep)
@@ -36,10 +40,12 @@ class AlgoMetadata(models.Model):
         - Lipschitz constant of performance function
         - Expected time of convergence
     '''
-    date = models.DateTimeField('Date-Time',auto_now=True)
-    L = models.FloatField('Lipschitz Constant')
-    T = models.IntegerField('Time of Convergence')
-    tau = models.IntegerField('Time Memory')
+    date      = models.DateTimeField('Date-Time', auto_now=True)
+    date.editable = True
+
+    L         = models.FloatField('Lipschitz Constant')
+    T         = models.IntegerField('Time of Convergence')
+    tau       = models.IntegerField('Time Memory')
 
     def __unicode__(self):
         return u"{L: %f} {T: %f}" % (self.L, self.T)
