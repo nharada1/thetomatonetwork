@@ -30,7 +30,7 @@ class DataWrapper:
 		self.plantIndexMap = {}
 
 	# Load P_tau, N_tau, n, t, tau, L and T from database
-	def loadFromDB(self):
+	def loadFromDB_nutrientUpdate(self):
 		self.L = plants.models.AlgoMetadata.objects.latest('date').L
 		self.T = plants.models.AlgoMetadata.objects.latest('date').T
 		self.tau = plants.models.AlgoMetadata.objects.latest('date').tau
@@ -39,13 +39,24 @@ class DataWrapper:
 		self.n = recent_plant_states.aggregate(django.db.models.Count('plant',distinct=True))['plant__count']
 		self.N_tau = np.zeros((self.n,self.tau))
 		self.P_tau = np.zeros((self.n,self.tau))
+		self.P_t = np.zeros((self.n,1))
 		for s in range(0,self.tau):
 			for i in range(0,self.n):
 				self.N_tau[i,s] = recent_plant_states[self.n*s+i].nutrient_value
 				self.P_tau[i,s] = recent_plant_states[self.n*s+i].performance_value
 				self.plantIndexMap[i] = recent_plant_states[self.n*s+i].plant
 
-		self.loaded = True
+	def loadFromDB_performanceUpdate(self):
+		self.L = plants.models.AlgoMetadata.objects.latest('date').L
+		self.T = plants.models.AlgoMetadata.objects.latest('date').T
+		self.tau = plants.models.AlgoMetadata.objects.latest('date').tau
+		self.t = plants.models.PlantState.objects.latest('timestep').timestep
+		recent_plant_states = plants.models.PlantState.objects.filter(timestep=self.t).order_by('plant')
+		self.n = recent_plant_states.aggregate(django.db.models.Count('plant',distinct=True))['plant__count']
+		self.P_t = np.zeros((self.n,1))
+		for i in range(0,self.n):
+			self.P_t[i] = recent_plant_states[i].performance_value
+			self.plantIndexMap[i] = recent_plant_states[i].plant
 
 	# Save N_t and L to database
 	def persistToDB_nutrientUpdate(self):
@@ -79,18 +90,19 @@ class DataWrapper:
 		if self.N_tau is None or self.P_tau is None:
 			self.error('Attempted to update nutrients before pulling from database')
 		else:
-			self.loadFromDB()
 			g,self.N_t = A(self.N_tau,self.P_tau,self.L,self.T)
 			self.updateLipschitz(g)
 
-	def updatePerformance(self):
+	def updatePerformance(self,plant,p):
 		# self.P_t = calculate performance
-		self.loadFromDB()
-		pass
+		if self.P_t is None:
+			self.error('Attempted to update nutrients before pulling from database')
+		else:
+			index = self.plantIndexMap.keys()[self.plantIndexMap.values().index(plant)]
+			self.P_t[index] = p
 
 	# Placeholder performance calculator 
 	def updatePerformance_test(self,f):
-		self.loadFromDB()
 		self.P_t = np.zeros((self.n,))
 		print('t: '+str(self.t))
 		print('n: '+str(self.n))
@@ -101,3 +113,9 @@ class DataWrapper:
 	def error(self,msg):
 		print(msg)
 
+	def updateString(self):
+		result = []
+		for i in range(0,self.n):
+			s = str(self.plantIndexMap[i].plant_name + ": " + str(self.P_t[i]))
+			result.append(s)
+		return result

@@ -8,16 +8,12 @@ urlpatterns = patterns('',
     #url(r'^$', 'seed.views.home', name='home'),
     #url(r'^seed/', include('seed.foo.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-)
-
-# Allow admin to display
-urlpatterns += patterns('',
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.STATIC_ROOT,
     }),
- )
+    url(r'^update','plants.views.update_performance'),
+    url(r'^runalgo','plants.views.update_nutrients'),
+    url(r'^sync','plants.views.sync'),
+)

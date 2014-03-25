@@ -1,1 +1,60 @@
-# Create your views here.
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django import forms
+import algo.datawrapper as dw
+import plants.models 
+
+class UpdateForm(forms.Form):
+	plant_name = forms.CharField(max_length=100)
+	new_value = forms.CharField()
+	def is_valid(self):
+		valid = super(UpdateForm, self).is_valid()
+		if not valid:
+			return valid
+		plant_name = self.cleaned_data['plant_name']
+		new_value = self.cleaned_data['new_value']
+		try:
+			p = float(new_value)
+		except ValueError:
+			return False
+		plant = plants.models.Plant.objects.filter(plant_name=plant_name)[0]
+		if plant is None:
+			return False
+		return True
+
+
+def update_performance(request):
+	message = ""
+	if request.method == 'POST': # If the form has been submitted...
+		form = UpdateForm(request.POST) # A form bound to the POST data
+		if form.is_valid(): # All validation rules pass
+			plant_name = form.cleaned_data['plant_name']
+			new_value = form.cleaned_data['new_value']
+			p = float(new_value)
+			plant = plants.models.Plant.objects.filter(plant_name=plant_name)[0]
+			wrapper = dw.DataWrapper()
+			wrapper.loadFromDB_performanceUpdate()
+			wrapper.updatePerformance(plant,p)
+			wrapper.persistToDB_performanceUpdate()
+			message = "Successfully updated plant "+plant.plant_name+" with value "+str(p)
+		else:
+			message = "Error"
+	else:
+		form = UpdateForm() # An unbound form
+
+	return render(request, 'update.html', {
+		'form': form,
+		'message': message
+	})
+
+def update_nutrients(request):
+	wrapper = dw.DataWrapper()
+	wrapper.loadFromDB_nutrientUpdate()
+	wrapper.updateNutrients()
+	wrapper.persistToDB_nutrientUpdate()
+	update_strs = wrapper.updateString()
+	return render(request,'runalgo.html',{'update_strs': update_strs})
+
+def sync(request):
+	pass

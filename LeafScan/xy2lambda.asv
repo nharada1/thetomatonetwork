@@ -1,0 +1,13 @@
+function [ lambda ] = xy2lambda( x,y,CIE )
+% Convert CIE coordinates into wavelength
+% Done by fitting the line through the whitepoint (whitex,whitey)
+% of CIE and given chromatic coordinates (x,y), and seeing where
+% it intersects the CIE boundary
+whitex = 0.35;
+whitey = 0.35;
+slope = (y-whitey)/(x-whitex);
+yinterc
+line = [0:0.01:.8,slope*0:0.01:0.8+
+
+end
+

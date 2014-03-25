@@ -112,6 +112,9 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    "C:/Users/John/SkyDrive/Development/Github/thetomatonetwork/server/seed/static/update",
+    "C:/Users/John/SkyDrive/Development/Github/thetomatonetwork/server/seed/static/runalgo",
+    "C:/Users/John/SkyDrive/Development/Github/thetomatonetwork/server/seed/static/sync"
 )
 
 INSTALLED_APPS = (
