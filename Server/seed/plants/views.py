@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django import forms
-import algo.datawrapper as dw
-import plants.models 
 from django.http import HttpResponse
+
+import requests
+import algo.datawrapper as dw
+import plants.models
+
 
 class UpdateForm(forms.Form):
     plant_name = forms.CharField(max_length=100)
@@ -59,32 +62,26 @@ def sync(request):
     pass
 
 
-arduino_server_ip = 'http://192.168.1.22/'
+
+
+''' Arduino Server Requests!
+'''
+arduino_server_ip = 'http://192.168.1.147/'
 
 def index(request):
-    patterns     = Pattern.objects.all()
-    pattern_list = '<br></br> '.join(pattern.pattern_id for pattern in patterns)
-    title        = '<title>Led_298 Index</title>'
-    return HttpResponse(title + "<p>These are the available commands: </p>" + pattern_list)
+    plant_objs = plants.objects.all()
+    plant_list = '<br></br> '.join(plant.user_name + "'s " + 'plant ' + plant.plant_name for plant in plant_objs)
+    title      = '<title>Led_298 Index</title>'
+    return HttpResponse(title + "<p>These are the plants: </p>" + plant_list)
 
-
-def detail(request, pattern_id):
-    pattern_id = pattern_id.upper()
-    pattern             = Pattern.objects.get(pattern_id__iexact = pattern_id)
-    pattern_description = "NOTHING!"
-    title               = '<title>Led_298 ' + pattern_id + ' </title>'
-    if pattern:
-        pattern_description = pattern.pattern_description
-    return HttpResponse(title + "The pattern " + pattern.pattern_id + " does the following: " + pattern_description)
-
-def perform(request, pattern_id):
-    title     = '<title>Led_298 ' + pattern_id + ' Perform </title>'
-    pattern_id = pattern_id.upper()
+def query_arduino(request):
     try:
-        response_text = requests.get(arduino_server_ip + '$' + pattern_id, timeout = 3).text + "\n is A-okay!"
+        response_text = requests.get(arduino_server_ip + '$' + str(45), timeout = 3).text + "\n is A-okay!"
     except requests.exceptions.RequestException:
         response_text = "SERVER UNAVAILABLE!"
 
-    return HttpResponse(title + "Querying arduino for pattern " + pattern_id + " yields: " + response_text)
+    return HttpResponse('Seed Hyroponics: ' + "Querying arduino with updated info " +
+                        str(45) + " yields: " + response_text)
+
 
 
