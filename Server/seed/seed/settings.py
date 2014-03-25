@@ -113,9 +113,9 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-   PROJECT_PATH + "static/update",
-   PROJECT_PATH + "static/runalgo",
-   PROJECT_PATH + "seed/static/sync"
+    PROJECT_PATH + "/static/update",
+   PROJECT_PATH + "/static/runalgo",
+   PROJECT_PATH + "/static/sync"
 )
 
 INSTALLED_APPS = (
