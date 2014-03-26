@@ -56,7 +56,7 @@ def update_nutrients(request):
     wrapper.updateNutrients()
     wrapper.persistToDB_nutrientUpdate()
     update_strs = wrapper.updateString()
-    return render(request,'runalgo.html',{'update_strs': update_strs})
+    return render(request, 'runalgo.html',{'update_strs': update_strs})
 
 def sync(request):
     pass
