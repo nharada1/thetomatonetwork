@@ -68,9 +68,9 @@ def sync(request):
 arduino_server_ip = 'http://192.168.1.147/'
 
 def index(request):
-    plant_objs = plants.objects.all()
+    plant_objs = plants.models.Plant.objects.all()
     plant_list = '<br></br> '.join(plant.user_name + "'s " + 'plant ' + plant.plant_name for plant in plant_objs)
-    title      = '<title>Led_298 Index</title>'
+    title      = '<title>Seed Hydroponics Index</title>'
     return HttpResponse(title + "<p>These are the plants: </p>" + plant_list)
 
 def query_arduino(request):
