@@ -54,7 +54,9 @@ class DataWrapper:
 		recent_plant_states = plants.models.PlantState.objects.filter(timestep=self.t).order_by('plant')
 		self.n = recent_plant_states.aggregate(django.db.models.Count('plant',distinct=True))['plant__count']
 		self.P_t = np.zeros((self.n,1))
+		self.N_t = np.zeros((self.n,1))
 		for i in range(0,self.n):
+			self.N_t[i] = recent_plant_states[i].nutrient_value
 			self.P_t[i] = recent_plant_states[i].performance_value
 			self.plantIndexMap[i] = recent_plant_states[i].plant
 
