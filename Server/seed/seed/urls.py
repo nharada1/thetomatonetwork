@@ -15,5 +15,6 @@ urlpatterns = patterns('',
     }),
     url(r'^update','plants.views.update_performance'),
     url(r'^runalgo','plants.views.update_nutrients'),
-    url(r'^sync','plants.views.sync'),
+    url(r'^$','plants.views.index'),
+    url(r'^query_arduino','plants.view.query_arduino')
 )
