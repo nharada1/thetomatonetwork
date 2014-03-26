@@ -55,7 +55,7 @@ def update_nutrients(request):
     wrapper.updateNutrients()
     wrapper.persistToDB_nutrientUpdate()
     update_strs = wrapper.updateString()
-    return render(request,'runalgo.html',{'update_strs': update_strs})
+    return render(request, 'runalgo.html',{'update_strs': update_strs})
 
 def sync(request):
     pass
@@ -75,7 +75,7 @@ def index(request):
 
 def query_arduino(request):
     try:
-        response_text = requests.get(arduino_server_ip + '$' + str(45), timeout = 3).text + "\n is A-okay!"
+        response_text = requests.get(arduino_server_ip + '$' + ".45f,.32f,.19f", timeout = 3).text + "\n is A-okay!"
     except requests.exceptions.RequestException:
         response_text = "SERVER UNAVAILABLE!"
 
