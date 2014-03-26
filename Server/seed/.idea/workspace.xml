@@ -35,7 +35,7 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plants/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="3" selection-start="1951" selection-end="2061" vertical-scroll-proportion="0.56363636" vertical-offset="540" max-vertical-offset="1395">
+            <state line="77" column="34" selection-start="2452" selection-end="2452" vertical-scroll-proportion="0.76363635" vertical-offset="525" max-vertical-offset="1380">
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -43,10 +43,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="api.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../seedENV/lib/python2.7/site-packages/requests/api.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="46" column="4" selection-start="1927" selection-end="1927" vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="1890">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="tests.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algo/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="44" selection-start="1213" selection-end="1213" vertical-scroll-proportion="-14.0" vertical-offset="371" max-vertical-offset="1170">
+            <state line="53" column="44" selection-start="1246" selection-end="1246" vertical-scroll-proportion="-14.0" vertical-offset="371" max-vertical-offset="1170">
               <folding />
             </state>
           </provider>
@@ -524,11 +533,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/seed/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="24" selection-start="538" selection-end="538" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="420" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/seed/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="49" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="615">
@@ -846,7 +850,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/algo/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="44" selection-start="1213" selection-end="1213" vertical-scroll-proportion="-14.0" vertical-offset="371" max-vertical-offset="1170">
+        <state line="53" column="44" selection-start="1246" selection-end="1246" vertical-scroll-proportion="-14.0" vertical-offset="371" max-vertical-offset="1170">
           <folding />
         </state>
       </provider>
@@ -858,9 +862,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../seedENV/lib/python2.7/site-packages/requests/api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="4" selection-start="1927" selection-end="1927" vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="1890">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/plants/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="3" selection-start="1951" selection-end="2061" vertical-scroll-proportion="0.56363636" vertical-offset="540" max-vertical-offset="1395">
+        <state line="77" column="34" selection-start="2452" selection-end="2452" vertical-scroll-proportion="0.76363635" vertical-offset="525" max-vertical-offset="1380">
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
