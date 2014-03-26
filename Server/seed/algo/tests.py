@@ -46,10 +46,10 @@ def testAlgoDB():
 	f = lambda x: gaussian(x,mu,sig)
 	for t in range(1,T):
 		wrapper = dw.DataWrapper()
-		wrapper.loadFromDB()
+		wrapper.loadFromDB_performanceUpdate()
 		wrapper.updatePerformance_test(f)
 		wrapper.persistToDB_performanceUpdate()
-		wrapper.loadFromDB()
+		wrapper.loadFromDB_nutrientUpdate()
 		wrapper.updateNutrients()
 		wrapper.persistToDB_nutrientUpdate()
 
