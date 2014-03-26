@@ -55,17 +55,12 @@ def update_nutrients(request):
     wrapper.updateNutrients()
     wrapper.persistToDB_nutrientUpdate()
     update_strs = wrapper.updateString()
-    return render(request, 'runalgo.html',{'update_strs': update_strs})
-
-def sync(request):
-    pass
-
-
-
+    return render(request,'runalgo.html',{'update_strs': update_strs})
 
 ''' Arduino Server Requests!
 '''
 arduino_server_ip = 'http://192.168.1.147/'
+
 
 def index(request):
     plant_objs = plants.models.Plant.objects.all()
@@ -73,14 +68,31 @@ def index(request):
     title      = '<title>Seed Hydroponics Index</title>'
     return HttpResponse(title + "<p>These are the plants: </p>" + plant_list)
 
-def query_arduino(request):
+def sync(request):
+    wrapper = dw.DataWrapper()
+    wrapper.loadFromDB_performanceUpdate()
+    new_values = wrapper.N_t
+    # Assume we have 4 plants with names plant0,plant1,plant2,plant3 and submit updates in that order
+    # Use ugly hard-coded for-loop to order new_values to reflect this assumption
+    new_values_ordered = [0,0,0,0]
+    for i in range(0, wrapper.n):
+        if wrapper.plantIndexMap[i].plant_name=='plant0':
+            new_values_ordered[0] = new_values[i]
+        elif wrapper.plantIndexMap[i].plant_name=='plant1':
+            new_values_ordered[1] = new_values[i]
+        elif wrapper.plantIndexMap[i].plant_name=='plant2':
+            new_values_ordered[2] = new_values[i]
+        elif wrapper.plantIndexMap[i].plant_name=='plant3':
+            new_values_ordered[3] = new_values[i]
+
+    new_values_str = ",".join([str(v).strip('[] ')+ "f" for v in new_values_ordered])
     try:
-        response_text = requests.get(arduino_server_ip + '$' + ".45f,.32f,.19f", timeout = 3).text + "\n is A-okay!"
+        response_text = requests.get(arduino_server_ip + '$' + new_values_str, timeout = 3).text + "\n is A-okay!"
     except requests.exceptions.RequestException:
         response_text = "SERVER UNAVAILABLE!"
 
     return HttpResponse('Seed Hyroponics: ' + "Querying arduino with updated info " +
-                        str(45) + " yields: " + response_text)
+                        new_values_str + " yields: " + response_text)
 
 
 
