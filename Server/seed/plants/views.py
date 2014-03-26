@@ -20,8 +20,7 @@ class UpdateForm(forms.Form):
             p = float(new_value)
         except ValueError:
             return False
-        plant = plants.models.Plant.objects.filter(plant_name=plant_name)[0]
-        if plant is None:
+        if len(plants.models.Plant.objects.filter(plant_name=plant_name))==0:
             return False
         return True
 
