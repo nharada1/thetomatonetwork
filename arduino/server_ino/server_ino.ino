@@ -25,6 +25,7 @@ const int PLANT_PINS [] = {11,10,9,8};
 const unsigned long WATER_CYCLE_PERIOD = 7200000; // 2 hours
 const unsigned long LIGHT_CYCLE_PERIOD = 43200000; // 12 hours
 
+
 // Control variables
 // Run for approx. hour on, hour off at the start
 double waterDutyCycles[4];
@@ -104,15 +105,13 @@ void setup()
   delay(1000);
   
   Serial.println("Initializing seed hydroponics server");
-  // start the Ethernet connection and the server:
-  // start the Ethernet connection:
+
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
-    // no point in carrying on, so do nothing forevermore:
   }
   // give the Ethernet shield a second to initialize:
   delay(1000);
-  
+
   pinMode(LIGHT_PIN,OUTPUT);
   digitalWrite(LIGHT_PIN,HIGH);
   pinMode(AIR_PIN,OUTPUT);
@@ -170,7 +169,9 @@ void loop()
     // Check if this is a cycle dedicated for handling plantcare
     if(cycleCheck(&plantcareLastMillis, plantcareCycle))
     {
-      updatePlantCare();
+      if(!nutrient_string.equals(""))
+        Serial.println(nutrient_string);
+      //updatePlantCare();
     }
 }
 
