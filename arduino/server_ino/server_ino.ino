@@ -5,8 +5,8 @@
 #define plantcareCycle 5U
 
 // Server connection fields
-String command_buffer;
-String command;
+String nutrient_string_buffer;
+String nutrient_string;
 EthernetClient client;
 
 // Arduino Cycle counters
@@ -23,12 +23,18 @@ const unsigned long postingInterval = 10*1000;  // delay between updates, in mil
 byte mac[] = { 0x90, 0xA2, 0xDA, 0x0F, 0x3B, 0xE2 };
 char server[] = "http://seed-hydroponics.herokuapp.com";
 
+// nutrient values
+float nutrient_val_1 = 0;
+float nutrient_val_2 = 0;
+float nutrient_val_3 = 0;
+float nutrient_val_4 = 0;
+
 
 void setup()
 {
-  // Init command buffer to empty
-  command_buffer = "";
-  command        = command_buffer;
+  // Init nutrient_string buffer to empty
+  nutrient_string_buffer = "";
+  nutrient_string        = nutrient_string_buffer;
   
   // Begin serial comm
   Serial.begin(9600);
@@ -65,28 +71,34 @@ void loop()
         httpRequest();
       }
       
-      command = get_stream_value();
+      nutrient_string = get_stream_value();
 
-      // Parse command
-      int first_delim  = command.indexOf(',');
-      int second_delim = command.indexOf(',', first_delim + 1);
-      int third_delim  = command.indexOf(',', second_delim + 1);
+      // Parse nutrient_string
+      int first_delim  = nutrient_string.indexOf(',');
+      int second_delim = nutrient_string.indexOf(',', first_delim + 1);
+      int third_delim  = nutrient_string.indexOf(',', second_delim + 1);
+      int fourth_delim = nutrient_string.indexOf(',', third_delim + 1);
 
-      String val_1 = command.substring(0, first_delim);
-      String val_2 = command.substring(first_delim+1, second_delim);
-      String val_3 = command.substring(second_delim+1, third_delim);
+      String val_1 = nutrient_string.substring(0, first_delim);
+      String val_2 = nutrient_string.substring(first_delim+1, second_delim);
+      String val_3 = nutrient_string.substring(second_delim+1, third_delim);
+      String val_4 = nutrient_string.substring(third_delim+1, fourth_delim);
 
       char buf[val_1.length()];
       val_1.toCharArray(buf,val_1.length());
-      float val_1_f = atof(buf);
+      nutrient_val_1 = atof(buf);
       
       char buf2[val_2.length()];
       val_2.toCharArray(buf2,val_2.length());
-      float val_2_f = atof(buf2);
+      nutrient_val_2 = atof(buf2);
 
       char buf3[val_3.length()];
       val_3.toCharArray(buf3,val_3.length());
-      float val_3_f = atof(buf3); 
+      nutrient_val_3 = atof(buf3); 
+      
+      char buf4[val_4.length()];
+      val_4.toCharArray(buf4,val_4.length());
+      nutrient_val_4 = atof(buf4);
       
       // update connected status
       lastConnected = client.connected();
@@ -95,8 +107,7 @@ void loop()
     // Check if this is a cycle dedicated for handling plantcare
     if(cycleCheck(&plantcareLastMillis, plantcareCycle))
     {
-      if(!command.equals(""))
-        Serial.println(command);
+        
     }
 }
 
@@ -116,13 +127,12 @@ String get_stream_value()
         {
           if(c == '$')
           {
-            String temp_buffer = command_buffer;
-            command_buffer     = "";
+            String temp_buffer = nutrient_string_buffer;
+            nutrient_string_buffer     = "";
             incoming           = 0;
-            Serial.println(temp_buffer);
             return temp_buffer;
           }
-          command_buffer += c; 
+          nutrient_string_buffer += c; 
         }
         if(c == '$'){ 
           incoming = 1;
@@ -139,7 +149,7 @@ String get_stream_value()
     client.stop();
   }
   
-  return command;
+  return nutrient_string;
 }
 
 // Determine how many cycles each process gets
