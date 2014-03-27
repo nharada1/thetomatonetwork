@@ -49,10 +49,10 @@ void updatePlantCare(){
   if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD){
         for(i; i<NUM_PLANTS; i++){
           digitalWrite(PLANT_PINS[i],HIGH);
+          waterCycleStarted[i] = true;
         }
     Serial.println("Started new water cycle.");
     waterCycleLastMillis = currentMillis;
-    waterCycleStarted[i] = true;
   } else {
     for(i; i<NUM_PLANTS; i++){
       if(waterCycleStarted[i] && currentMillis-waterCycleLastMillis >= waterDutyCycles[i]*WATER_CYCLE_PERIOD){
