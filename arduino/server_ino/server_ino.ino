@@ -38,6 +38,7 @@ double waterDutyCycles [] = {0.5-1.5*WATER_DUTY_CYCLE_GRADIENT,
 boolean waterCycleStarted [] = {false,false,false,false};
 unsigned long waterCycleLastMillis = 0;
 unsigned long lightCycleLastMillis = 0;
+
 void updatePlantCare(){
   int i=0;
   unsigned long currentMillis = millis();
@@ -118,15 +119,11 @@ void setup()
   }
   // give the Ethernet shield a second to initialize:
   delay(1000);
-
     
   // start the Ethernet connection:
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
   }
-  // print your local IP address:
-  Serial.println(Ethernet.localIP());
-  client = server.available();
   
   pinMode(LIGHT_PIN,OUTPUT);
   digitalWrite(LIGHT_PIN,HIGH);
