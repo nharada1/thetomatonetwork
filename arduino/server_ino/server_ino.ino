@@ -63,6 +63,7 @@ void updatePlantCare(){
         Serial.println(i);
         waterCycleStarted[i] = false;
       }
+    }
   }
   // Light
   if(currentMillis-lightCycleLastMillis >= LIGHT_CYCLE_PERIOD){
