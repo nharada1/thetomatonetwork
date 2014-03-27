@@ -24,17 +24,10 @@ const int AIR_PIN = 12;
 const int PLANT_PINS [] = {11,10,9,8}; 
 const unsigned long WATER_CYCLE_PERIOD = 7200000; // 2 hours
 const unsigned long LIGHT_CYCLE_PERIOD = 43200000; // 12 hours
-// 5 minute difference between duty cycles of each plant
-// i.e. water_duty_cycle[0] = water_duty_cycle[1]-0.042
-const double WATER_DUTY_CYCLE_GRADIENT = 0.042;
 
 // Control variables
 // Run for approx. hour on, hour off at the start
-// double waterDutyCycles[4];
-double waterDutyCycles [] = {0.5-1.5*WATER_DUTY_CYCLE_GRADIENT,
-                          0.5-0.5*WATER_DUTY_CYCLE_GRADIENT,
-                          0.5+0.5*WATER_DUTY_CYCLE_GRADIENT,
-                          0.5+1.5*WATER_DUTY_CYCLE_GRADIENT};
+double waterDutyCycles[4];
 boolean waterCycleStarted [] = {false,false,false,false};
 unsigned long waterCycleLastMillis = 0;
 unsigned long lightCycleLastMillis = 0;
@@ -156,19 +149,19 @@ void loop()
 
       char buf[val_1.length()];
       val_1.toCharArray(buf,val_1.length());
-      waterDutyCycle[0] = atof(buf);
+      waterDutyCycles[0] = atof(buf);
       
       char buf2[val_2.length()];
       val_2.toCharArray(buf2,val_2.length());
-      waterDutyCycle[1] = atof(buf2);
+      waterDutyCycles[1] = atof(buf2);
 
       char buf3[val_3.length()];
       val_3.toCharArray(buf3,val_3.length());
-      waterDutyCycle[2] = atof(buf3); 
+      waterDutyCycles[2] = atof(buf3); 
       
       char buf4[val_4.length()];
       val_4.toCharArray(buf4,val_4.length());
-      waterDutyCycle[3] = atof(buf4);
+      waterDutyCycles[3] = atof(buf4);
       
       // update connected status
       lastConnected = client.connected();

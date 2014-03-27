@@ -44,7 +44,10 @@ class DataWrapper:
 			for i in range(0,self.n):
 				self.N_tau[i,s] = recent_plant_states[self.n*s+i].nutrient_value
 				self.P_tau[i,s] = recent_plant_states[self.n*s+i].performance_value
+				if(self.P_tau[i,s]==0.0):
+					return False
 				self.plantIndexMap[i] = recent_plant_states[self.n*s+i].plant
+		return True
 
 	def loadFromDB_performanceUpdate(self):
 		self.L = plants.models.AlgoMetadata.objects.latest('date').L
@@ -118,6 +121,6 @@ class DataWrapper:
 	def updateString(self):
 		result = []
 		for i in range(0,self.n):
-			s = str(self.plantIndexMap[i].plant_name + ": " + str(self.P_t[i]))
+			s = str(self.plantIndexMap[i].plant_name + ": " + str(self.N_t[i]))
 			result.append(s)
 		return result
