@@ -38,26 +38,35 @@ double waterDutyCycles [] = {0.5-1.5*WATER_DUTY_CYCLE_GRADIENT,
 unsigned long waterCycleLastMillis = 0;
 unsigned long lightCycleLastMillis = 0;
 
+boolean water_state = 0;
+boolean light_state = 0;
+
 void updatePlantCare(){
   int i=0;
   unsigned long currentMillis = millis();
   // Water
   if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD){
-    if(0){ //Server is available to overrwrite duty cycles      
-    }
-    for(i; i<NUM_PLANTS; i++){
-      digitalWrite(PLANT_PINS[i],HIGH);
-    }
+      if(water_state != 1)
+      {
+        water_state = 1;
+        for(i; i<NUM_PLANTS; i++){
+          digitalWrite(PLANT_PINS[i],HIGH);
+        }
+      }
     Serial.println("Started new water cycle.");
     waterCycleLastMillis = currentMillis;
-  } else {
-    for(i; i<NUM_PLANTS; i++){
-      if(currentMillis-waterCycleLastMillis >= waterDutyCycles[i]*WATER_CYCLE_PERIOD){
-        digitalWrite(PLANT_PINS[i],LOW);
-        Serial.print("Stopped water cycle for plant ");
-        Serial.println(i);
+  } 
+  
+  else if (water_state == 1) 
+  {
+      water_state = 0;
+      for(i; i<NUM_PLANTS; i++){
+        if(currentMillis-waterCycleLastMillis >= waterDutyCycles[i]*WATER_CYCLE_PERIOD){
+          digitalWrite(PLANT_PINS[i],LOW);
+          Serial.print("Stopped water cycle for plant ");
+          Serial.println(i);
+        }
       }
-    }
   }
   // Light
   if(currentMillis-lightCycleLastMillis >= LIGHT_CYCLE_PERIOD){
@@ -112,7 +121,6 @@ void setup()
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
     // no point in carrying on, so do nothing forevermore:
-    while(true);
   }
   // give the Ethernet shield a second to initialize:
   delay(1000);
