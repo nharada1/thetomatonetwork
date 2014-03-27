@@ -39,17 +39,26 @@ boolean waterCycleStarted [] = {false,false,false,false};
 unsigned long waterCycleLastMillis = 0;
 unsigned long lightCycleLastMillis = 0;
 
+boolean water_state = 0;
+boolean light_state = 0;
+
 void updatePlantCare(){
   int i=0;
   unsigned long currentMillis = millis();
   // Water
   if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD){
+<<<<<<< HEAD
     if(0){ //Server is available to overrwrite duty cycles      
     }
     for(i; i<NUM_PLANTS; i++){
       digitalWrite(PLANT_PINS[i],HIGH);
       waterCycleStarted[i] = true;
     }
+=======
+        for(i; i<NUM_PLANTS; i++){
+          digitalWrite(PLANT_PINS[i],HIGH);
+        }
+>>>>>>> d505e41f2ef61807c243f4054c7e411a18bd08a1
     Serial.println("Started new water cycle.");
     waterCycleLastMillis = currentMillis;
   } else {
@@ -60,7 +69,6 @@ void updatePlantCare(){
         Serial.println(i);
         waterCycleStarted[i] = false;
       }
-    }
   }
   // Light
   if(currentMillis-lightCycleLastMillis >= LIGHT_CYCLE_PERIOD){
@@ -115,7 +123,6 @@ void setup()
   if (0 && Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
     // no point in carrying on, so do nothing forevermore:
-    while(true);
   }
   // give the Ethernet shield a second to initialize:
   delay(1000);
