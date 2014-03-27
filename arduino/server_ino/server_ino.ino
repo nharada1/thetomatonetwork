@@ -35,6 +35,7 @@ double waterDutyCycles [] = {0.5-1.5*WATER_DUTY_CYCLE_GRADIENT,
                           0.5-0.5*WATER_DUTY_CYCLE_GRADIENT,
                           0.5+0.5*WATER_DUTY_CYCLE_GRADIENT,
                           0.5+1.5*WATER_DUTY_CYCLE_GRADIENT};
+boolean waterCycleStarted [] = {false,false,false,false};
 unsigned long waterCycleLastMillis = 0;
 unsigned long lightCycleLastMillis = 0;
 void updatePlantCare(){
@@ -49,12 +50,14 @@ void updatePlantCare(){
     }
     Serial.println("Started new water cycle.");
     waterCycleLastMillis = currentMillis;
+    waterCycleStarted[i] = true;
   } else {
     for(i; i<NUM_PLANTS; i++){
-      if(currentMillis-waterCycleLastMillis >= waterDutyCycles[i]*WATER_CYCLE_PERIOD){
+      if(waterCycleStarted[i] && currentMillis-waterCycleLastMillis >= waterDutyCycles[i]*WATER_CYCLE_PERIOD){
         digitalWrite(PLANT_PINS[i],LOW);
         Serial.print("Stopped water cycle for plant ");
         Serial.println(i);
+        waterCycleStarted[i] = false;
       }
     }
   }
@@ -123,7 +126,6 @@ void setup()
   }
   // print your local IP address:
   Serial.println(Ethernet.localIP());
-<<<<<<< HEAD
   client = server.available();
   
   pinMode(LIGHT_PIN,OUTPUT);
@@ -135,9 +137,6 @@ void setup()
     pinMode(PLANT_PINS[i],OUTPUT);
     digitalWrite(PLANT_PINS[i],HIGH);
   }
-  
-=======
->>>>>>> 6d1b67bdb74fda9355eb454dcd70877029f29a74
 }
 
 void loop()
@@ -186,11 +185,7 @@ void loop()
     // Check if this is a cycle dedicated for handling plantcare
     if(cycleCheck(&plantcareLastMillis, plantcareCycle))
     {
-<<<<<<< HEAD
       updatePlantCare();
-=======
-        
->>>>>>> 6d1b67bdb74fda9355eb454dcd70877029f29a74
     }
 }
 
