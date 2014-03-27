@@ -47,18 +47,12 @@ void updatePlantCare(){
   unsigned long currentMillis = millis();
   // Water
   if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD){
-<<<<<<< HEAD
     if(0){ //Server is available to overrwrite duty cycles      
     }
     for(i; i<NUM_PLANTS; i++){
       digitalWrite(PLANT_PINS[i],HIGH);
       waterCycleStarted[i] = true;
     }
-=======
-        for(i; i<NUM_PLANTS; i++){
-          digitalWrite(PLANT_PINS[i],HIGH);
-        }
->>>>>>> d505e41f2ef61807c243f4054c7e411a18bd08a1
     Serial.println("Started new water cycle.");
     waterCycleLastMillis = currentMillis;
   } else {
@@ -120,7 +114,7 @@ void setup()
   Serial.println("Initializing seed hydroponics server");
   // start the Ethernet connection and the server:
   // start the Ethernet connection:
-  if (0 && Ethernet.begin(mac) == 0) {
+  if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
     // no point in carrying on, so do nothing forevermore:
   }
@@ -141,7 +135,7 @@ void setup()
 void loop()
 {   
     // Check if this is a cycle dedicated for handling requests
-    if(0 && cycleCheck(&serverLastMillis, serverCycle))
+    if(cycleCheck(&serverLastMillis, serverCycle))
     {
       if(!client.connected() && (millis() - lastConnectionTime > postingInterval)) {
         Serial.println("requesting!!!");
