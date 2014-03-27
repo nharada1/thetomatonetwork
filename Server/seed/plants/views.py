@@ -34,10 +34,19 @@ def update_performance(request):
             new_value = form.cleaned_data['new_value']
             p = float(new_value)
             plant = plants.models.Plant.objects.filter(plant_name=plant_name)[0]
-            wrapper = dw.DataWrapper()
-            wrapper.loadFromDB_performanceUpdate()
-            wrapper.updatePerformance(plant,p)
-            wrapper.persistToDB_performanceUpdate()
+            if plant.is_control:
+            	try:
+            		last_control_state = plants.models.ControlPlantState.objects.latest('timestep')
+            		t = last_control_state.timestep+1
+            	except:
+            		t = 0
+            	control_state = plants.models.ControlPlantState(plant=plant,timestep=t,performance_value=p)
+            	control_state.save()
+            else:
+	            wrapper = dw.DataWrapper()
+	            wrapper.loadFromDB_performanceUpdate()
+	            wrapper.updatePerformance(plant,p)
+	            wrapper.persistToDB_performanceUpdate()
             message = "Successfully updated plant "+plant.plant_name+" with value "+str(p)
         else:
             message = "Error"

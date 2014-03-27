@@ -9,6 +9,7 @@ class Plant(models.Model):
     # Plant Metadata
     initial_date     = models.DateTimeField('Birthday', auto_now=True)
     initial_date.editable = True
+    is_control = models.BooleanField('Is a control plant')
 
     # User data
     user_name        = models.CharField("User's Name", max_length=20)
@@ -34,6 +35,17 @@ class PlantState(models.Model):
 
     def __unicode__(self):
         return u"%s's plant %s's state at time step %d" % (self.plant.user_name, self.plant.plant_name, self.timestep)
+
+class ControlPlantState(models.Model):
+    date                = models.DateTimeField('Date-Time', auto_now=True)
+    date.editable = True
+
+    timestep            = models.IntegerField('Timestep')
+    performance_value   = models.FloatField('Performance Value', default=0.0)
+    plant               = models.ForeignKey(Plant)
+
+    def __unicode__(self):
+        return u"%s's control plant %s's state at time step %d" % (self.plant.user_name, self.plant.plant_name, self.timestep)    
 
 class AlgoMetadata(models.Model):
     ''' Metadata for current state/iteration of algorithm. Contains two variables:
