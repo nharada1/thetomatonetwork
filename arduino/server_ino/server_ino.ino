@@ -1,16 +1,8 @@
-#include <LPD8806.h>
-#include <SPI.h>
-#include <Dhcp.h>
-#include <Dns.h>
 #include <Ethernet.h>
-#include <EthernetClient.h>
-#include <EthernetServer.h>
-#include <EthernetUdp.h>
-#include <util.h>
+#include <SPI.h>
 
 #define serverCycle 50U
 #define plantcareCycle 5U
-
 
 // Server connection fields
 String command_buffer;
@@ -22,36 +14,37 @@ unsigned long serverLastMillis = 0;
 unsigned long plantcareLastMillis = 0;
 boolean serverState = false;
 boolean plantcareState = false;
-
-
-/*
-  Web Server for Hydroponics
- 
- Based almost entirely upon Web Server by Tom Igoe and David Mellis
-
- */
+unsigned long lastConnectionTime = 0;          // last time you connected to the server, in milliseconds
+boolean lastConnected = false;                 // state of the connection last time through the main loop
+const unsigned long postingInterval = 10*1000;  // delay between updates, in milliseconds
 
 // Enter a MAC address and IP address for your controller below.
 // The IP address will be dependent on your local network:
 byte mac[] = { 0x90, 0xA2, 0xDA, 0x0F, 0x3B, 0xE2 };
+char server[] = "http://seed-hydroponics.herokuapp.com";
 
-IPAddress ip(192,168,1,147); //<<< ENTER DESIRED LOCAL IP ADDRESS HERE!!!
-
-// Initialize the Ethernet server library
-// with the IP address and port you want to use 
-// (port 80 is default for HTTP):
-EthernetServer server(80);
 
 void setup()
 {
-   command_buffer = "";
-   command        = command_buffer;
-
-  // start the Ethernet connection and the server:
-  Ethernet.begin(mac, ip);
-  server.begin();
+  // Init command buffer to empty
+  command_buffer = "";
+  command        = command_buffer;
+  
+  // Begin serial comm
   Serial.begin(9600);
-  Serial.println("let's do it !!!!!");
+  delay(1000);
+  
+  Serial.println("Initializing seed hydroponics server");
+  // start the Ethernet connection and the server:
+  // start the Ethernet connection:
+  if (Ethernet.begin(mac) == 0) {
+    Serial.println("Failed to configure Ethernet using DHCP");
+    // no point in carrying on, so do nothing forevermore:
+    while(true);
+  }
+  // give the Ethernet shield a second to initialize:
+  delay(1000);
+
     
   // start the Ethernet connection:
   if (Ethernet.begin(mac) == 0) {
@@ -59,8 +52,6 @@ void setup()
   }
   // print your local IP address:
   Serial.println(Ethernet.localIP());
-  client = server.available();
-  
 }
 
 void loop()
@@ -69,9 +60,15 @@ void loop()
     // Check if this is a cycle dedicated for handling requests
     if(cycleCheck(&serverLastMillis, serverCycle))
     {
-      client = server.available();
-      command = get_stream_value();
-      command = "1.26f,2.34f,1.34f";
+      if(!client.connected() && (millis() - lastConnectionTime > postingInterval)) {
+        Serial.println("requesting!!!");
+        httpRequest();
+      }
+      
+      if (client.available()) {
+        char c = client.read();
+        Serial.print(c);
+      }
 
       // Parse command
       int first_delim  = command.indexOf(',');
@@ -93,23 +90,16 @@ void loop()
       char buf3[val_3.length()];
       val_3.toCharArray(buf3,val_3.length());
       float val_3_f = atof(buf3); 
- 
-      Serial.println("The numbers are: ");
-      Serial.print(val_1_f);
-      Serial.print(", ");
-      Serial.print(val_2_f);
-      Serial.print(", ");
-      Serial.print(val_3_f);     
-
+      
+      // update connected status
+      lastConnected = client.connected();
     }
     
     // Check if this is a cycle dedicated for handling plantcare
     if(cycleCheck(&plantcareLastMillis, plantcareCycle))
     {
-      if(command == "command")
-      {
-        
-      }
+      //if(command)
+      //Serial.println(command);
     }
 }
 
@@ -145,10 +135,19 @@ String get_stream_value()
       }
      else{
        client.stop();
-       client = server.available();
+       return command_buffer;
      }
    }
   }
+  
+  // if there's no net connection, but there was one last time
+  // through the loop, then stop the client:
+  if (!client.connected() && lastConnected) {
+    Serial.println();
+    Serial.println("disconnecting.");
+    client.stop();
+  }
+  
   return command;
 }
 
@@ -165,6 +164,28 @@ boolean cycleCheck(unsigned long *lastMillis, unsigned int cycle)
     return false;
 }
 
+// this method makes a HTTP connection to the server:
+void httpRequest() {
+  // if there's a successful connection:
+  if (client.connect(server, 80)) {
+    Serial.println("connecting...");
+    // send the HTTP PUT request:
+    client.println("GET /sync HTTP/1.0");
+    client.println("Host: seed-hydroponics.herokuapp.com");
+    client.println("User-Agent: arduino-ethernet");
+    client.println("Connection: close");
+    client.println();
+
+    // note the time that the connection was made:
+    lastConnectionTime = millis();
+  } 
+  else {
+    // if you couldn't make a connection:
+    Serial.println("connection failed");
+    Serial.println("disconnecting.");
+    client.stop();
+  }
+}
 
   
 
