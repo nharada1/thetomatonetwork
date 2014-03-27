@@ -19,9 +19,8 @@ boolean plantcareState = false;
 
 // Control constants
 const int NUM_PLANTS = 4;
-const int LIGHT_PIN = 13;
-const int AIR_PIN = 12;
-const int PLANT_PINS [] = {11,10,9,8}; 
+const int LIGHT_PIN = 3;
+const int PLANT_PINS [] = {4,5,6,7}; 
 const unsigned long WATER_CYCLE_PERIOD = 7200000; // 2 hours
 const unsigned long LIGHT_CYCLE_PERIOD = 43200000; // 12 hours
 
@@ -31,49 +30,14 @@ double waterDutyCycles [] = {0.5,0.5,0.5,0.5};
 boolean waterCycleStarted [] = {false,false,false,false};
 unsigned long waterCycleLastMillis = 0;
 unsigned long lightCycleLastMillis = 0;
-
 boolean water_state = 0;
 boolean light_state = 0;
 
-void updatePlantCare(){
-  int i=0;
-  unsigned long currentMillis = millis();
-  // Water
-  if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD){
-    for(i; i<NUM_PLANTS; i++){
-      digitalWrite(PLANT_PINS[i],HIGH);
-      waterCycleStarted[i] = true;
-    }
-    Serial.println("Started new water cycle.");
-    waterCycleLastMillis = currentMillis;
-  } else {
-    for(i; i<NUM_PLANTS; i++){
-      if(waterCycleStarted[i] && currentMillis-waterCycleLastMillis >= waterDutyCycles[i]*WATER_CYCLE_PERIOD){
-        digitalWrite(PLANT_PINS[i],LOW);
-        Serial.print("Stopped water cycle for plant ");
-        Serial.println(i);
-        waterCycleStarted[i] = false;
-      }
-    }
-  }
-  // Light
-  if(currentMillis-lightCycleLastMillis >= LIGHT_CYCLE_PERIOD){
-    if(digitalRead(LIGHT_PIN)==HIGH){
-      digitalWrite(LIGHT_PIN,LOW);
-    } else {
-      digitalWrite(LIGHT_PIN,HIGH);
-    }
-    Serial.println("Toggled light");
-    lightCycleLastMillis = currentMillis;
-  }
-}
-
-// END CONTROL CODE
 
 /*
-  Web Server for Hydroponics
- 
- Based almost entirely upon Web Server by Tom Igoe and David Mellis
+  Web Communication for Hydroponics
+    - Uses about 5% of computation time to communicate with home server
+      * parses nutrient data from server's sync view
 
  */
 
@@ -108,34 +72,22 @@ void setup()
   // start the Ethernet connection:
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
-    // no point in carrying on, so do nothing forevermore:
+
   }
   // give the Ethernet shield a second to initialize:
   delay(1000);
   
   pinMode(LIGHT_PIN,OUTPUT);
-  digitalWrite(LIGHT_PIN,HIGH);
-  pinMode(AIR_PIN,OUTPUT);
-  digitalWrite(AIR_PIN,HIGH);
+  digitalWrite(LIGHT_PIN,LOW);
   int i=0;
   for(i; i<NUM_PLANTS; i++){
     pinMode(PLANT_PINS[i],OUTPUT);
-    digitalWrite(PLANT_PINS[i],HIGH);
+    digitalWrite(PLANT_PINS[i],LOW);
   }
 }
 
 void loop()
 {   
-    while(1){
-      int i=9;
-      for(i; i<=13; i++){
-        Serial.print("Writing to pin ");
-        Serial.println(i);
-        digitalWrite(13,HIGH);
-        delay(3000);
-        digitalWrite(13,LOW);
-      }
-    }
     // Check if this is a cycle dedicated for handling requests
     if(cycleCheck(&serverLastMillis, serverCycle))
     {
@@ -263,7 +215,46 @@ void httpRequest() {
   }
 }
 
-  
+/*******************************
+ *** Plant care control code ***
+ ***                         ***
+ *** Author: John Pothier    ***
+ *** Date: 3/26/14           ***
+ *******************************/
+
+void updatePlantCare(){
+  int i=0;
+  unsigned long currentMillis = millis();
+  // Water
+  if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD){
+    for(i; i<NUM_PLANTS; i++){
+      digitalWrite(PLANT_PINS[i],HIGH);
+      waterCycleStarted[i] = true;
+    }
+    Serial.println("Started new water cycle.");
+    waterCycleLastMillis = currentMillis;
+  } else {
+    for(i; i<NUM_PLANTS; i++){
+      if(waterCycleStarted[i] && currentMillis-waterCycleLastMillis >= waterDutyCycles[i]*WATER_CYCLE_PERIOD){
+        digitalWrite(PLANT_PINS[i],LOW);
+        Serial.print("Stopped water cycle for plant ");
+        Serial.println(i);
+        waterCycleStarted[i] = false;
+      }
+    }
+  }
+  // Light
+  if(currentMillis-lightCycleLastMillis >= LIGHT_CYCLE_PERIOD){
+    if(digitalRead(LIGHT_PIN)==HIGH){
+      digitalWrite(LIGHT_PIN,LOW);
+    } else {
+      digitalWrite(LIGHT_PIN,HIGH);
+    }
+    Serial.println("Toggled light");
+    lightCycleLastMillis = currentMillis;
+  }
+}
+
 
   
 
