@@ -65,10 +65,7 @@ void loop()
         httpRequest();
       }
       
-      if (client.available()) {
-        char c = client.read();
-        Serial.print(c);
-      }
+      command = get_stream_value();
 
       // Parse command
       int first_delim  = command.indexOf(',');
@@ -98,8 +95,8 @@ void loop()
     // Check if this is a cycle dedicated for handling plantcare
     if(cycleCheck(&plantcareLastMillis, plantcareCycle))
     {
-      //if(command)
-      //Serial.println(command);
+      if(!command.equals(""))
+        Serial.println(command);
     }
 }
 
@@ -110,33 +107,27 @@ String get_stream_value()
   
   // listen for incoming clients
   if (client) {
-    while(client.connected()) {
-      if (client.available()) {
+    while(client.available()) {
         char c = client.read();
         // if you've gotten to the end of the line (received a newline
         // character) and the line is blank, the http request has ended,
         // so you can send a reply
         if (incoming)
         {
-          if(c == ' ')
+          if(c == '$')
           {
             String temp_buffer = command_buffer;
             command_buffer     = "";
             incoming           = 0;
+            Serial.println(temp_buffer);
             return temp_buffer;
           }
           command_buffer += c; 
-          Serial.println(command_buffer);
         }
-        
         if(c == '$'){ 
           incoming = 1;
         }
-      }
-     else{
-       client.stop();
-       return command_buffer;
-     }
+ 
    }
   }
   
