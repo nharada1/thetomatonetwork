@@ -203,6 +203,8 @@ String get_stream_value()
             String temp_buffer = nutrient_string_buffer;
             nutrient_string_buffer     = "";
             incoming           = 0;
+            Serial.println("The recieved nute values: ");
+            Serial.println(temp_buffer);
             return temp_buffer;
           }
           nutrient_string_buffer += c; 

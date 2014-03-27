@@ -50,16 +50,16 @@ def update_performance(request):
     })
 
 def update_nutrients(request):
-	wrapper = dw.DataWrapper()
-	update_strs = ""
-	msg = ""
-	if(wrapper.loadFromDB_nutrientUpdate()):
-		wrapper.updateNutrients()
-		wrapper.persistToDB_nutrientUpdate()
-		update_strs = wrapper.updateString()
-	else:
-		msg = "Did not update every value!"
-	return render(request,'runalgo.html',{'update_strs': update_strs,'msg': msg})
+    wrapper = dw.DataWrapper()
+    update_strs = ""
+    msg = ""
+    if wrapper.loadFromDB_nutrientUpdate():
+        wrapper.updateNutrients()
+        wrapper.persistToDB_nutrientUpdate()
+        update_strs = wrapper.updateString()
+    else:
+        msg = "Did not update every value!"
+    return render(request, 'runalgo.html', {'update_strs': update_strs, 'msg': msg})
 
 ''' Arduino Server Requests!
 '''
