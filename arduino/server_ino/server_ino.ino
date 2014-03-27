@@ -47,10 +47,10 @@ void updatePlantCare(){
   unsigned long currentMillis = millis();
   // Water
   if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD){
-        for(i; i<NUM_PLANTS; i++){
-          digitalWrite(PLANT_PINS[i],HIGH);
-          waterCycleStarted[i] = true;
-        }
+    for(i; i<NUM_PLANTS; i++){
+      digitalWrite(PLANT_PINS[i],HIGH);
+      waterCycleStarted[i] = true;
+    }
     Serial.println("Started new water cycle.");
     waterCycleLastMillis = currentMillis;
   } else {
@@ -111,6 +111,7 @@ void setup()
   delay(1000);
   
   Serial.println("Initializing seed hydroponics server");
+
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
   }
@@ -153,19 +154,19 @@ void loop()
 
       char buf[val_1.length()];
       val_1.toCharArray(buf,val_1.length());
-      nutrient_val_1 = atof(buf);
+      waterDutyCycles[0] = atof(buf);
       
       char buf2[val_2.length()];
       val_2.toCharArray(buf2,val_2.length());
-      nutrient_val_2 = atof(buf2);
+      waterDutyCycles[1] = atof(buf2);
 
       char buf3[val_3.length()];
       val_3.toCharArray(buf3,val_3.length());
-      nutrient_val_3 = atof(buf3); 
+      waterDutyCycles[2] = atof(buf3); 
       
       char buf4[val_4.length()];
       val_4.toCharArray(buf4,val_4.length());
-      nutrient_val_4 = atof(buf4);
+      waterDutyCycles[3] = atof(buf4);
       
       // update connected status
       lastConnected = client.connected();
