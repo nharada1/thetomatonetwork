@@ -22,19 +22,13 @@ const int NUM_PLANTS = 4;
 const int LIGHT_PIN = 13;
 const int AIR_PIN = 12;
 const int PLANT_PINS [] = {11,10,9,8}; 
-const unsigned long WATER_CYCLE_PERIOD = 20000; //7200000; // 2 hours
-const unsigned long LIGHT_CYCLE_PERIOD = 10000; //43200000; // 12 hours
-// 5 minute difference between duty cycles of each plant
-// i.e. water_duty_cycle[0] = water_duty_cycle[1]-0.042
-const double WATER_DUTY_CYCLE_GRADIENT = 0.042;
+const unsigned long WATER_CYCLE_PERIOD = 7200000; // 2 hours
+const unsigned long LIGHT_CYCLE_PERIOD = 43200000; // 12 hours
+
 
 // Control variables
 // Run for approx. hour on, hour off at the start
-// double waterDutyCycles[4];
-double waterDutyCycles [] = {0.5-1.5*WATER_DUTY_CYCLE_GRADIENT,
-                          0.5-0.5*WATER_DUTY_CYCLE_GRADIENT,
-                          0.5+0.5*WATER_DUTY_CYCLE_GRADIENT,
-                          0.5+1.5*WATER_DUTY_CYCLE_GRADIENT};
+double waterDutyCycles[4];
 boolean waterCycleStarted [] = {false,false,false,false};
 unsigned long waterCycleLastMillis = 0;
 unsigned long lightCycleLastMillis = 0;
