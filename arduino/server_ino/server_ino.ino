@@ -25,7 +25,6 @@ const int PLANT_PINS [] = {11,10,9,8};
 const unsigned long WATER_CYCLE_PERIOD = 7200000; // 2 hours
 const unsigned long LIGHT_CYCLE_PERIOD = 43200000; // 12 hours
 
-
 // Control variables
 // Run for approx. hour on, hour off at the start
 double waterDutyCycles[4];
