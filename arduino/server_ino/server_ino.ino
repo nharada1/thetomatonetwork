@@ -26,7 +26,7 @@ const unsigned long LIGHT_CYCLE_PERIOD = 43200000; // 12 hours
 
 // Control variables
 // Run for approx. hour on, hour off at the start
-double waterDutyCycles[4];
+double waterDutyCycles [] = {0.5,0.5,0.5,0.5};
 boolean waterCycleStarted [] = {false,false,false,false};
 unsigned long waterCycleLastMillis = 0;
 unsigned long lightCycleLastMillis = 0;

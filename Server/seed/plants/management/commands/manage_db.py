@@ -9,9 +9,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for command in args:
             if command == 'init':
-                self.initDB()
+                self.init_db()
 
-    def initDB(self):
+    def init_db(self):
         n = 4
         T = 20
         tau = 1
@@ -26,11 +26,14 @@ class Command(BaseCommand):
         plants.models.PlantState.objects.all().delete()
         plants.models.Plant.objects.all().delete()
         plants.models.AlgoMetadata.objects.all().delete()
-        # Create plants
+        # Create test plants
         new_ivies = []
         for i in range(0,n):
-            new_ivies.append(plants.models.EnglishIvy(user_name='user'+str(i),plant_name='plant'+str(i)))
+            new_ivies.append(plants.models.EnglishIvy(is_control=False,user_name='user'+str(i),plant_name='plant'+str(i)))
             new_ivies[i].save()
+        # Create control plant
+        control_ivy = plants.models.EnglishIvy(is_control=True,user_name='control',plant_name='control')
+        control_ivy.save()
         # Create initial plant states
         for i in range(0,n):
             new_plant_state = plants.models.PlantState(timestep=0,nutrient_value=init_nutrients[i],plant=new_ivies[i])
