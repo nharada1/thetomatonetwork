@@ -59,6 +59,7 @@ def update_nutrients(request):
 
 ''' Arduino Server Requests!
 '''
+
 arduino_server_ip = 'http://192.168.1.147/'
 
 
