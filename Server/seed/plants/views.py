@@ -87,13 +87,7 @@ def sync(request):
             new_values_ordered[3] = new_values[i]
 
     new_values_str = ",".join([str(v).strip('[] ')+ "f" for v in new_values_ordered])
-    try:
-        response_text = requests.get(arduino_server_ip + '$' + new_values_str, timeout = 3).text + "\n is A-okay!"
-    except requests.exceptions.RequestException:
-        response_text = "SERVER UNAVAILABLE!"
-
-    return HttpResponse('Seed Hyroponics: ' + "Querying arduino with updated info " +
-                        new_values_str + " yields: " + response_text)
+    return HttpResponse('$' + new_values_str)
 
 
 
