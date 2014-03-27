@@ -22,8 +22,8 @@ const int NUM_PLANTS = 4;
 const int LIGHT_PIN = 13;
 const int AIR_PIN = 12;
 const int PLANT_PINS [] = {11,10,9,8}; 
-const unsigned long WATER_CYCLE_PERIOD = 20000; //7200000; // 2 hours
-const unsigned long LIGHT_CYCLE_PERIOD = 10000; //43200000; // 12 hours
+const unsigned long WATER_CYCLE_PERIOD = 7200000; // 2 hours
+const unsigned long LIGHT_CYCLE_PERIOD = 43200000; // 12 hours
 // 5 minute difference between duty cycles of each plant
 // i.e. water_duty_cycle[0] = water_duty_cycle[1]-0.042
 const double WATER_DUTY_CYCLE_GRADIENT = 0.042;
@@ -47,10 +47,19 @@ void updatePlantCare(){
   unsigned long currentMillis = millis();
   // Water
   if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD){
+<<<<<<< HEAD
+    if(0){ //Server is available to overrwrite duty cycles      
+    }
+    for(i; i<NUM_PLANTS; i++){
+      digitalWrite(PLANT_PINS[i],HIGH);
+      waterCycleStarted[i] = true;
+    }
+=======
         for(i; i<NUM_PLANTS; i++){
           digitalWrite(PLANT_PINS[i],HIGH);
           waterCycleStarted[i] = true;
         }
+>>>>>>> d505e41f2ef61807c243f4054c7e411a18bd08a1
     Serial.println("Started new water cycle.");
     waterCycleLastMillis = currentMillis;
   } else {
@@ -112,17 +121,12 @@ void setup()
   Serial.println("Initializing seed hydroponics server");
   // start the Ethernet connection and the server:
   // start the Ethernet connection:
-  if (Ethernet.begin(mac) == 0) {
+  if (0 && Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
     // no point in carrying on, so do nothing forevermore:
   }
   // give the Ethernet shield a second to initialize:
   delay(1000);
-    
-  // start the Ethernet connection:
-  if (Ethernet.begin(mac) == 0) {
-    Serial.println("Failed to configure Ethernet using DHCP");
-  }
   
   pinMode(LIGHT_PIN,OUTPUT);
   digitalWrite(LIGHT_PIN,HIGH);
@@ -138,7 +142,7 @@ void setup()
 void loop()
 {   
     // Check if this is a cycle dedicated for handling requests
-    if(cycleCheck(&serverLastMillis, serverCycle))
+    if(0 && cycleCheck(&serverLastMillis, serverCycle))
     {
       if(!client.connected() && (millis() - lastConnectionTime > postingInterval)) {
         Serial.println("requesting!!!");
