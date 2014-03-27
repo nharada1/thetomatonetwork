@@ -23,6 +23,62 @@ unsigned long plantcareLastMillis = 0;
 boolean serverState = false;
 boolean plantcareState = false;
 
+// BEGIN CONTROL CODE
+
+// Control constants
+const int NUM_PLANTS = 4;
+const int LIGHT_PIN = 13;
+const int AIR_PIN = 12;
+const int PLANT_PINS [] = {11,10,9,8}; 
+const unsigned long WATER_CYCLE_PERIOD = 20000; //7200000; // 2 hours
+const unsigned long LIGHT_CYCLE_PERIOD = 10000; //43200000; // 12 hours
+// 5 minute difference between duty cycles of each plant
+// i.e. water_duty_cycle[0] = water_duty_cycle[1]-0.042
+const double WATER_DUTY_CYCLE_GRADIENT = 0.042;
+
+// Control variables
+// Run for approx. hour on, hour off at the start
+// double waterDutyCycles[4];
+double waterDutyCycles [] = {0.5-1.5*WATER_DUTY_CYCLE_GRADIENT,
+                          0.5-0.5*WATER_DUTY_CYCLE_GRADIENT,
+                          0.5+0.5*WATER_DUTY_CYCLE_GRADIENT,
+                          0.5+1.5*WATER_DUTY_CYCLE_GRADIENT};
+unsigned long waterCycleLastMillis = 0;
+unsigned long lightCycleLastMillis = 0;
+void updatePlantCare(){
+  int i=0;
+  unsigned long currentMillis = millis();
+  // Water
+  if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD){
+    if(0){ //Server is available to overrwrite duty cycles      
+    }
+    for(i; i<NUM_PLANTS; i++){
+      digitalWrite(PLANT_PINS[i],HIGH);
+    }
+    Serial.println("Started new water cycle.");
+    waterCycleLastMillis = currentMillis;
+  } else {
+    for(i; i<NUM_PLANTS; i++){
+      if(currentMillis-waterCycleLastMillis >= waterDutyCycles[i]*WATER_CYCLE_PERIOD){
+        digitalWrite(PLANT_PINS[i],LOW);
+        Serial.print("Stopped water cycle for plant ");
+        Serial.println(i);
+      }
+    }
+  }
+  // Light
+  if(currentMillis-lightCycleLastMillis >= LIGHT_CYCLE_PERIOD){
+    if(digitalRead(LIGHT_PIN)==HIGH){
+      digitalWrite(LIGHT_PIN,LOW);
+    } else {
+      digitalWrite(LIGHT_PIN,HIGH);
+    }
+    Serial.println("Toggled light");
+    lightCycleLastMillis = currentMillis;
+  }
+}
+
+// END CONTROL CODE
 
 /*
   Web Server for Hydroponics
@@ -61,11 +117,20 @@ void setup()
   Serial.println(Ethernet.localIP());
   client = server.available();
   
+  pinMode(LIGHT_PIN,OUTPUT);
+  digitalWrite(LIGHT_PIN,HIGH);
+  pinMode(AIR_PIN,OUTPUT);
+  digitalWrite(AIR_PIN,HIGH);
+  int i=0;
+  for(i; i<NUM_PLANTS; i++){
+    pinMode(PLANT_PINS[i],OUTPUT);
+    digitalWrite(PLANT_PINS[i],HIGH);
+  }
+  
 }
 
 void loop()
-{       
-    
+{   
     // Check if this is a cycle dedicated for handling requests
     if(cycleCheck(&serverLastMillis, serverCycle))
     {
@@ -106,10 +171,7 @@ void loop()
     // Check if this is a cycle dedicated for handling plantcare
     if(cycleCheck(&plantcareLastMillis, plantcareCycle))
     {
-      if(command == "command")
-      {
-        
-      }
+      updatePlantCare();
     }
 }
 
