@@ -1,1 +1,1 @@
-LEDino file for light-fest
+arduino server code for handling requests from heroku

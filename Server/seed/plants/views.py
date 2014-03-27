@@ -87,7 +87,7 @@ def sync(request):
             new_values_ordered[3] = new_values[i]
 
     new_values_str = ",".join([str(v).strip('[] ')+ "f" for v in new_values_ordered])
-    return HttpResponse('$' + new_values_str)
+    return HttpResponse('$' + new_values_str + '$')
 
 
 
