@@ -115,7 +115,8 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
    PROJECT_PATH + "/../static/update",
    PROJECT_PATH + "/../static/runalgo",
-   PROJECT_PATH + "/../static/sync"
+   PROJECT_PATH + "/../static/sync",
+   PROJECT_PATH + '/../plants/sites/dynamic_dashboard'
 )
 
 INSTALLED_APPS = (
@@ -182,4 +183,5 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    PROJECT_PATH + '/../static/'
 )

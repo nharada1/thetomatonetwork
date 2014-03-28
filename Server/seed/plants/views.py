@@ -35,18 +35,18 @@ def update_performance(request):
             p = float(new_value)
             plant = plants.models.Plant.objects.filter(plant_name=plant_name)[0]
             if plant.is_control:
-            	try:
-            		last_control_state = plants.models.ControlPlantState.objects.latest('timestep')
-            		t = last_control_state.timestep+1
-            	except:
-            		t = 0
-            	control_state = plants.models.ControlPlantState(plant=plant,timestep=t,performance_value=p)
-            	control_state.save()
+                try:
+                    last_control_state = plants.models.ControlPlantState.objects.latest('timestep')
+                    t = last_control_state.timestep+1
+                except:
+                    t = 0
+                control_state = plants.models.ControlPlantState(plant=plant,timestep=t,performance_value=p)
+                control_state.save()
             else:
-	            wrapper = dw.DataWrapper()
-	            wrapper.loadFromDB_performanceUpdate()
-	            wrapper.updatePerformance(plant,p)
-	            wrapper.persistToDB_performanceUpdate()
+                wrapper = dw.DataWrapper()
+                wrapper.loadFromDB_performanceUpdate()
+                wrapper.updatePerformance(plant,p)
+                wrapper.persistToDB_performanceUpdate()
             message = "Successfully updated plant "+plant.plant_name+" with value "+str(p)
         else:
             message = "Error"
@@ -77,10 +77,7 @@ arduino_server_ip = 'http://192.168.1.147/'
 
 
 def index(request):
-    plant_objs = plants.models.Plant.objects.all()
-    plant_list = '<br></br> '.join(plant.user_name + "'s " + 'plant ' + plant.plant_name for plant in plant_objs)
-    title      = '<title>Seed Hydroponics Index</title>'
-    return HttpResponse(title + "<p>These are the plants: </p>" + plant_list)
+    return render(request, 'index.html', {})
 
 def sync(request):
     wrapper = dw.DataWrapper()

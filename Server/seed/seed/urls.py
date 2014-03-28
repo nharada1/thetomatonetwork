@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from seed import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -17,5 +19,7 @@ urlpatterns = patterns('',
     url(r'^runalgo','plants.views.update_nutrients'),
     url(r'^$','plants.views.index'),
     url(r'^sync','plants.views.sync'),
-    url(r'','plants.views.index'),
+    url(r'', 'plants.views.index'),
 )
+
+urlpatterns += staticfiles_urlpatterns()
