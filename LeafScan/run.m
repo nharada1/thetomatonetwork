@@ -1,6 +1,37 @@
 lambdas = zeros(5);
+
 for i=0:4
     path = ['img/cropped/' int2str(t) '/plant' int2str(i) '.jpg'];
-    img = double(imresize(imread(path),0.25));
-    lambdas(i+1) = avglambda(img);
+    img = imresize(imread(path),0.25);
+    midx = floor(size(img,2)/2);
+    midy = floor(size(img,1)/2);
+    nbhd_size = 5;
+    xlist = [midx midx+nbhd_size midx midx+nbhd_size];
+    ylist = [30 30 nbhd_size+30 nbhd_size+30];
+    tolerance = midy;
+    mask = magicwand(img,ylist,xlist,tolerance);
+    img_cropped = uint8(zeros(size(img)));
+    for j=1:3
+        img_cropped(:,:,j) = img(:,:,j).*uint8(mask);
+    end
+    img_double = double(img_cropped);
+    inv_lambdas(1) = 1/avglambda(img_double);
 end
+%{
+ path = ['img/cropped/' int2str(t) '/plant' int2str(1) '.jpg'];
+    img = imresize(imread(path),0.25);
+    midx = floor(size(img,2)/2);
+    midy = floor(size(img,1)/2);
+    nbhd_size = 5;
+    xlist = [midx midx+nbhd_size midx midx+nbhd_size];
+    ylist = [30 30 nbhd_size+30 nbhd_size+30];
+    tolerance = midy;
+    mask = magicwand(img,ylist,xlist,tolerance);
+    img_cropped = uint8(zeros(size(img)));
+    for j=1:3
+        img_cropped(:,:,j) = img(:,:,j).*uint8(mask);
+    end
+    img_double = double(img_cropped);
+    inv_lambdas(1) = 1/avglambda(img_double);
+%}
+
