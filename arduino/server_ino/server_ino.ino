@@ -26,7 +26,7 @@ const unsigned long LIGHT_CYCLE_PERIOD = 43200000; // 12 hours
 
 // Control variables
 // Run for approx. hour on, hour off at the start
-double waterDutyCycles [] = {0.5,0.5,0.5,0.5};
+double waterDutyCycles[] = {.5,.5,.5,.5};
 boolean waterCycleStarted [] = {false,false,false,false};
 unsigned long waterCycleLastMillis = 0;
 unsigned long lightCycleLastMillis = 0;
@@ -97,7 +97,9 @@ void loop()
       }
       
       nutrient_string = get_stream_value();
-
+      
+      if (!nutrient_string.equals(""))
+      {
       // Parse nutrient_string
       int first_delim  = nutrient_string.indexOf(',');
       int second_delim = nutrient_string.indexOf(',', first_delim + 1);
@@ -124,9 +126,10 @@ void loop()
       char buf4[val_4.length()];
       val_4.toCharArray(buf4,val_4.length());
       waterDutyCycles[3] = atof(buf4);
-      
+
       // update connected status
       lastConnected = client.connected();
+      }
     }
     
     // Check if this is a cycle dedicated for handling plantcare
@@ -226,25 +229,27 @@ void updatePlantCare(){
   int i=0;
   unsigned long currentMillis = millis();
   // Water
-  if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD){
+  if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD || waterCycleLastMillis == 0){
     for(i; i<NUM_PLANTS; i++){
       digitalWrite(PLANT_PINS[i],HIGH);
       waterCycleStarted[i] = true;
     }
     Serial.println("Started new water cycle.");
     waterCycleLastMillis = currentMillis;
-  } else {
+  } 
+  else 
+  {/*
     for(i; i<NUM_PLANTS; i++){
-      if(waterCycleStarted[i] && currentMillis-waterCycleLastMillis >= waterDutyCycles[i]*WATER_CYCLE_PERIOD){
+      if(waterCycleStarted[i] && (currentMillis-waterCycleLastMillis) >= long(waterDutyCycles[i]*WATER_CYCLE_PERIOD)){
         digitalWrite(PLANT_PINS[i],LOW);
         Serial.print("Stopped water cycle for plant ");
         Serial.println(i);
         waterCycleStarted[i] = false;
       }
-    }
+    }*/
   }
   // Light
-  if(currentMillis-lightCycleLastMillis >= LIGHT_CYCLE_PERIOD){
+  if(currentMillis-lightCycleLastMillis >= LIGHT_CYCLE_PERIOD || lightCycleLastMillis == 0){
     if(digitalRead(LIGHT_PIN)==HIGH){
       digitalWrite(LIGHT_PIN,LOW);
     } else {

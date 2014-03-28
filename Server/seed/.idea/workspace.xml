@@ -26,7 +26,7 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plants/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="57" selection-start="966" selection-end="966" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1005">
+            <state line="40" column="24" selection-start="1588" selection-end="1588" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1185">
               <folding />
             </state>
           </provider>
@@ -46,11 +46,11 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plants/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="72" selection-start="2075" selection-end="2075" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="1545">
+            <state line="71" column="0" selection-start="2483" selection-end="2483" vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="1680">
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1395892191000" expanded="true" signature="1715:2087" placeholder="..." />
-                <marker date="1395892191000" expanded="true" signature="2508:3441" placeholder="..." />
+                <marker date="1395945041000" expanded="true" signature="2110:2482" placeholder="..." />
+                <marker date="1395945041000" expanded="true" signature="2903:3836" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -59,7 +59,7 @@
       <file leaf-file-name="manage_db.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plants/management/commands/manage_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="39" selection-start="267" selection-end="267" vertical-scroll-proportion="0.14545454" vertical-offset="0" max-vertical-offset="825">
+            <state line="24" column="33" selection-start="852" selection-end="852" vertical-scroll-proportion="0.43636364" vertical-offset="0" max-vertical-offset="825">
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -603,8 +603,8 @@
         <state line="1" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="105">
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1395892191000" expanded="true" signature="1715:2087" placeholder="..." />
-            <marker date="1395892191000" expanded="true" signature="2508:3441" placeholder="..." />
+            <marker date="1395945041000" expanded="true" signature="2110:2482" placeholder="..." />
+            <marker date="1395945041000" expanded="true" signature="2903:3836" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -673,8 +673,8 @@
         <state line="1" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="105">
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1395892191000" expanded="true" signature="1715:2087" placeholder="..." />
-            <marker date="1395892191000" expanded="true" signature="2508:3441" placeholder="..." />
+            <marker date="1395945041000" expanded="true" signature="2110:2482" placeholder="..." />
+            <marker date="1395945041000" expanded="true" signature="2903:3836" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -743,8 +743,8 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1395892191000" expanded="true" signature="1715:2087" placeholder="..." />
-            <marker date="1395892191000" expanded="true" signature="2508:3441" placeholder="..." />
+            <marker date="1395945041000" expanded="true" signature="2110:2482" placeholder="..." />
+            <marker date="1395945041000" expanded="true" signature="2903:3836" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -801,8 +801,8 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1395892191000" expanded="true" signature="1715:2087" placeholder="..." />
-            <marker date="1395892191000" expanded="true" signature="2508:3441" placeholder="..." />
+            <marker date="1395945041000" expanded="true" signature="2110:2482" placeholder="..." />
+            <marker date="1395945041000" expanded="true" signature="2903:3836" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -875,7 +875,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="57" selection-start="966" selection-end="966" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1005">
+        <state line="40" column="24" selection-start="1588" selection-end="1588" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1185">
           <folding />
         </state>
       </provider>
@@ -903,11 +903,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="72" selection-start="2075" selection-end="2075" vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="1545">
+        <state line="71" column="0" selection-start="2483" selection-end="2483" vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="1680">
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1395892191000" expanded="true" signature="1715:2087" placeholder="..." />
-            <marker date="1395892191000" expanded="true" signature="2508:3441" placeholder="..." />
+            <marker date="1395945041000" expanded="true" signature="2110:2482" placeholder="..." />
+            <marker date="1395945041000" expanded="true" signature="2903:3836" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -923,7 +923,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/management/commands/manage_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="39" selection-start="267" selection-end="267" vertical-scroll-proportion="0.14545454" vertical-offset="0" max-vertical-offset="825">
+        <state line="24" column="33" selection-start="852" selection-end="852" vertical-scroll-proportion="0.43636364" vertical-offset="0" max-vertical-offset="825">
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
