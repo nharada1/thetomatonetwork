@@ -61,5 +61,5 @@ def calcNutrientUpdate(N_tau,P_tau,L,T):
 	A = np.vstack([N_regress[:i_regress], np.ones(len(N_regress[:i_regress]))]).T
 	g, c = np.linalg.lstsq(A, P_regress[:i_regress])[0]
 
-	N_t = N_tau[:,tau-1] + eta*g
+	N_t = np.maximum(np.minimum(N_tau[:,tau-1] + eta*g,1),0)
 	return g,N_t
