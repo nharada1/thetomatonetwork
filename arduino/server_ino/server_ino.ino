@@ -26,18 +26,15 @@ const unsigned long LIGHT_CYCLE_PERIOD = 43200000; // 12 hours
 
 // Control variables
 // Run for approx. hour on, hour off at the start
-double waterDutyCycles[] = {.5,.5,.5,.5};
+double pumpState[] = {.5,.5,.5,.5};
 boolean waterCycleStarted [] = {false,false,false,false};
-unsigned long waterCycleLastMillis = 0;
-unsigned long lightCycleLastMillis = 0;
-boolean water_state = 0;
-boolean light_state = 0;
+float lightState = 0;
 
 
 /*
   Web Communication for Hydroponics
     - Uses about 5% of computation time to communicate with home server
-      * parses nutrient data from server's sync view
+    - parses nutrient data from server's sync view
 
  */
 
@@ -105,27 +102,33 @@ void loop()
       int second_delim = nutrient_string.indexOf(',', first_delim + 1);
       int third_delim  = nutrient_string.indexOf(',', second_delim + 1);
       int fourth_delim = nutrient_string.indexOf(',', third_delim + 1);
+      int fifth_delim = nutrient_string.indexOf(',', fourth_delim + 1)
 
       String val_1 = nutrient_string.substring(0, first_delim);
       String val_2 = nutrient_string.substring(first_delim+1, second_delim);
       String val_3 = nutrient_string.substring(second_delim+1, third_delim);
       String val_4 = nutrient_string.substring(third_delim+1, fourth_delim);
+      String val_5 = nutrient_string.substring(fourth_delim+1, fifth_delim);
 
       char buf[val_1.length()];
       val_1.toCharArray(buf,val_1.length());
-      waterDutyCycles[0] = atof(buf);
+      pumpState[0] = atof(buf);
       
       char buf2[val_2.length()];
       val_2.toCharArray(buf2,val_2.length());
-      waterDutyCycles[1] = atof(buf2);
+      pumpState[1] = atof(buf2);
 
       char buf3[val_3.length()];
       val_3.toCharArray(buf3,val_3.length());
-      waterDutyCycles[2] = atof(buf3); 
+      pumpState[2] = atof(buf3); 
       
       char buf4[val_4.length()];
       val_4.toCharArray(buf4,val_4.length());
-      waterDutyCycles[3] = atof(buf4);
+      pumpState[3] = atof(buf4);
+      
+      char buf5[val_5.length()];
+      val_5.toCharArray(buf5,val_5.length());
+      lightState = atof(buf5);
 
       // update connected status
       lastConnected = client.connected();
@@ -229,34 +232,33 @@ void updatePlantCare(){
   int i=0;
   unsigned long currentMillis = millis();
   // Water
-  if(currentMillis-waterCycleLastMillis >= WATER_CYCLE_PERIOD || waterCycleLastMillis == 0){
-    for(i; i<NUM_PLANTS; i++){
-      digitalWrite(PLANT_PINS[i],HIGH);
-      waterCycleStarted[i] = true;
-    }
-    Serial.println("Started new water cycle.");
-    waterCycleLastMillis = currentMillis;
-  } 
-  else 
-  {/*
-    for(i; i<NUM_PLANTS; i++){
-      if(waterCycleStarted[i] && (currentMillis-waterCycleLastMillis) >= long(waterDutyCycles[i]*WATER_CYCLE_PERIOD)){
-        digitalWrite(PLANT_PINS[i],LOW);
-        Serial.print("Stopped water cycle for plant ");
+
+   for(i; i<NUM_PLANTS; i++){
+      if(!waterCycleStarted[i] && int(pumpState[i])){
+        digitalWrite(PLANT_PINS[i],HIGH);
+        waterCycleStarted[i] = true;
+        Serial.print("Started new water cycle for plant ");
         Serial.println(i);
-        waterCycleStarted[i] = false;
       }
-    }*/
-  }
+      else if(waterCycleStarted[i] && !int(pumpState[i])){
+          digitalWrite(PLANT_PINS[i],LOW);
+          Serial.print("Stopped water cycle for plant ");
+          Serial.println(i);
+          waterCycleStarted[i] = false;
+        }   
+    } 
+
   // Light
-  if(currentMillis-lightCycleLastMillis >= LIGHT_CYCLE_PERIOD || lightCycleLastMillis == 0){
-    if(digitalRead(LIGHT_PIN)==HIGH){
-      digitalWrite(LIGHT_PIN,LOW);
-    } else {
+  if(lightState && digitalRead(LIGHT_PIN) == LOW)
+  {
       digitalWrite(LIGHT_PIN,HIGH);
-    }
-    Serial.println("Toggled light");
-    lightCycleLastMillis = currentMillis;
+      Serial.println("Toggled light on");
+  }
+  else if(!lightState && digitalRead(LIGHT_PIN) == HIGH) 
+     {
+       digitalWrite(LIGHT_PIN,LOW);
+       Serial.println("Toggled light OFF");
+     }
   }
 }
 
