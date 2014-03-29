@@ -7,9 +7,8 @@ from plants.models import CareConstants
 
 
 class PlantAdmin(admin.ModelAdmin):
-    list_display = ['id', 'initial_date', 'is_control', 'user_name', 'plant_name']
-    fields       = ['initial_date', 'is_control', 'user_name', 'plant_name']
-
+   list_display = ['id', 'initial_date', 'is_control', 'user_name', 'plant_name']
+   fields       = ['initial_date', 'is_control', 'user_name', 'plant_name']
 
 class PlantStateAdmin(admin.ModelAdmin):
     list_display = ['id', 'timestep', 'date', 'nutrient_value', 'light_value', 'performance_value', 'plant']
