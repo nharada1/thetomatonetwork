@@ -35,8 +35,6 @@ import math
 # Done
 
 def calcNutrientUpdate(N_tau,P_tau,L,T):
-	# Learning rate
-	eta = L/math.sqrt(T)
 	n,tau = np.shape(N_tau)
 	N_regress = np.zeros((n*tau,))
 	P_regress = np.zeros((n*tau,))
@@ -60,6 +58,9 @@ def calcNutrientUpdate(N_tau,P_tau,L,T):
 	# http://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.lstsq.html#numpy.linalg.lstsq
 	A = np.vstack([N_regress[:i_regress], np.ones(len(N_regress[:i_regress]))]).T
 	g, c = np.linalg.lstsq(A, P_regress[:i_regress])[0]
-
+	if abs(g) > L:
+		eta = 1/(math.sqrt(T*abs(g)))
+	else:
+		eta = 1/(math.sqrt(T*L))
 	N_t = np.maximum(np.minimum(N_tau[:,tau-1] + eta*g,1),0)
 	return g,N_t

@@ -7,7 +7,7 @@ class Plant(models.Model):
             - English Ivy
     '''
     # Plant Metadata
-    initial_date     = models.DateTimeField('Birthday', auto_now=True)
+    initial_date     = models.DateTimeField('Birthday')
     initial_date.editable = True
     is_control = models.BooleanField('Is a control plant')
 
@@ -62,6 +62,12 @@ class AlgoMetadata(models.Model):
     def __unicode__(self):
         return u"{L: %f} {T: %f}" % (self.L, self.T)
 
+class CareConstants(models.Model):
+    water_cycle_period = models.FloatField('Water cycle period')
+    light_start_hour = models.IntegerField('Light start hour')
+    light_end_hour = models.IntegerField('Light end hour')
+    def __unicode__(self):
+        return u"{Water cycle period: %f} {Light start hour: %i} {Light end hour: %i" % (self.water_cycle_period, self.light_start_hour, self.light_end_hour)
 
 # Plant subclasses
 class Arugula(Plant):

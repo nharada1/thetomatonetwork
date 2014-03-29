@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django import forms
 from django.http import HttpResponse
 
+import datetime
 import requests
 import algo.datawrapper as dw
 import plants.models
@@ -82,22 +83,36 @@ def index(request):
 def sync(request):
     wrapper = dw.DataWrapper()
     wrapper.loadFromDB_performanceUpdate()
-    new_values = wrapper.N_t
+    duty_cycles = wrapper.N_t
+    care = plants.models.CareConstants.objects.latest('water_cycle_period')
+    water_cycle_period = care.water_cycle_period
+    light_start_hour = care.light_start_hour
+    light_end_hour = care.light_end_hour
     # Assume we have 4 plants with names plant0,plant1,plant2,plant3 and submit updates in that order
-    # Use ugly hard-coded for-loop to order new_values to reflect this assumption
-    new_values_ordered = [0,0,0,0]
+    # Use ugly hard-coded for-loop to order duty_cycles to reflect this assumption
+    care_values_ordered = [0,0,0,0,0]
+    now = datetime.datetime.now()
     for i in range(0, wrapper.n):
-        if wrapper.plantIndexMap[i].plant_name=='plant0':
-            new_values_ordered[0] = new_values[i]
-        elif wrapper.plantIndexMap[i].plant_name=='plant1':
-            new_values_ordered[1] = new_values[i]
-        elif wrapper.plantIndexMap[i].plant_name=='plant2':
-            new_values_ordered[2] = new_values[i]
-        elif wrapper.plantIndexMap[i].plant_name=='plant3':
-            new_values_ordered[3] = new_values[i]
+        plant = wrapper.plantIndexMap[i]
+        timedel = now-plant.initial_date
+        seconds = timedel.total_seconds()
+        if plant.plant_name == 'plant0':
+            if seconds%water_cycle_period <= duty_cycles[i]*water_cycle_period:
+                care_values_ordered[0] = 1
+        elif plant.plant_name=='plant1':
+            if seconds%water_cycle_period <= duty_cycles[i]*water_cycle_period:
+                care_values_ordered[1] = 1
+        elif plant.plant_name=='plant2':
+            if seconds%water_cycle_period <= duty_cycles[i]*water_cycle_period:
+                care_values_ordered[2] = 1
+        elif plant.plant_name=='plant3':
+            if seconds%water_cycle_period <= duty_cycles[i]*water_cycle_period:
+                care_values_ordered[3] = 1
+    if now.hour >= light_start_hour and now.hour < light_end_hour:
+        care_values_ordered[4] = 1
 
-    new_values_str = ",".join([str(v).strip('[] ')+ "f" for v in new_values_ordered])
-    return HttpResponse('$' + new_values_str + '$')
+    duty_cycles_str = ",".join([str(v).strip('[] ')+ "f" for v in care_values_ordered])
+    return HttpResponse('$' + duty_cycles_str + '$')
 
 
 
