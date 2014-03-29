@@ -3,6 +3,7 @@ from plants.models import EnglishIvy
 from plants.models import PlantState
 from plants.models import ControlPlantState
 from plants.models import AlgoMetadata
+from plants.models import CareConstants
 
 
 class PlantAdmin(admin.ModelAdmin):
@@ -23,7 +24,12 @@ class AlgoMetaDataAdmin(admin.ModelAdmin):
     list_display = ['id', 'date', 'L', 'T', 'tau']
     fields       = ['date', 'L', 'T', 'tau']
 
+class CareConstantsAdmin(admin.ModelAdmin):
+    list_display = ['id','water_cycle_period','light_start_hour','light_end_hour']
+    fields = ['water_cycle_period','light_start_hour','light_end_hour']
+
 admin.site.register(EnglishIvy, PlantAdmin)
 admin.site.register(PlantState, PlantStateAdmin)
 admin.site.register(ControlPlantState, ControlPlantStateAdmin)
 admin.site.register(AlgoMetadata, AlgoMetaDataAdmin)
+admin.site.register(CareConstants, CareConstantsAdmin)
