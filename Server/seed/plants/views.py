@@ -1,9 +1,7 @@
 from django.shortcuts import render
 from django import forms
 from django.http import HttpResponse
-
 import datetime
-import requests
 import algo.datawrapper as dw
 import plants.models
 
@@ -114,5 +112,5 @@ def sync(request):
     duty_cycles_str = ",".join([str(v).strip('[] ')+ "f" for v in care_values_ordered])
     return HttpResponse('$' + duty_cycles_str + '$')
 
-
-
+def stream(request):
+    return render(request, 'stream.html', {})

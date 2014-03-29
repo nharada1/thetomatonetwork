@@ -116,7 +116,8 @@ TEMPLATE_DIRS = (
    PROJECT_PATH + "/../static/update",
    PROJECT_PATH + "/../static/runalgo",
    PROJECT_PATH + "/../static/sync",
-   PROJECT_PATH + '/../plants/sites/dynamic_dashboard'
+   PROJECT_PATH + '/../plants/sites/dynamic_dashboard',
+   PROJECT_PATH + '/../plants/sites/stream'
 )
 
 INSTALLED_APPS = (

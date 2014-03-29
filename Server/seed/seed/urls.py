@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     #url(r'^seed/', include('seed.foo.urls')),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin', include(admin.site.urls)),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.STATIC_ROOT,
     }),
@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^runalgo','plants.views.update_nutrients'),
     url(r'^$','plants.views.index'),
     url(r'^sync','plants.views.sync'),
+    url(r'^stream','plants.views.stream'),
     url(r'', 'plants.views.index'),
 )
 
