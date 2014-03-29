@@ -31,7 +31,7 @@ class PlantState(models.Model):
     nutrient_value      = models.FloatField('Nutrient Value', default=0.0)
     light_value         = models.FloatField('Light Value', default=0.0)
     performance_value   = models.FloatField('Performance Value', default=0.0)
-    plant               = models.ForeignKey(Plant)
+    plant               = models.ForeignKey(Plant,related_name='plant_states')
 
     def __unicode__(self):
         return u"%s's plant %s's state at time step %d" % (self.plant.user_name, self.plant.plant_name, self.timestep)

@@ -69,7 +69,8 @@ class DataWrapper:
 			self.error('Attempted to persist to db without calculating nutrient update')
 		else:
 			for i in range(0,self.n):
-				new_plant_state = plants.models.PlantState(timestep=self.t+1,nutrient_value=self.N_t[i],plant=self.plantIndexMap[i])
+				plant = self.plantIndexMap[i]
+				new_plant_state = plants.models.PlantState(timestep=self.t+1,nutrient_value=self.N_t[i],plant=plant)
 				new_plant_state.save()
 			new_algometadata = plants.models.AlgoMetadata(L=self.L,T=self.T,tau=self.tau)
 			new_algometadata.save()

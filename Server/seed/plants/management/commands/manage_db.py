@@ -1,6 +1,7 @@
 import numpy as np
 import plants.models
 from django.core.management.base import BaseCommand
+import datetime
 
 class Command(BaseCommand):
     help = 'manages db by initing. Usage is ./manage.py manage_db init'
@@ -22,7 +23,7 @@ class Command(BaseCommand):
                 self.init_db()
             elif command == 'init_plants':
                 self.init_plants()
-            elif command == 'reset_plant':
+            elif command == 'reset_plants':
                 self.reset_plants()
             elif command == 'init_algo':
                 self.init_algo()
@@ -40,11 +41,11 @@ class Command(BaseCommand):
          # Create test plants
         new_ivies = []
         for i in range(0,n):
-            new_ivies.append(plants.models.EnglishIvy(initial_date=datetime.datetime(year=2014,month=3,day=27,hour=20),
+            new_ivies.append(plants.models.EnglishIvy(initial_date=datetime.datetime(year=2014,month=3,day=27,hour=20,minute=8),
                                                     is_control=False,user_name='user'+str(i),plant_name='plant'+str(i)))
             new_ivies[i].save()
         # Create control plant
-        control_ivy = plants.models.EnglishIvy(initial_date=datetime.datetime(year=2014,month=3,day=27,hour=20),
+        control_ivy = plants.models.EnglishIvy(initial_date=datetime.datetime(year=2014,month=3,day=27,hour=20,minute=8),
                                             is_control=True,user_name='control',plant_name='control')
         control_ivy.save()
         return new_ivies
@@ -53,13 +54,14 @@ class Command(BaseCommand):
         plants.models.PlantState.objects.all().delete()
         # Create initial plant states
         for i in range(0,n):
-            new_plant_state = plants.models.PlantState(timestep=0,nutrient_value=self.init_nutrients[i],plant=new_ivies[i])
+            plant = new_ivies[i]
+            new_plant_state = plants.models.PlantState(timestep=0,nutrient_value=self.init_nutrients[i],plant=plant)
             new_plant_state.save()
 
     def reset_plants(self):
-        cur_plants = plants.models.Plant.objects.all()
-        for p in enumerate(cur_plants):
-            p.initial_date = datetime.datetime(year=2014,month=3,day=27,hour=20)
+        ivies = plants.models.Plant.objects.all()
+        for p in ivies:
+            p.initial_date = datetime.datetime(year=2014,month=3,day=27,hour=20,minute=8)
             p.save()
 
     def init_algo(self):
