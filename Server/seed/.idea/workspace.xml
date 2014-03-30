@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plants/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="24" selection-start="1573" selection-end="1573" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
+            <state line="2" column="12" selection-start="42" selection-end="54" vertical-scroll-proportion="0.04709576" vertical-offset="0" max-vertical-offset="1275">
               <folding />
             </state>
           </provider>
@@ -70,10 +70,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plants/sites/dynamic_dashboard/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="17" selection-start="1478" selection-end="4991" vertical-scroll-proportion="0.9" vertical-offset="945" max-vertical-offset="1605">
+            <state line="99" column="17" selection-start="1478" selection-end="4991" vertical-scroll-proportion="-22.5" vertical-offset="945" max-vertical-offset="1605">
               <folding />
             </state>
           </provider>
@@ -961,13 +961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plants/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="24" selection-start="1573" selection-end="1573" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1275">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/runalgo/runalgo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="7" selection-start="141" selection-end="141" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="210">
@@ -1016,7 +1009,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/sites/dynamic_dashboard/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="17" selection-start="1478" selection-end="4991" vertical-scroll-proportion="0.9" vertical-offset="945" max-vertical-offset="1605">
+        <state line="99" column="17" selection-start="1478" selection-end="4991" vertical-scroll-proportion="-22.5" vertical-offset="945" max-vertical-offset="1605">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plants/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="12" selection-start="42" selection-end="54" vertical-scroll-proportion="0.04709576" vertical-offset="0" max-vertical-offset="1275">
           <folding />
         </state>
       </provider>
