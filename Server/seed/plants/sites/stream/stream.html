@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Seed Hydroponics Information Hub</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        {% load staticfiles %}
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static "dynamic_dashboard/css/normalize.css" %}">
+        <link rel="stylesheet" href="{% static "dynamic_dashboard/css/main.css" %}">
+        <link rel="shortcut icon" href="{% static "img/favicon.ico" %}" />
+        <script src="{% static "dynamic_dashboard/js/vendor/modernizr-2.6.2.min.js" %}"></script>
+    </head>
+    <body>
+        <!-- Justin.TV stream -->
+       <object type="application/x-shockwave-flash" data="http://www.justin.tv/swflibs/JustinPlayer.swf?channel=seed_hydro"
+               id="live_embed_player_flash" height="300" width="400" bgcolor="#000000"><param name="allowFullScreen"
+               value="true"/><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" />
+           <param name="movie" value="http://www.justin.tv/swflibs/JustinPlayer.swf" />
+           <param name="flashvars" value="hostname=www.justin.tv&channel=seed_hydro&auto_play=false&start_volume=25" />
+       </object>
+    </body>
+</html>
