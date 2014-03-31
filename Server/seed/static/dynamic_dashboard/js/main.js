@@ -1,5 +1,5 @@
 var t;
-
+var plant_datasets = [];
 
 var histogram_formats = [
             {
@@ -86,7 +86,6 @@ function redraw(animation, plant_data){
     var keys = Object.keys(plant_data);
     var plant = keys[0];
     var hist_labels = [];
-    var plant_datasets = [];
 
     // Create histogram datasets for each plant
     for (var i in keys)
@@ -95,14 +94,13 @@ function redraw(animation, plant_data){
         if (plant_data[keys[i]].length)
         {
 
-            plant_datasets[i] = [];
+            var plant_data_object = JSON.parse(JSON.stringify(histogram_formats[i % histogram_formats.length]))
             for (var j in plant_data[keys[i]])
             {
                 // histogram y labels
                 var state = plant_data[keys[i]][j];
-                var plant_data_object = JSON.parse(JSON.stringify(histogram_formats[i % histogram_formats.length]))
-                plant_data_object['data'] = state['fields']['performance_value']
-                plant_datasets[i].push(plant_data_object);
+                plant_data_object['data'].push(state['fields']['performance_value']);
+
 
                 // histogram x labels
                 if(hist_labels.length < plant_data[keys[i]].length)
@@ -110,6 +108,7 @@ function redraw(animation, plant_data){
                     hist_labels.push(plant_data[plant][i]['fields']['timestep']);
                 }
             }
+            plant_datasets.push(plant_data_object);
         }
     }
 
