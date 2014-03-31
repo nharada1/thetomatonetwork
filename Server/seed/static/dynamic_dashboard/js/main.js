@@ -84,7 +84,6 @@ function redraw(animation, plant_data){
 
     // Assemble plot data
     var keys = Object.keys(plant_data);
-    var plant = keys[0];
     var hist_labels = [];
 
     // Create histogram datasets for each plant
@@ -105,7 +104,7 @@ function redraw(animation, plant_data){
                 // histogram x labels
                 if(hist_labels.length < plant_data[keys[i]].length)
                 {
-                    hist_labels.push(plant_data[plant][i]['fields']['timestep']);
+                    hist_labels.push(plant_data[keys[i]][j]['fields']['timestep']);
                 }
             }
             plant_datasets.push(plant_data_object);
