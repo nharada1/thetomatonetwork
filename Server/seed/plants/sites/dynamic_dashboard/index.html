@@ -58,7 +58,7 @@
                 <div class="third widget line">
                     <div class="chart-legend">
                         <h3>Plant Health Per Day</h3>
-                        <p><span>Plant 1</span> &mdash; <strong>Plant 2</strong></p>
+                        <p id="hist_legend"></p>
                         <p><a href="" class="button">Filter by Plant</a></p>
                     </div>
                     <div class="canvas-container">
@@ -92,8 +92,9 @@
         <script type="text/javascript">
             // Load plant data for graphing
             var plant_dict = JSON.parse('{{ plant_dict|safe }}');
-            window.onload = size(true, plant_dict);
-            $(window).on('resize', function(){ size(false, plant_dict); });
+            var hist_data  = collateHistData(plant_dict);
+            window.onload = loadPage(hist_data);
+            $(window).on('resize', function(){ size(false, hist_data); });
         </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

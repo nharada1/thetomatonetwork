@@ -1,5 +1,4 @@
 var t;
-var plant_datasets = [];
 
 var histogram_formats = [
             {
@@ -7,6 +6,7 @@ var histogram_formats = [
 				strokeColor : "rgba(220,220,220,1)",
 				pointColor : "rgba(220,220,220,1)",
 				pointStrokeColor : "#fff",
+                name : "",
 				data : []
 			},
     	    {
@@ -14,6 +14,7 @@ var histogram_formats = [
 				strokeColor : "rgba(220,220,220,1)",
 				pointColor : "rgba(220,220,220,1)",
 				pointStrokeColor : "#fff",
+                name : "",
 				data :[]
             },
         	{
@@ -21,6 +22,7 @@ var histogram_formats = [
 				strokeColor : "rgba(220,220,220,1)",
 				pointColor : "rgba(220,220,220,1)",
 				pointStrokeColor : "#fff",
+                name : "",
 				data :[]
 			},
             {
@@ -28,10 +30,11 @@ var histogram_formats = [
 				strokeColor : "rgba(220,220,220,1)",
 				pointColor : "rgba(220,220,220,1)",
 				pointStrokeColor : "#fff",
+                name : "",
 				data :[]
 			}
 ];
-function size(animate, data){
+function size(animate, hist_data){
 	if (animate == undefined){
 		animate = false;
 	}
@@ -43,7 +46,7 @@ function size(animate, data){
 				"height":$(el).parent().outerHeight()
 			});
 		});
-		redraw(animate, data);
+		redraw(animate, hist_data);
 		var m = 0;
 		$(".widget").height("");
 		$(".widget").each(function(i,el){ m = Math.max(m,$(el).height()); });
@@ -51,7 +54,7 @@ function size(animate, data){
 	}, 30);
 }
 
-function redraw(animation, plant_data){
+function redraw(animation, hist_data){
 	var options = {};
 	if (!animation){
 		options.animation = false;
@@ -82,44 +85,11 @@ function redraw(animation, plant_data){
 	var ctx = canvas.getContext("2d");
 	new Chart(ctx).Doughnut(data, options);
 
-    // Assemble plot data
-    var keys = Object.keys(plant_data);
-    var hist_labels = [];
-
-    // Create histogram datasets for each plant
-    for (var i in keys)
-    {
-        // if it has datapoints
-        if (plant_data[keys[i]].length)
-        {
-
-            var plant_data_object = JSON.parse(JSON.stringify(histogram_formats[i % histogram_formats.length]))
-            for (var j in plant_data[keys[i]])
-            {
-                // histogram y labels
-                var state = plant_data[keys[i]][j];
-                plant_data_object['data'].push(state['fields']['performance_value']);
-
-
-                // histogram x labels
-                if(hist_labels.length < plant_data[keys[i]].length)
-                {
-                    hist_labels.push(plant_data[keys[i]][j]['fields']['timestep']);
-                }
-            }
-            plant_datasets.push(plant_data_object);
-        }
-    }
-
-
-	var data = {
-		labels : hist_labels,
-		datasets : plant_datasets
-	}
+    // graph hist data
+    var data = hist_data;
 	var canvas = document.getElementById("shipments");
 	var ctx = canvas.getContext("2d");
 	new Chart(ctx).Line(data, options);
-
 
 
 	var data = {
@@ -139,3 +109,70 @@ function redraw(animation, plant_data){
 	new Chart(ctx).Radar(data, options);
 }
 
+function collateHistData(raw_plant_data){
+        // Assemble plot data
+    var keys = Object.keys(raw_plant_data);
+    var hist_labels = [];
+    var plant_datasets = [];
+
+    // Create histogram datasets for each plant
+    for (var i in keys)
+    {
+        // if it has datapoints
+        if (raw_plant_data[keys[i]].length)
+        {
+            // map to different histogram color schemes
+            // parse - stringify is the fastest deep copy for simple json objects
+            var plant_data_object = JSON.parse(JSON.stringify(histogram_formats[i % histogram_formats.length]));
+
+            plant_data_object['name'] = keys[i];
+            for (var j in raw_plant_data[keys[i]])
+            {
+                // histogram y labels
+                var state = raw_plant_data[keys[i]][j];
+                plant_data_object['data'].push(state['fields']['performance_value']);
+
+                // histogram x labels
+                if(hist_labels.length < raw_plant_data[keys[i]].length)
+                {
+                    hist_labels.push(raw_plant_data[keys[i]][j]['fields']['timestep']);
+                }
+            }
+            plant_datasets.push(plant_data_object);
+        }
+    }
+
+    // create histogram data
+	var data = {
+		labels : hist_labels,
+		datasets : plant_datasets
+	}
+    return data;
+}
+
+function loadPage(hist_data){
+
+    // construct histogram legend
+    generateHistLegend(hist_data);
+
+    // render
+    size(true, hist_data);
+}
+
+function generateHistLegend(hist_data){
+    var html_str = "";
+    var plant_datasets = hist_data['datasets'];
+
+    // Add plant name to inner html
+    for (var i in plant_datasets)
+    {
+         html_str += '<span id="' + 'hist_legend_' + i + '"> ' + plant_datasets[i]['name'] + ' </span>';
+    }
+    document.getElementById('hist_legend').innerHTML = html_str;
+
+    // Select each plant by id and edit its color
+    for (var i in plant_datasets)
+    {
+         document.getElementById('hist_legend_'+i).style.color = plant_datasets[i]['fillColor'];
+    }
+}
