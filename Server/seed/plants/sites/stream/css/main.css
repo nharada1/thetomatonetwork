@@ -229,22 +229,9 @@ header .button {
 .widget.line p span {
     color: #dbba34;
 }
-.widget.line .hist-xaxis p strong {
-    color: #637b85;
-    text-align: center;
-    font-weight: 400;
-    display: inline-block;
-}
-
-.widget.line .hist-yaxis strong {
+.widget.line p strong {
     color: #637b85;
     font-weight: 400;
-    display: inline-block;
-    position: relative;
-    left: -45px;
-    top: -200px;
-    transform: rotate(-90deg);
-    -webkit-transform: rotate(-90deg);
 }
 
 
@@ -280,14 +267,14 @@ header .button {
 
 @media only screen and (min-width:300px){
     .container {
-        width: 320px;
+        width: 300px;
         margin: 0 auto;
     }
 }
 
 @media only screen and (min-width:600px){
     .container {
-        width: 600px;
+        width: 580px;
         margin: 0 auto;
     }
     .third {

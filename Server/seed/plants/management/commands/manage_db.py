@@ -42,7 +42,7 @@ class Command(BaseCommand):
         plants.models.Plant.objects.all().delete()
          # Create test plants
         new_ivies = []
-        for i in range(0,n):
+        for i in range(0,self.n):
             new_ivies.append(plants.models.EnglishIvy(initial_date=datetime.datetime(year=2014,month=3,day=27,hour=20,minute=8),
                                                     is_control=False,user_name='user'+str(i),plant_name='plant'+str(i)))
             new_ivies[i].save()
@@ -55,7 +55,7 @@ class Command(BaseCommand):
     def init_plantstates(self,new_ivies):
         plants.models.PlantState.objects.all().delete()
         # Create initial plant states
-        for i in range(0,n):
+        for i in range(0,self.n):
             plant = new_ivies[i]
             new_plant_state = plants.models.PlantState(timestep=0,nutrient_value=self.init_nutrients[i],plant=plant)
             new_plant_state.save()

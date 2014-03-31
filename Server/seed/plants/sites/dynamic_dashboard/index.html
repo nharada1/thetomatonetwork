@@ -58,11 +58,23 @@
                 <div class="third widget line">
                     <div class="chart-legend">
                         <h3>Plant Health Per Day</h3>
-                        <p><span>Plant 1</span> &mdash; <strong>Plant 2</strong></p>
-                        <p><a href="" class="button">Filter by Plant</a></p>
+                        <p id="hist_legend"></p>
+                        <!-- p><a href="" class="button">Filter by Plant</a></p-->
                     </div>
                     <div class="canvas-container">
-                        <canvas id="shipments"></canvas>
+                        <canvas id="plant_health"></canvas>
+                    </div>
+                    <div class="hist-xaxis">
+                        <p>
+                        <span id="hist-xaxis-title">
+                            <strong> Time-step </strong>
+                        </span>
+                        </p>
+                    </div>
+                    <div class="hist-yaxis">
+                        <span id="hist-yaxis-title">
+                            <strong> Plant Health </strong>
+                        </span>
                     </div>
                 </div>
                 <div class="third widget">
@@ -86,8 +98,16 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
         <script src="{% static "dynamic_dashboard/js/plugins.js"%}"></script>
         <script src="{% static "dynamic_dashboard/js/main.js"%}"></script>
+        <script type="text/javascript">
+            // Load plant data for graphing
+            var plant_dict = JSON.parse('{{ plant_dict|safe }}');
+            var hist_data  = collateHistData(plant_dict);
+            window.onload = loadPage(hist_data);
+            $(window).on('resize', function(){ size(false, hist_data); });
+        </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
