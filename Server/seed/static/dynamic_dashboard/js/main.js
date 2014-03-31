@@ -87,7 +87,7 @@ function redraw(animation, hist_data){
 
     // graph hist data
     var data = hist_data;
-	var canvas = document.getElementById("shipments");
+	var canvas = document.getElementById("plant_health");
 	var ctx = canvas.getContext("2d");
 	new Chart(ctx).Line(data, options);
 
