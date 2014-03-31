@@ -56,24 +56,25 @@ function redraw(animation, plant_data){
     var keys = Object.keys(plant_data);
     var plant = keys[0];
 
-
-    // Create histogram axes datapoints
-    for (var i in plant_data[plant])
-    {
-        hist_labels.push(plant_data[plant][i]['fields']['timestep']);
-    }
-
     // Create histogram datasets for each plant
     for (var i in keys)
     {
         // if it has datapoints
         if (plant_data[keys[i]].length)
         {
+
             plant_datasets[i] = [];
             for (var j in plant_data[keys[i]])
             {
+                // histogram y labels
                 var state = plant_data[keys[i]][j];
                 plant_datasets[i].push(state['fields']['performance_value']);
+
+                // histogram x labels
+                if(hist_labels.length < plant_data[keys[i]].length)
+                {
+                    hist_labels.push(plant_data[plant][i]['fields']['timestep']);
+                }
             }
         }
     }

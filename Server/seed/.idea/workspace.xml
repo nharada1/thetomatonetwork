@@ -62,7 +62,7 @@
       <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="0" selection-start="1615" selection-end="1615" vertical-scroll-proportion="1.5695364" vertical-offset="0" max-vertical-offset="1920">
+            <state line="56" column="24" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.33774835" vertical-offset="585" max-vertical-offset="1935">
               <folding />
             </state>
           </provider>
@@ -1050,7 +1050,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="0" selection-start="1615" selection-end="1615" vertical-scroll-proportion="1.5695364" vertical-offset="0" max-vertical-offset="1920">
+        <state line="56" column="24" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.33774835" vertical-offset="585" max-vertical-offset="1935">
           <folding />
         </state>
       </provider>
