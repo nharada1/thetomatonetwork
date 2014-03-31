@@ -71,7 +71,7 @@
       <file leaf-file-name="main.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="244" column="12" selection-start="7036" selection-end="7036" vertical-scroll-proportion="0.9191375" vertical-offset="2978" max-vertical-offset="8010">
+            <state line="282" column="17" selection-start="7797" selection-end="7797" vertical-scroll-proportion="0.17115903" vertical-offset="4103" max-vertical-offset="8010">
               <folding />
             </state>
           </provider>
@@ -1085,7 +1085,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="244" column="12" selection-start="7036" selection-end="7036" vertical-scroll-proportion="0.9191375" vertical-offset="2978" max-vertical-offset="8010">
+        <state line="282" column="17" selection-start="7797" selection-end="7797" vertical-scroll-proportion="0.17115903" vertical-offset="4103" max-vertical-offset="8010">
           <folding />
         </state>
       </provider>
