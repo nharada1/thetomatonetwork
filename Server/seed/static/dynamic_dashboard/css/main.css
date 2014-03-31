@@ -229,9 +229,22 @@ header .button {
 .widget.line p span {
     color: #dbba34;
 }
-.widget.line p strong {
+.widget.line .hist-xaxis p strong {
+    color: #637b85;
+    text-align: center;
+    font-weight: 400;
+    display: inline-block;
+}
+
+.widget.line .hist-yaxis strong {
     color: #637b85;
     font-weight: 400;
+    display: inline-block;
+    position: relative;
+    left: -45px;
+    top: -200px;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
 }
 
 

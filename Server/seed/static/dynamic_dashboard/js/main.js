@@ -1,5 +1,4 @@
 var t;
-
 var histogram_formats = [
             {
 				fillColor : "rgba(99,123,133,0.4)",
