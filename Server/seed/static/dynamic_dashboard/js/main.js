@@ -1,6 +1,8 @@
-(function(){
+
 var t;
-function size(animate){
+var hist_labels = [];
+    var plant_datasets = [];
+function size(animate, data){
 	if (animate == undefined){
 		animate = false;
 	}
@@ -12,23 +14,22 @@ function size(animate){
 				"height":$(el).parent().outerHeight()
 			});
 		});
-		redraw(animate);
+		redraw(animate, data);
 		var m = 0;
 		$(".widget").height("");
 		$(".widget").each(function(i,el){ m = Math.max(m,$(el).height()); });
 		$(".widget").height(m);
 	}, 30);
 }
-$(window).on('resize', function(){ size(false); });
 
-
-function redraw(animation){
+function redraw(animation, plant_data){
 	var options = {};
 	if (!animation){
 		options.animation = false;
 	} else {
 		options.animation = true;
 	}
+
 	var data = [
 		{
 			value: 30,
@@ -52,22 +53,47 @@ function redraw(animation){
 	var ctx = canvas.getContext("2d");
 	new Chart(ctx).Doughnut(data, options);
 
+    var keys = Object.keys(plant_data);
+    var plant = keys[0];
+
+
+    // Create histogram axes datapoints
+    for (var i in plant_data[plant])
+    {
+        hist_labels.push(plant_data[plant][i]['fields']['timestep']);
+    }
+
+    // Create histogram datasets for each plant
+    for (var i in keys)
+    {
+        // if it has datapoints
+        if (plant_data[keys[i]].length)
+        {
+            plant_datasets[i] = [];
+            for (var j in plant_data[keys[i]])
+            {
+                var state = plant_data[keys[i]][j];
+                plant_datasets[i].push(state['fields']['performance_value']);
+            }
+        }
+    }
+
 	var data = {
-		labels : ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+		labels : hist_labels,
 		datasets : [
 			{
 				fillColor : "rgba(99,123,133,0.4)",
 				strokeColor : "rgba(220,220,220,1)",
 				pointColor : "rgba(220,220,220,1)",
 				pointStrokeColor : "#fff",
-				data : [1,54,30,81,56,55,40]
+				data : plant_datasets[0]
 			},
 			{
 				fillColor : "rgba(219,186,52,0.4)",
 				strokeColor : "rgba(220,220,220,1)",
 				pointColor : "rgba(220,220,220,1)",
 				pointStrokeColor : "#fff",
-				data : [20,60,42,58,31,21,50]
+				data : plant_datasets[1]
 			},
 		]
 	}
@@ -93,6 +119,4 @@ function redraw(animation){
 	var ctx = canvas.getContext("2d");
 	new Chart(ctx).Radar(data, options);
 }
-size(true);
 
-}());

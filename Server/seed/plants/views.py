@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django import forms
 from django.http import HttpResponse
+from django.core import serializers
 import datetime
 import algo.datawrapper as dw
 import plants.models
+import json
 
 
 class UpdateForm(forms.Form):
@@ -39,7 +41,7 @@ def update_performance(request):
                     t = last_control_state.timestep+1
                 except:
                     t = 0
-                control_state = plants.models.ControlPlantState(plant=plant,timestep=t,performance_value=p)
+                control_state = plants.models.ControlPlantState(plant=plant, timestep=t, performance_value=p)
                 control_state.save()
             else:
                 wrapper = dw.DataWrapper()
@@ -76,7 +78,15 @@ arduino_server_ip = 'http://192.168.1.147/'
 
 
 def index(request):
-    return render(request, 'index.html', {})
+    plant_states = plants.models.PlantState.objects.all()
+    plant_objs   = plants.models.Plant.objects.all()
+    plant_dict = {}
+    for plant_obj in plant_objs:
+        state_list = plant_states.filter(plant=plant_obj)
+        plant_dict[plant_obj.plant_name.encode('utf8')] = json.loads(serializers.serialize('json', state_list))
+
+    plant_dict_str = json.dumps(plant_dict)
+    return render(request, 'index.html', {'plant_dict': plant_dict_str})
 
 def sync(request):
     wrapper = dw.DataWrapper()

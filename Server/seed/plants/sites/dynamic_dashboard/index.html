@@ -86,8 +86,15 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
         <script src="{% static "dynamic_dashboard/js/plugins.js"%}"></script>
         <script src="{% static "dynamic_dashboard/js/main.js"%}"></script>
+        <script type="text/javascript">
+            // Load plant data for graphing
+            var plant_dict = JSON.parse('{{ plant_dict|safe }}');
+            window.onload = size(true, plant_dict);
+            $(window).on('resize', function(){ size(false, plant_dict); });
+        </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
