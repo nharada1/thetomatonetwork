@@ -1,7 +1,36 @@
-
 var t;
-var hist_labels = [];
-    var plant_datasets = [];
+
+
+var histogram_formats = [
+            {
+				fillColor : "rgba(99,123,133,0.4)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data : []
+			},
+    	    {
+				fillColor : "rgba(219,186,52,0.4)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data :[]
+            },
+        	{
+				fillColor : "rgba(239,146,34,0.4)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data :[]
+			},
+            {
+				fillColor : "rgba(45,98,234,0.4)",
+				strokeColor : "rgba(220,220,220,1)",
+				pointColor : "rgba(220,220,220,1)",
+				pointStrokeColor : "#fff",
+				data :[]
+			}
+];
 function size(animate, data){
 	if (animate == undefined){
 		animate = false;
@@ -53,8 +82,11 @@ function redraw(animation, plant_data){
 	var ctx = canvas.getContext("2d");
 	new Chart(ctx).Doughnut(data, options);
 
+    // Assemble plot data
     var keys = Object.keys(plant_data);
     var plant = keys[0];
+    var hist_labels = [];
+    var plant_datasets = [];
 
     // Create histogram datasets for each plant
     for (var i in keys)
@@ -68,7 +100,9 @@ function redraw(animation, plant_data){
             {
                 // histogram y labels
                 var state = plant_data[keys[i]][j];
-                plant_datasets[i].push(state['fields']['performance_value']);
+                var plant_data_object = JSON.parse(JSON.stringify(histogram_formats[i % histogram_formats.length]))
+                plant_data_object['data'] = state['fields']['performance_value']
+                plant_datasets[i].push(plant_data_object);
 
                 // histogram x labels
                 if(hist_labels.length < plant_data[keys[i]].length)
@@ -79,24 +113,10 @@ function redraw(animation, plant_data){
         }
     }
 
+
 	var data = {
 		labels : hist_labels,
-		datasets : [
-			{
-				fillColor : "rgba(99,123,133,0.4)",
-				strokeColor : "rgba(220,220,220,1)",
-				pointColor : "rgba(220,220,220,1)",
-				pointStrokeColor : "#fff",
-				data : plant_datasets[0]
-			},
-			{
-				fillColor : "rgba(219,186,52,0.4)",
-				strokeColor : "rgba(220,220,220,1)",
-				pointColor : "rgba(220,220,220,1)",
-				pointStrokeColor : "#fff",
-				data : plant_datasets[1]
-			},
-		]
+		datasets : plant_datasets
 	}
 	var canvas = document.getElementById("shipments");
 	var ctx = canvas.getContext("2d");
