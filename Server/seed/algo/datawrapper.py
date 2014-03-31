@@ -40,6 +40,7 @@ class DataWrapper:
 		self.N_tau = np.zeros((self.n,self.tau))
 		self.P_tau = np.zeros((self.n,self.tau))
 		self.P_t = np.zeros((self.n,1))
+		self.N_t = np.zeros((self.n,1))
 		for s in range(0,self.tau):
 			for i in range(0,self.n):
 				self.N_tau[i,s] = recent_plant_states[self.n*s+i].nutrient_value
@@ -96,7 +97,22 @@ class DataWrapper:
 		if self.N_tau is None or self.P_tau is None:
 			self.error('Attempted to update nutrients before pulling from database')
 		else:
-			g,self.N_t = A(self.N_tau,self.P_tau,self.L,self.T)
+			N_tau_no_control = np.copy(self.N_tau)
+			P_tau_no_control = np.copy(self.P_tau)
+			for i in range(0,self.n):
+				if(self.plantIndexMap[i].is_control):
+					np.delete(N_tau_no_control,i,0)
+					np.delete(P_tau_no_control,i,0)
+			g,N_t_no_control = A(N_tau_no_control,P_tau_no_control,self.L,self.T)
+			j = 0
+			for i in range(0,self.n):
+				if(self.plantIndexMap[i].is_control):
+					self.N_t[i] = 0
+					self.N_t[i] = 0
+				else:
+					self.N_t[i] = N_t_no_control[j]
+					self.N_t[i] = N_t_no_control[j]
+					j = j+1
 			self.updateLipschitz(g)
 
 	def updatePerformance(self,plant,p):

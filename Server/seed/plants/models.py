@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 class Plant(models.Model):
     ''' Plant is a superclass for all different types of plants we end up using
@@ -24,7 +25,7 @@ class PlantState(models.Model):
         Currently we control nutrient flow, and measure ambient light
     '''
 
-    date                = models.DateTimeField('Date-Time', auto_now=True)
+    date                = models.DateTimeField('Date-Time', default=datetime.datetime.now)
     date.editable = True
 
     timestep            = models.IntegerField('Timestep')

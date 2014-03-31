@@ -29,6 +29,8 @@ class Command(BaseCommand):
                 self.init_algo()
             elif command == 'init_care':
                 self.init_care()
+            elif command=='migrate_control_plants':
+                self.migrate_control_plants()
 
     def init_db(self):
         new_ivies = self.init_plants()
@@ -73,3 +75,11 @@ class Command(BaseCommand):
         plants.models.CareConstants.objects.all().delete()
         care_constants = plants.models.CareConstants(water_cycle_period=7200,light_start_hour=8,light_end_hour=20)
         care_constants.save()
+
+    def migrate_control_plants(self):
+        control_plant_states = plants.models.ControlPlantState.objects.all()
+        for control_plant_state in control_plant_states:
+            plant_state = plants.models.PlantState(date=control_plant_state.date,
+                timestep=control_plant_state.timestep,nutrient_value=0.0,plant=control_plant_state.plant,
+                performance_value=control_plant_state.performance_value)
+            plant_state.save()
