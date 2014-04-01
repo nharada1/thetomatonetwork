@@ -43,17 +43,10 @@
                     <h3>Water Usage by Plant</h3>
                     <p></p>
                     <div class="canvas-container">
-                        <canvas id="hours"></canvas>
-                        <span class="status"></span>
+                        <canvas id="nutrients-canvas"></canvas>
+                        <span class="breakdown"></span>
                     </div>
-                    <div class="chart-legend">
-                        <ul>
-                            <li class="ship">Plant 1</li>
-                            <li class="rework">Plant 2</li>
-                            <li class="admin">Plant 3</li>
-                            <li class="prod">Plant 4</li>
-                        </ul>
-                    </div>
+                    <div id="donut-legend"></div>
                 </div>
                 <div class="third widget line">
                     <div class="chart-legend">
@@ -102,11 +95,15 @@
         <script src="{% static "dynamic_dashboard/js/plugins.js"%}"></script>
         <script src="{% static "dynamic_dashboard/js/main.js"%}"></script>
         <script type="text/javascript">
-            // Load plant data for graphing
-            var plant_dict = JSON.parse('{{ plant_dict|safe }}');
-            var hist_data  = collateHistData(plant_dict);
-            window.onload = loadPage(hist_data);
-            $(window).on('resize', function(){ size(false, hist_data); });
+            // Load plant data for graphing hist
+            var hist_plant_dict = JSON.parse('{{ hist_plant_dict|safe }}');
+            var hist_data  = collateHistData(hist_plant_dict);
+
+            var donut_plant_dict = JSON.parse('{{ donut_plant_dict|safe }}');
+            var donut_data  = collateDonutData(donut_plant_dict);
+
+            window.onload = loadPage(hist_data, donut_data);
+            $(window).on('resize', function(){ size(false, hist_data, donut_data); });
         </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

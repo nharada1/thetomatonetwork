@@ -33,7 +33,36 @@ var histogram_formats = [
 				data :[]
 			}
 ];
-function size(animate, hist_data){
+
+var donut_formats = [
+        {
+            name:"",
+			value: 0,
+            raw_data:0,
+			color:"#637b85"
+		},
+		{
+            name:"",
+			value : 0,
+            raw_data:0,
+			color : "#2c9c69"
+		},
+		{
+            name:"",
+			value : 0,
+            raw_data:0,
+			color : "#dbba34"
+		},
+		{
+            name:"",
+			value : 0,
+            raw_data:0,
+			color : "#c62f29"
+		}
+]
+
+
+function size(animate, hist_data, donut_data){
 	if (animate == undefined){
 		animate = false;
 	}
@@ -45,7 +74,7 @@ function size(animate, hist_data){
 				"height":$(el).parent().outerHeight()
 			});
 		});
-		redraw(animate, hist_data);
+		redraw(animate, hist_data, donut_data);
 		var m = 0;
 		$(".widget").height("");
 		$(".widget").each(function(i,el){ m = Math.max(m,$(el).height()); });
@@ -53,7 +82,7 @@ function size(animate, hist_data){
 	}, 30);
 }
 
-function redraw(animation, hist_data){
+function redraw(animation, hist_data, donut_data){
 	var options = {};
 	if (!animation){
 		options.animation = false;
@@ -61,26 +90,9 @@ function redraw(animation, hist_data){
 		options.animation = true;
 	}
 
-	var data = [
-		{
-			value: 30,
-			color:"#637b85"
-		},
-		{
-			value : 30,
-			color : "#2c9c69"
-		},
-		{
-			value : 26,
-			color : "#dbba34"
-		},
-		{
-			value : 24,
-			color : "#c62f29"
-		}
-
-	];
-	var canvas = document.getElementById("hours");
+    // Donut data
+	var data = donut_data;
+	var canvas = document.getElementById("nutrients-canvas");
 	var ctx = canvas.getContext("2d");
 	new Chart(ctx).Doughnut(data, options);
 
@@ -149,15 +161,6 @@ function collateHistData(raw_plant_data){
     return data;
 }
 
-function loadPage(hist_data){
-
-    // construct histogram legend
-    generateHistLegend(hist_data);
-
-    // render
-    size(true, hist_data);
-}
-
 function generateHistLegend(hist_data){
     var html_str = "";
     var plant_datasets = hist_data['datasets'];
@@ -174,4 +177,67 @@ function generateHistLegend(hist_data){
     {
          document.getElementById('hist_legend_'+i).style.color = plant_datasets[i]['fillColor'];
     }
+}
+
+function collateDonutData(raw_plant_data){
+     // Assemble plot data
+    var keys = Object.keys(raw_plant_data);
+    var plant_datasets = [];
+    var total_nutes = 0;
+
+    // Create histogram datasets for each plant
+    for (var i in keys)
+    {
+        // map to different histogram color schemes
+        // parse - stringify is the fastest deep copy for simple json objects
+        var plant_data_object = JSON.parse(JSON.stringify(donut_formats[i % donut_formats.length]));
+
+        plant_data_object['name'] = keys[i];
+
+        var state = raw_plant_data[keys[i]][0];
+        plant_data_object['raw_data'] = state['fields']['performance_value'];
+
+        // Push plant data in
+        plant_datasets.push(plant_data_object);
+
+        total_nutes += plant_data_object['raw_data'];
+    }
+
+    for(var i in plant_datasets)
+    {
+        plant_datasets[i]['value'] = plant_datasets[i]['raw_data']/total_nutes;
+    }
+
+    return plant_datasets;
+}
+
+function generateDonutLegend(donut_data){
+    var html_str = "<ul>";
+
+    // Add plant name to inner html
+    for (var i in donut_data)
+    {
+         html_str += '<li id="' + 'donut_legend_' + i + '"> '
+             + donut_data[i]['name'] + ' ' + Math.round(100*donut_data[i]['value']) + '%</li>';
+    }
+    html_str += '</ul>';
+    document.getElementById('donut-legend').innerHTML = html_str;
+
+    // Select each plant by id and edit its color
+    for (var i in donut_data)
+    {
+         document.getElementById('donut_legend_'+i).style.color = donut_data[i]['color'];
+    }
+
+
+}
+
+function loadPage(hist_data, donut_data){
+
+    // construct histogram legend
+    generateHistLegend(hist_data);
+    generateDonutLegend(donut_data);
+
+    // render
+    size(true, hist_data, donut_data);
 }
