@@ -102,7 +102,7 @@ void loop()
       int second_delim = nutrient_string.indexOf(',', first_delim + 1);
       int third_delim  = nutrient_string.indexOf(',', second_delim + 1);
       int fourth_delim = nutrient_string.indexOf(',', third_delim + 1);
-      int fifth_delim  = nutrient_string.indexOf(',', fourth_delim + 1)
+      int fifth_delim  = nutrient_string.indexOf('$', fourth_delim + 1);
 
       String val_1 = nutrient_string.substring(0, first_delim);
       String val_2 = nutrient_string.substring(first_delim+1, second_delim);
