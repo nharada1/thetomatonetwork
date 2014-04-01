@@ -17,13 +17,13 @@ urlpatterns = patterns('',
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.STATIC_ROOT,
     }),
+    url(r'^analytics', 'plants.views.analytics'),
     url(r'^update','plants.views.update_performance'),
     url(r'^runalgo','plants.views.update_nutrients'),
-    url(r'^$','plants.views.index'),
     url(r'^sync','plants.views.sync'),
     url(r'^stream','plants.views.stream'),
     url(r'', 'plants.views.index'),
-    url(r'^analytics', 'plants.views.analytics')
+
 )
 
 urlpatterns += staticfiles_urlpatterns()
