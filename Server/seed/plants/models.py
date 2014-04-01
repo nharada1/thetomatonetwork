@@ -37,17 +37,6 @@ class PlantState(models.Model):
     def __unicode__(self):
         return u"%s's plant %s's state at time step %d" % (self.plant.user_name, self.plant.plant_name, self.timestep)
 
-class ControlPlantState(models.Model):
-    date                = models.DateTimeField('Date-Time', auto_now=True)
-    date.editable = True
-
-    timestep            = models.IntegerField('Timestep')
-    performance_value   = models.FloatField('Performance Value', default=0.0)
-    plant               = models.ForeignKey(Plant)
-
-    def __unicode__(self):
-        return u"%s's control plant %s's state at time step %d" % (self.plant.user_name, self.plant.plant_name, self.timestep)
-
 class AlgoMetadata(models.Model):
     ''' Metadata for current state/iteration of algorithm. Contains two variables:
         - Lipschitz constant of performance function
