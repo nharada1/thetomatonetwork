@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static "analytic_dashboard/css/normalize.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "analytic_dashboard/css/styles.css" %}">
+
+    <!-- Short load times are for squids -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    
+    <title>Seed - Dashboard</title>
+</head>
+    
+<body>
+    <header>
+        <div class="container clearfix">
+            <h1>Seed Dashboard<span>
+                <script type="text/javascript">
+                    var currentTime = new Date();
+                    var month = currentTime.getMonth() + 1;
+                    var day = currentTime.getDate();
+                    var year = currentTime.getFullYear();
+                    document.write(month + "/" + day + "/" + year);
+                </script>
+                </span>
+            </h1>
+        </div>
+    </header>
+    <div id="content">
+        <div id="left_panel">
+            <div id="line_chart" class="widget">
+                <h3>Plant Performance</h3>
+                <div id="legend"></div>
+            </div>
+        </div>
+        <div id="right_panel">
+            <div id="small_calendar" class="widget"><h3>System Performance</h3></div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            &copy; 2014 Seed-Hydroponics &mdash; <a href="mailto:sam@zeckendorf.me">Contact Us</a>
+        </div>
+    </footer>
+
+    <script src="{% static "analytic_dashboard/js/line_chart.js"%}"></script>
+    <script src="{% static "analytic_dashboard/js/small_calendar.js"%}"></script>
+    <script src="{% static "analytic_dashboard/js/script.js"%}"></script>
+    
+</body>
