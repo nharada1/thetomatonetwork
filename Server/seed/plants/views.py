@@ -70,16 +70,13 @@ arduino_server_ip = 'http://192.168.1.147/'
 
 def index(request):
     # Get list of all control states
-    # Control plant states should be in plantstates, but isn't. Could be isolated with simple is_control, which we have
+
     plant_states   = plants.models.PlantState.objects.all()
-    #control_states = plants.models.ControlPlantState.objects.all()
     plant_objs     = plants.models.Plant.objects.all()
     plant_dict     = {}
     for plant_obj in plant_objs:
-
-        if not plant_obj.is_control:
-            state_list = plant_states.filter(plant=plant_obj)
-            plant_dict[plant_obj.plant_name.encode('utf8')] = json.loads(serializers.serialize('json', state_list))
+        state_list = plant_states.filter(plant=plant_obj)
+        plant_dict[plant_obj.plant_name.encode('utf8')] = json.loads(serializers.serialize('json', state_list))
 
 
     plant_dict_str = json.dumps(plant_dict)
