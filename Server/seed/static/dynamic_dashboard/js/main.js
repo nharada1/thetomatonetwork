@@ -195,7 +195,7 @@ function collateDonutData(raw_plant_data){
         plant_data_object['name'] = keys[i];
 
         var state = raw_plant_data[keys[i]][0];
-        plant_data_object['raw_data'] = state['fields']['performance_value'];
+        plant_data_object['raw_data'] = state['fields']['nutrient_value'];
 
         // Push plant data in
         plant_datasets.push(plant_data_object);
