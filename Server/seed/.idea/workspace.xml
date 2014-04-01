@@ -23,21 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plants/models.py">
+      <file leaf-file-name="stream.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plants/sites/stream/stream.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="8" selection-start="872" selection-end="876" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1125">
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+            <state line="41" column="21" selection-start="2432" selection-end="2432" vertical-scroll-proportion="-25.625" vertical-offset="0" max-vertical-offset="840">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="init_test_db.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plants/management/commands/init_test_db.py">
+      <file leaf-file-name="main.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/stream/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+            <state line="207" column="26" selection-start="4651" selection-end="4654" vertical-scroll-proportion="0.8039216" vertical-offset="2490" max-vertical-offset="8130">
               <folding />
             </state>
           </provider>
@@ -46,39 +44,17 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plants/sites/dynamic_dashboard/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="62" selection-start="4849" selection-end="4849" vertical-scroll-proportion="-7.32" vertical-offset="1119" max-vertical-offset="1860">
+            <state line="41" column="51" selection-start="2173" selection-end="2208" vertical-scroll-proportion="-19.375" vertical-offset="150" max-vertical-offset="1860">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/js/main.js">
+      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/seed/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="224" column="0" selection-start="5895" selection-end="5895" vertical-scroll-proportion="1.2120823" vertical-offset="2417" max-vertical-offset="3720">
+            <state line="119" column="43" selection-start="4463" selection-end="4463" vertical-scroll-proportion="0.0" vertical-offset="2106" max-vertical-offset="2910">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/css/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="272" column="10" selection-start="7532" selection-end="7532" vertical-scroll-proportion="-9.75" vertical-offset="3651" max-vertical-offset="7965">
-              <folding>
-                <element signature="e#4955#6590#2" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plants/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="8" selection-start="2724" selection-end="2724" vertical-scroll-proportion="0.0" vertical-offset="876" max-vertical-offset="2040">
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -103,7 +79,6 @@
         <option value="$PROJECT_DIR$/plants/manage_db.py" />
         <option value="$PROJECT_DIR$/plants/sites/stream/index.html" />
         <option value="$PROJECT_DIR$/seed/settings.py" />
-        <option value="$PROJECT_DIR$/plants/sites/stream/stream.html" />
         <option value="$PROJECT_DIR$/seed/urls.py" />
         <option value="$PROJECT_DIR$/plants/management/commands/manage_db.py" />
         <option value="$PROJECT_DIR$/plants/models.py" />
@@ -112,6 +87,8 @@
         <option value="$PROJECT_DIR$/static/dynamic_dashboard/css/main.css" />
         <option value="$PROJECT_DIR$/plants/sites/dynamic_dashboard/index.html" />
         <option value="$PROJECT_DIR$/static/dynamic_dashboard/js/main.js" />
+        <option value="$PROJECT_DIR$/plants/sites/stream/stream.html" />
+        <option value="$PROJECT_DIR$/static/stream/css/main.css" />
       </list>
     </option>
   </component>
@@ -184,8 +161,22 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="update" />
+              <option name="myItemId" value="seed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="seed" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stream" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -203,83 +194,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="runalgo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dynamic_dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dynamic_dashboard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seed" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dynamic_dashboard" />
+              <option name="myItemId" value="stream" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -298,6 +213,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dynamic_dashboard" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -344,6 +263,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stream" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -432,6 +355,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/stream" />
       <recent name="$PROJECT_DIR$/plants/sites/stream" />
       <recent name="$PROJECT_DIR$/plants/sites" />
       <recent name="$PROJECT_DIR$/static/img" />
@@ -944,24 +868,12 @@
         <state line="32" column="49" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="615" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plants/sites/stream/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7815" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/seed/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="17" selection-start="473" selection-end="473" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
           <folding>
             <element signature="e#0#51#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/seed/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="43" selection-start="4463" selection-end="4463" vertical-scroll-proportion="0.0" vertical-offset="1564" max-vertical-offset="2910">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -975,13 +887,6 @@
     <entry file="file://$PROJECT_DIR$/plants/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plants/sites/stream/stream.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="16" selection-start="1801" selection-end="1801" vertical-scroll-proportion="-16.875" vertical-offset="0" max-vertical-offset="525">
           <folding />
         </state>
       </provider>
@@ -1023,25 +928,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="272" column="10" selection-start="7532" selection-end="7532" vertical-scroll-proportion="-9.75" vertical-offset="3651" max-vertical-offset="7965">
-          <folding>
-            <element signature="e#4955#6590#2" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plants/management/commands/init_test_db.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plants/sites/dynamic_dashboard/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="62" selection-start="4849" selection-end="4849" vertical-scroll-proportion="-7.32" vertical-offset="1119" max-vertical-offset="1860">
           <folding />
         </state>
       </provider>
@@ -1057,7 +946,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="224" column="0" selection-start="5895" selection-end="5895" vertical-scroll-proportion="1.2120823" vertical-offset="2417" max-vertical-offset="3720">
+        <state line="79" column="31" selection-start="1663" selection-end="1663" vertical-scroll-proportion="67.57692" vertical-offset="2942" max-vertical-offset="3720">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/seed/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="43" selection-start="4463" selection-end="4463" vertical-scroll-proportion="0.0" vertical-offset="2106" max-vertical-offset="2910">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="266" column="24" selection-start="7417" selection-end="7423" vertical-scroll-proportion="0.39759037" vertical-offset="3693" max-vertical-offset="7965">
+          <folding>
+            <element signature="e#4955#6590#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plants/sites/dynamic_dashboard/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="51" selection-start="2173" selection-end="2208" vertical-scroll-proportion="-19.375" vertical-offset="150" max-vertical-offset="1860">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plants/sites/stream/stream.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="21" selection-start="2432" selection-end="2432" vertical-scroll-proportion="-25.625" vertical-offset="0" max-vertical-offset="840">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/stream/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="207" column="26" selection-start="4651" selection-end="4654" vertical-scroll-proportion="0.8039216" vertical-offset="2490" max-vertical-offset="8130">
           <folding />
         </state>
       </provider>

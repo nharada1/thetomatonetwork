@@ -13,18 +13,39 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         {% load staticfiles %}
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{% static "dynamic_dashboard/css/normalize.css" %}">
-        <link rel="stylesheet" href="{% static "dynamic_dashboard/css/main.css" %}">
+        <link rel="stylesheet" href="{% static "stream/css/normalize.css" %}">
+        <link rel="stylesheet" href="{% static "stream/css/main.css" %}">
         <link rel="shortcut icon" href="{% static "img/favicon.ico" %}" />
         <script src="{% static "dynamic_dashboard/js/vendor/modernizr-2.6.2.min.js" %}"></script>
     </head>
     <body>
         <!-- Justin.TV stream -->
-       <object type="application/x-shockwave-flash" data="http://www.justin.tv/swflibs/JustinPlayer.swf?channel=seed_hydro"
+        <div class="wrapper">
+            <header>
+                <div class="container clearfix">
+                    <h1>Seed Hub <span>
+                        <script type="text/javascript">
+                            var currentTime = new Date();
+                            var month = currentTime.getMonth() + 1;
+                            var day = currentTime.getDate();
+                            var year = currentTime.getFullYear();
+                            document.write(month + "/" + day + "/" + year);
+                        </script>
+                        </span></h1>
+                </div>
+            </header>
+            <object type="application/x-shockwave-flash" data="http://www.justin.tv/swflibs/JustinPlayer.swf?channel=seed_hydro"
                id="live_embed_player_flash" height="300" width="400" bgcolor="#000000"><param name="allowFullScreen"
                value="true"/><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" />
-           <param name="movie" value="http://www.justin.tv/swflibs/JustinPlayer.swf" />
-           <param name="flashvars" value="hostname=www.justin.tv&channel=seed_hydro&auto_play=false&start_volume=25" />
-       </object>
+            <param name="movie" value="http://www.justin.tv/swflibs/JustinPlayer.swf" />
+            <param name="flashvars" value="hostname=www.justin.tv&channel=seed_hydro&auto_play=false&start_volume=25" />
+            </object>
+         </div>
+       <footer>
+            <div class="container">
+                &copy; 2013 Seed-Hydroponics &mdash; <a href="mailto:sam@zeckendorf.me">Contact Us</a>
+            </div>
+        </footer>
+
     </body>
 </html>
