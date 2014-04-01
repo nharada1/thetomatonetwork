@@ -129,3 +129,6 @@ def sync(request):
 
 def stream(request):
     return render(request, 'stream.html', {})
+
+def analytics(request):
+    return render(request, 'analytics.html', {})

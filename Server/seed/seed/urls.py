@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^sync','plants.views.sync'),
     url(r'^stream','plants.views.stream'),
     url(r'', 'plants.views.index'),
+    url(r'^analytics', 'plants.views.analytics')
 )
 
 urlpatterns += staticfiles_urlpatterns()
