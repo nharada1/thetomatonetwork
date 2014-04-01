@@ -23,15 +23,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/plants/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="118" selection-start="1494" selection-end="1494" vertical-scroll-proportion="0.109298535" vertical-offset="473" max-vertical-offset="1110">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="init_test_db.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plants/management/commands/init_test_db.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -86,6 +77,17 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/plants/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="77" column="0" selection-start="2600" selection-end="2600" vertical-scroll-proportion="-0.24796085" vertical-offset="1307" max-vertical-offset="1920">
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="plugins.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/js/plugins.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -128,7 +130,6 @@
         <option value="$PROJECT_DIR$/plants/tests.py" />
         <option value="$PROJECT_DIR$/seed/wsgi.py" />
         <option value="$PROJECT_DIR$/../seedENV/lib/python2.7/site-packages/dj_database_url.py" />
-        <option value="$PROJECT_DIR$/plants/admin.py" />
         <option value="$PROJECT_DIR$/management/commands/init_test_db.py" />
         <option value="$PROJECT_DIR$/plants/management/commands/init_test_db.py" />
         <option value="$PROJECT_DIR$/plants/manage_db.py" />
@@ -142,6 +143,7 @@
         <option value="$PROJECT_DIR$/plants/sites/dynamic_dashboard/index.html" />
         <option value="$PROJECT_DIR$/static/dynamic_dashboard/css/main.css" />
         <option value="$PROJECT_DIR$/plants/models.py" />
+        <option value="$PROJECT_DIR$/plants/admin.py" />
       </list>
     </option>
   </component>
@@ -1002,13 +1004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plants/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="19" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/runalgo/runalgo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="27" selection-start="60" selection-end="71" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="210">
@@ -1044,15 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plants/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="0" selection-start="2600" selection-end="2600" vertical-scroll-proportion="0.0" vertical-offset="801" max-vertical-offset="1920">
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/update/update.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="7" selection-start="184" selection-end="184" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="210">
@@ -1083,8 +1069,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="118" selection-start="1494" selection-end="1494" vertical-scroll-proportion="0.109298535" vertical-offset="473" max-vertical-offset="1110">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1125">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plants/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="36" selection-start="106" selection-end="106" vertical-scroll-proportion="0.04893964" vertical-offset="0" max-vertical-offset="613">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plants/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="77" column="0" selection-start="2600" selection-end="2600" vertical-scroll-proportion="-0.24796085" vertical-offset="1307" max-vertical-offset="1920">
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
