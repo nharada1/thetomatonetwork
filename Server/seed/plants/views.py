@@ -82,17 +82,28 @@ arduino_server_ip = 'http://192.168.1.147/'
 
 def index(request):
     # Get list of all control states
+    plant_states     = plants.models.PlantState.objects.all()
+    plant_objs       = plants.models.Plant.objects.all()
+    hist_plant_dict  = {}
+    donut_plant_dict = {}
 
-    plant_states   = plants.models.PlantState.objects.all()
-    plant_objs     = plants.models.Plant.objects.all()
-    plant_dict     = {}
+    # iterate through plants
     for plant_obj in plant_objs:
+
+        # Create histogram data
         state_list = plant_states.filter(plant=plant_obj)
-        plant_dict[plant_obj.plant_name.encode('utf8')] = json.loads(serializers.serialize('json', state_list))
+        hist_plant_dict[plant_obj.plant_name.encode('utf8')] = json.loads(serializers.serialize('json', state_list))
+
+        if not plant_obj.is_control:
+        # Create donut data
+            recent_states = plant_states.filter(plant=plant_obj).latest('timestep')
+            donut_plant_dict[plant_obj.plant_name.encode('utf8')] = json.loads(serializers.serialize('json', [recent_states]))
 
 
-    plant_dict_str = json.dumps(plant_dict)
-    return render(request, 'index.html', {'plant_dict': plant_dict_str})
+
+    hist_dict_str  = json.dumps(hist_plant_dict)
+    donut_dict_str = json.dumps(donut_plant_dict)
+    return render(request, 'index.html', {'hist_plant_dict': hist_dict_str, 'donut_plant_dict': donut_dict_str})
 
 def sync(request):
     wrapper = dw.DataWrapper()
@@ -130,3 +141,6 @@ def sync(request):
 
 def stream(request):
     return render(request, 'stream.html', {})
+
+def analytics(request):
+    return render(request, 'analytics.html', {})

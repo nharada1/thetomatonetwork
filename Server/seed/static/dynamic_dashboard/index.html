@@ -1,0 +1,119 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Seed Hydroponics Information Hub</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static "dynamic_dashboard/css/normalize.css" %}">
+        <link rel="stylesheet" href="{% static "dynamic_dashboard/css/main.css" %}">
+        <link rel="shortcut icon" href="{% static "img/favicon.ico" %}" />
+        <script src="{% static "dynamic_dashboard/js/vendor/modernizr-2.6.2.min.js" %}"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div class="wrapper">
+            <header>
+                <div class="container clearfix">
+                    <h1>Seed Hub <span>
+                        <script type="text/javascript">
+                            var currentTime = new Date();
+                            var month = currentTime.getMonth() + 1;
+                            var day = currentTime.getDate();
+                            var year = currentTime.getFullYear();
+                            document.write(month + "/" + day + "/" + year);
+                        </script>
+                        </span></h1>
+                </div>
+            </header>
+            <div class="container clearfix">
+                <div class="third widget doughnut">
+                    <h3>Water Usage by Plant</h3>
+                    <p></p>
+                    <div class="canvas-container">
+                        <canvas id="nutrients-canvas"></canvas>
+                        <span class="breakdown"></span>
+                    </div>
+                    <div id="donut-legend"></div>
+                </div>
+                <div class="third widget line">
+                    <div class="chart-legend">
+                        <h3>Plant Health Per Day</h3>
+                        <p id="hist_legend"></p>
+                        <!-- p><a href="" class="button">Filter by Plant</a></p-->
+                    </div>
+                    <div class="canvas-container">
+                        <canvas id="plant_health"></canvas>
+                    </div>
+                    <div class="hist-xaxis">
+                        <p>
+                        <span id="hist-xaxis-title">
+                            <strong> Time-step </strong>
+                        </span>
+                        </p>
+                    </div>
+                    <div class="hist-yaxis">
+                        <span id="hist-yaxis-title">
+                            <strong> Plant Health </strong>
+                        </span>
+                    </div>
+                </div>
+                <div class="third widget">
+                    <div class="chart-legend">
+                        <h3>Parameter Influence</h3>
+                        <p>Based on cumulative health effect</p>
+                        <p><a href="" class="button">Track another parameter</a></p>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas id="departments"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="push"></div>
+        </div>
+        <footer>
+            <div class="container">
+                &copy; 2013 Seed-Hydroponics &mdash; <a href="mailto:sam@zeckendorf.me">Contact Us</a>
+            </div>
+        </footer>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+        <script src="{% static "dynamic_dashboard/js/plugins.js"%}"></script>
+        <script src="{% static "dynamic_dashboard/js/main.js"%}"></script>
+        <script type="text/javascript">
+            // Load plant data for graphing hist
+            var hist_plant_dict = JSON.parse('{{ hist_plant_dict|safe }}');
+            var hist_data  = collateHistData(hist_plant_dict);
+
+            var donut_plant_dict = JSON.parse('{{ donut_plant_dict|safe }}');
+            var donut_data  = collateDonutData(donut_plant_dict);
+
+            window.onload = loadPage(hist_data, donut_data);
+            $(window).on('resize', function(){ size(false, hist_data, donut_data); });
+        </script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>
