@@ -91,7 +91,7 @@ def index(request):
     for plant_obj in plant_objs:
 
         # Create histogram data
-        state_list = plant_states.filter(plant=plant_obj)
+        state_list = plant_states.filter(plant=plant_obj).order_by('timestep')
         hist_plant_dict[plant_obj.plant_name.encode('utf8')] = json.loads(serializers.serialize('json', state_list))
 
         if not plant_obj.is_control:

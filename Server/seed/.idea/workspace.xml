@@ -26,7 +26,7 @@
       <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/stream/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="207" column="26" selection-start="4651" selection-end="4654" vertical-scroll-proportion="-23.653847" vertical-offset="2490" max-vertical-offset="8130">
+            <state line="207" column="26" selection-start="4651" selection-end="4654" vertical-scroll-proportion="0.0" vertical-offset="2490" max-vertical-offset="8130">
               <folding />
             </state>
           </provider>
@@ -41,13 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plants/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="93" column="58" selection-start="3137" selection-end="3152" vertical-scroll-proportion="-18.961538" vertical-offset="902" max-vertical-offset="2085">
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
+            <state line="93" column="76" selection-start="3028" selection-end="3028" vertical-scroll-proportion="0.36567163" vertical-offset="996" max-vertical-offset="2175">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -55,7 +53,7 @@
       <file leaf-file-name="analytics.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/analytic_dashboard/analytics.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="4.375" vertical-offset="105" max-vertical-offset="885">
+            <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="885">
               <folding />
             </state>
           </provider>
@@ -73,16 +71,16 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/seed/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="49" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+            <state line="22" column="49" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="555">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="72" selection-start="4749" selection-end="4775" vertical-scroll-proportion="0.4915254" vertical-offset="1093" max-vertical-offset="1860">
+            <state line="98" column="72" selection-start="4749" selection-end="4775" vertical-scroll-proportion="-39.625" vertical-offset="519" max-vertical-offset="1860">
               <folding />
             </state>
           </provider>
@@ -91,7 +89,7 @@
       <file leaf-file-name="stream.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/stream/stream.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="840">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
               <folding />
             </state>
           </provider>
@@ -124,11 +122,11 @@
         <option value="$PROJECT_DIR$/static/dynamic_dashboard/js/main.js" />
         <option value="$PROJECT_DIR$/plants/sites/stream/stream.html" />
         <option value="$PROJECT_DIR$/static/stream/css/main.css" />
-        <option value="$PROJECT_DIR$/plants/views.py" />
         <option value="$PROJECT_DIR$/seed/urls.py" />
         <option value="$PROJECT_DIR$/seed/settings.py" />
         <option value="$PROJECT_DIR$/static/dynamic_dashboard/index.html" />
         <option value="$PROJECT_DIR$/static/analytic_dashboard/analytics.html" />
+        <option value="$PROJECT_DIR$/plants/views.py" />
       </list>
     </option>
   </component>
@@ -162,6 +160,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -308,7 +307,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -427,27 +425,7 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="seed" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <option name="port" value="8000" />
-      <option name="host" value="" />
-      <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="" />
-      <option name="runTestServer" value="false" />
-      <option name="runNoReload" value="false" />
-      <option name="useCustomRunCommand" value="false" />
-      <option name="customRunCommand" value="" />
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
@@ -473,7 +451,27 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="seed" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -581,7 +579,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15164521" sideWeight="0.80102414" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27539343" sideWeight="0.80102414" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -589,11 +587,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19879518" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -611,9 +609,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15164521" sideWeight="0.80102414" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20192307" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -665,16 +663,16 @@
     <entry file="file://$PROJECT_DIR$/plants/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="105">
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="41" selection-start="1012" selection-end="1024" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="705">
-          <folding />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -691,9 +689,7 @@
     <entry file="file://$PROJECT_DIR$/seed/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="24" selection-start="538" selection-end="538" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="420">
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -727,16 +723,16 @@
     <entry file="file://$PROJECT_DIR$/plants/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="41" selection-start="1012" selection-end="1024" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="705">
-          <folding />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -748,9 +744,7 @@
     <entry file="file://$PROJECT_DIR$/seed/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -779,9 +773,7 @@
     <entry file="file://$PROJECT_DIR$/plants/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -832,44 +824,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/runalgo/runalgo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="27" selection-start="60" selection-end="71" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="210">
-          <folding />
-        </state>
+        <state line="3" column="27" selection-start="60" selection-end="71" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="210" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/js/plugins.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="248" selection-start="2029" selection-end="2030" vertical-scroll-proportion="-9.5" vertical-offset="158" max-vertical-offset="1035">
-          <folding />
-        </state>
+        <state line="27" column="248" selection-start="2029" selection-end="2030" vertical-scroll-proportion="-9.5" vertical-offset="158" max-vertical-offset="1035" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/update/update.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="7" selection-start="184" selection-end="184" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="210">
-          <folding />
-        </state>
+        <state line="8" column="7" selection-start="184" selection-end="184" vertical-scroll-proportion="-5.0" vertical-offset="0" max-vertical-offset="210" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="36" selection-start="106" selection-end="106" vertical-scroll-proportion="0.04893964" vertical-offset="0" max-vertical-offset="613">
-          <folding />
-        </state>
+        <state line="2" column="36" selection-start="106" selection-end="106" vertical-scroll-proportion="0.04893964" vertical-offset="0" max-vertical-offset="613" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/management/commands/manage_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="18" selection-start="2648" selection-end="2648" vertical-scroll-proportion="1.25" vertical-offset="150" max-vertical-offset="1320">
-          <folding />
-        </state>
+        <state line="66" column="18" selection-start="2648" selection-end="2648" vertical-scroll-proportion="1.25" vertical-offset="150" max-vertical-offset="1320" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/models.py">
@@ -883,9 +863,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plants/management/commands/init_test_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/js/main.js">
@@ -897,16 +875,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="266" column="24" selection-start="7417" selection-end="7423" vertical-scroll-proportion="0.39759037" vertical-offset="3693" max-vertical-offset="7965">
-          <folding>
-            <element signature="e#4955#6590#2" expanded="false" />
-          </folding>
-        </state>
+        <state line="266" column="24" selection-start="7417" selection-end="7423" vertical-scroll-proportion="0.39759037" vertical-offset="3693" max-vertical-offset="7965" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/stream/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="26" selection-start="4651" selection-end="4654" vertical-scroll-proportion="-23.653847" vertical-offset="2490" max-vertical-offset="8130">
+        <state line="207" column="26" selection-start="4651" selection-end="4654" vertical-scroll-proportion="0.0" vertical-offset="2490" max-vertical-offset="8130">
           <folding />
         </state>
       </provider>
@@ -920,7 +894,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/seed/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="49" selection-start="672" selection-end="672" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+        <state line="22" column="49" selection-start="831" selection-end="831" vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="555">
           <folding />
         </state>
       </provider>
@@ -934,7 +908,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/analytic_dashboard/analytics.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="4.375" vertical-offset="105" max-vertical-offset="885">
+        <state line="0" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="885">
           <folding />
         </state>
       </provider>
@@ -946,18 +920,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plants/views.py">
+    <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="58" selection-start="3137" selection-end="3152" vertical-scroll-proportion="-18.961538" vertical-offset="902" max-vertical-offset="2085">
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
+        <state line="98" column="72" selection-start="4749" selection-end="4775" vertical-scroll-proportion="-39.625" vertical-offset="519" max-vertical-offset="1860">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/dynamic_dashboard/index.html">
+    <entry file="file://$PROJECT_DIR$/plants/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="72" selection-start="4749" selection-end="4775" vertical-scroll-proportion="0.4915254" vertical-offset="1093" max-vertical-offset="1860">
+        <state line="93" column="76" selection-start="3028" selection-end="3028" vertical-scroll-proportion="0.36567163" vertical-offset="996" max-vertical-offset="2175">
           <folding />
         </state>
       </provider>
