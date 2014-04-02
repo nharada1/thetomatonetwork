@@ -115,6 +115,9 @@ class DataWrapper:
 					j = j+1
 			self.updateLipschitz(g)
 
+	def duplicateNutrients(self):
+		self.N_t = np.copy(self.N_tau)
+
 	def updatePerformance(self,plant,p):
 		# self.P_t = calculate performance
 		if self.P_t is None:
