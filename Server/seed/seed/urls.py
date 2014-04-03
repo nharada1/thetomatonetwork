@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^$','plants.views.index'),
     url(r'^sync','plants.views.sync'),
     url(r'^stream','plants.views.stream'),
+    url(r'^csv','plants.views.db_csv'),
     url(r'', 'plants.views.index'),
 
 )
