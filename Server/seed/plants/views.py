@@ -6,6 +6,7 @@ import datetime
 import algo.datawrapper as dw
 import plants.models
 import json
+import csv
 
 
 class UpdateForm(forms.Form):
@@ -91,7 +92,7 @@ def index(request):
     for plant_obj in plant_objs:
 
         # Create histogram data
-        state_list = plant_states.filter(plant=plant_obj)
+        state_list = plant_states.filter(plant=plant_obj).order_by('timestep')
         hist_plant_dict[plant_obj.plant_name.encode('utf8')] = json.loads(serializers.serialize('json', state_list))
 
         if not plant_obj.is_control:
@@ -139,8 +140,47 @@ def sync(request):
     duty_cycles_str = ",".join([str(v).strip('[] ')+ "f" for v in care_values_ordered])
     return HttpResponse('$' + duty_cycles_str + '$')
 
+
 def stream(request):
     return render(request, 'stream.html', {})
 
+
 def analytics(request):
     return render(request, 'analytics.html', {})
+
+
+def db_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+
+    plant_states     = plants.models.PlantState.objects.all()
+    plant_objs       = plants.models.Plant.objects.all()
+    line_plant_dict  = {}
+    line_plant_dict['Date'] = []
+
+    # iterate through plants
+    for plant_obj in plant_objs:
+
+        # Create line data
+        state_list = plant_states.filter(plant=plant_obj).order_by('timestep')
+        line_plant_dict[plant_obj.plant_name.encode('utf8')] = []
+        for state in state_list:
+
+            # Create date array (timestep)
+            if not state.timestep in line_plant_dict['Date']:
+                line_plant_dict['Date'].append(state.timestep)
+
+            # Create nutrient array
+            performance_value = state.performance_value
+            line_plant_dict[plant_obj.plant_name.encode('utf8')].append(performance_value)
+
+
+    writer = csv.writer(response)
+    writer.writerow(line_plant_dict.keys())
+
+    rows = zip(*line_plant_dict.values())
+    for row in rows:
+        writer.writerow(row)
+
+    return response
+
