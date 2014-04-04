@@ -107,10 +107,8 @@ class DataWrapper:
 			j = 0
 			for i in range(0,self.n):
 				if(self.plantIndexMap[i].is_control):
-					self.N_t[i] = 0
-					self.N_t[i] = 0
+					self.N_t[i] = self.N_tau[i]
 				else:
-					self.N_t[i] = N_t_no_control[j]
 					self.N_t[i] = N_t_no_control[j]
 					j = j+1
 			self.updateLipschitz(g)

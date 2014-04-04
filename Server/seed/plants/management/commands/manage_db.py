@@ -2,6 +2,8 @@ import numpy as np
 import plants.models
 from django.core.management.base import BaseCommand
 import datetime
+from django.db.models import Q
+
 
 class Command(BaseCommand):
     help = 'manages db by initing. Usage is ./manage.py manage_db init'
@@ -31,6 +33,8 @@ class Command(BaseCommand):
                 self.init_care()
             elif command=='migrate_control_plants':
                 self.migrate_control_plants()
+            elif command=='migrate_plants_for_new_experiment':
+                self.migrate_plants_for_new_experiment()
 
     def init_db(self):
         new_ivies = self.init_plants()
@@ -83,3 +87,18 @@ class Command(BaseCommand):
                 timestep=control_plant_state.timestep,nutrient_value=0.0,plant=control_plant_state.plant,
                 performance_value=control_plant_state.performance_value)
             plant_state.save()
+
+    def migrate_plants_for_new_experiment(self):
+        # Set is_control on new control plants
+        plants_to_become_control = plants.models.Plant.objects.filter(Q(plant_name='plant0') | Q(plant_name='plant3'))
+        for plant in plants_to_become_control:
+            plant.is_control = True
+            plant.save()
+        # Set fixed nutrient values for control plants
+        t = plants.models.PlantState.objects.latest('date').timestep
+        control_plant1 = plants.models.PlantState.objects.filter(timestep=t,plant__plant_name='plant0')[0]
+        control_plant1.nutrient_value = 0.125
+        control_plant1.save()
+        control_plant2 = plants.models.PlantState.objects.filter(timestep=t,plant__plant_name='plant3')[0]
+        control_plant2.nutrient_value = 1
+        control_plant2.save()
