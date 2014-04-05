@@ -99,10 +99,14 @@ class DataWrapper:
 		else:
 			N_tau_no_control = np.copy(self.N_tau)
 			P_tau_no_control = np.copy(self.P_tau)
+			j = 0
 			for i in range(0,self.n):
 				if(self.plantIndexMap[i].is_control):
-					np.delete(N_tau_no_control,i,0)
-					np.delete(P_tau_no_control,i,0)
+					N_tau_no_control = np.delete(N_tau_no_control,j,0)
+					P_tau_no_control = np.delete(P_tau_no_control,j,0)
+				else:
+					j = j+1
+
 			g,N_t_no_control = A(N_tau_no_control,P_tau_no_control,self.L,self.T)
 			j = 0
 			for i in range(0,self.n):
