@@ -126,37 +126,7 @@ function collateHistData(raw_plant_data){
     var hist_labels = [];
     var plant_datasets = [];
 
-    // Create histogram datasets for each plant
-    for (var i in keys)
-    {
-        // if it has datapoints
-        if (raw_plant_data[keys[i]].length)
-        {
-            // map to different histogram color schemes
-            // parse - stringify is the fastest deep copy for simple json objects
-            var plant_data_object = JSON.parse(JSON.stringify(histogram_formats[i % histogram_formats.length]));
 
-            plant_data_object['name'] = keys[i];
-            for (var j in raw_plant_data[keys[i]])
-            {
-                // histogram y labels
-                var state = raw_plant_data[keys[i]][j];
-
-                if(state['fields']['performance_value'] == 0)
-                {
-                    plant_data_object['data'].push(state['fields']['performance_value']);
-
-
-                    // histogram x labels
-                    if(hist_labels.length < raw_plant_data[keys[i]].length)
-                    {
-                        hist_labels.push(raw_plant_data[keys[i]][j]['fields']['timestep']);
-                    }
-                }
-            }
-            plant_datasets.push(plant_data_object);
-        }
-    }
 
     // create histogram data
 	var data = {
