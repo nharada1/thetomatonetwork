@@ -148,7 +148,7 @@ function collateHistData(raw_plant_data){
 
 
                     // histogram x labels
-                    if(hist_labels.length < raw_plant_data[keys[i]].length)
+                    if(hist_labels.length < plant_data_object['data'].length)
                     {
                         hist_labels.push(raw_plant_data[keys[i]][j]['fields']['timestep']);
                     }
