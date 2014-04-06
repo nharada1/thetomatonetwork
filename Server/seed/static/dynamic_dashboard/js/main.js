@@ -141,7 +141,11 @@ function collateHistData(raw_plant_data){
             {
                 // histogram y labels
                 var state = raw_plant_data[keys[i]][j];
-                plant_data_object['data'].push(state['fields']['performance_value']);
+
+                if(state['fields']['performanve_value'] > 0)
+                {
+                    plant_data_object['data'].push(state['fields']['performance_value']);
+                }
 
                 // histogram x labels
                 if(hist_labels.length < raw_plant_data[keys[i]].length)
