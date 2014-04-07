@@ -168,7 +168,7 @@ def db_csv(request):
 
             # Create date array (timestep)
             if not state.timestep in line_plant_dict['Date']:
-                date_str = state.year + '-' + state.month + '-' + state.year
+                date_str = str(state.date.year) + '-' + str(state.date.month) + '-' + str(state.date.day)
                 line_plant_dict['Date'].append(date_str)
 
             # Create nutrient array
