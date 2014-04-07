@@ -62,7 +62,7 @@ var smallCalendar = function() {
 
             d3.csv('csv', function(error, csv) {
                 var scale = d3.scale.ordinal()
-                    .domain(d3.keys(csv[0]).filter(function(key) { return key !== "Date"; }));
+                    .domain(d3.keys(csv[0]).filter(function(key) { return (key !== "Date" || key !== "timestep"); }));
                 var data = d3.nest()
                     .key(function(d) { return d.Date; })
                     .rollup(function(d) { 

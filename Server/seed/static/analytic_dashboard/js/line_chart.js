@@ -7,7 +7,7 @@ var lineChart = function() {
         lineChart_width = containerWidth - margin.left - margin.right,
         lineChart_height = containerHeight - margin.top - margin.bottom;
 
-    var parseDate = d3.time.format("%Y-%m-%d").parse;
+    var parseDate = d3.time.format("%Y-%-m-%-d").parse;
 
     var x = d3.time.scale()
         .range([0, lineChart_width]);
@@ -65,7 +65,7 @@ var lineChart = function() {
 
     self.render = function() {    
         d3.csv('csv', function(error, data) {
-            line_color.domain(d3.keys(data[0]).filter(function(key) { return key !== "Date"; }));
+            line_color.domain(d3.keys(data[0]).filter(function(key) { return (key !== "Date" || key !== "timestep"); }));
             data.forEach(function(d) {
                 d.date = parseDate(d.Date);
             });

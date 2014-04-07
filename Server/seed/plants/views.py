@@ -157,6 +157,7 @@ def db_csv(request):
     plant_objs       = plants.models.Plant.objects.all()
     line_plant_dict  = {}
     line_plant_dict['Date'] = []
+    line_plant_dict['timestep'] = []
 
     # iterate through plants
     for plant_obj in plant_objs:
@@ -167,9 +168,10 @@ def db_csv(request):
         for state in state_list:
 
             # Create date array (timestep)
-            if not state.timestep in line_plant_dict['Date']:
+            if not state.timestep in line_plant_dict['timestep']:
                 date_str = str(state.date.year) + '-' + str(state.date.month) + '-' + str(state.date.day)
                 line_plant_dict['Date'].append(date_str)
+                line_plant_dict['timestep'].append(state.timestep)
 
             # Create nutrient array
             performance_value = state.performance_value
