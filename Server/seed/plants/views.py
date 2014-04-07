@@ -168,13 +168,12 @@ def db_csv(request):
 
             # Create date array (timestep)
             if not state.timestep in line_plant_dict['Date']:
-                line_plant_dict['Date'].append(state.date)
+                date_str = state.year + '-' + state.month + '-' + state.year
+                line_plant_dict['Date'].append(date_str)
 
             # Create nutrient array
             performance_value = state.performance_value
             line_plant_dict[plant_obj.plant_name.encode('utf8')].append(performance_value)
-
-
 
 
     writer = csv.writer(response)
