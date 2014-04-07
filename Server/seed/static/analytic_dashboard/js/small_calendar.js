@@ -60,7 +60,7 @@ var smallCalendar = function() {
                 .attr("d", monthPath)
                 .attr("transform", "rotate(90)scale(1,-1)");
 
-            d3.csv("data.csv", function(error, csv) {
+            d3.csv("csv", function(error, csv) {
                 var scale = d3.scale.ordinal()
                     .domain(d3.keys(csv[0]).filter(function(key) { return key !== "Date"; }));
                 var data = d3.nest()

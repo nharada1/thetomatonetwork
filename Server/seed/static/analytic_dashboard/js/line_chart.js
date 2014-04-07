@@ -64,7 +64,7 @@ var lineChart = function() {
         .attr('class', 'list-inline');
 
     self.render = function() {    
-        d3.csv("data.csv", function(error, data) {
+        d3.csv('csv', function(error, data) {
             line_color.domain(d3.keys(data[0]).filter(function(key) { return key !== "Date"; }));
             data.forEach(function(d) {
                 d.date = parseDate(d.Date);
