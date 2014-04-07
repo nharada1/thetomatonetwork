@@ -38,7 +38,7 @@ var lineChart = function() {
         .interpolate('basis')
         .x(function(d) { return x(d.date); })
         .y0(lineChart_height)
-        .y1(function(d) { return y(2); })
+        .y1(function(d) { return y(0); })
 
     var line = d3.svg.line()
         .interpolate('basis')
@@ -48,7 +48,7 @@ var lineChart = function() {
     var lineStart = d3.svg.line()
         .interpolate('basis')
         .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(2);      });
+        .y(function(d) { return y(0);      });
 
     var svg = d3.select("#line_chart").append("svg")
         .attr("width", lineChart_width + margin.left + margin.right)
@@ -166,8 +166,7 @@ var lineChart = function() {
 
     }, 
 
-    self.onLineChange = function(name) { 
-        console.log(name);              
+    self.onLineChange = function(name) {
         svg.selectAll(".line_area")
             .style("fill-opacity", "0.0");
 
