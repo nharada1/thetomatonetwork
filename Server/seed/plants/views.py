@@ -151,7 +151,7 @@ def analytics(request):
 
 def db_csv(request):
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+    response['Content-Disposition'] = 'attachment; filename="data.csv"'
 
     plant_states     = plants.models.PlantState.objects.all()
     plant_objs       = plants.models.Plant.objects.all()
