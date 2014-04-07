@@ -179,8 +179,11 @@ def db_csv(request):
     writer = csv.writer(response)
     writer.writerow(line_plant_dict.keys())
 
+    # turn it rowwise
     rows = zip(*line_plant_dict.values())
-    for row in rows:
+
+    # Ignore last row
+    for row in rows[:-1]:
         writer.writerow(row)
 
     return response

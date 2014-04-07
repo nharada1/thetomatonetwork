@@ -135,7 +135,7 @@ var lineChart = function() {
                 .style("text-anchor", "end")
                 .text("Performance");
 
-            var startPlant = "Control_Plant";
+            var startPlant = "control";
 
             svg.selectAll(".line_area")
                 .style("fill-opacity", "0.0");
