@@ -78,7 +78,7 @@
       <file leaf-file-name="line_chart.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/analytic_dashboard/js/line_chart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="121" selection-start="2301" selection-end="2301" vertical-scroll-proportion="0.35325366" vertical-offset="739" max-vertical-offset="2850">
+            <state line="14" column="0" selection-start="481" selection-end="481" vertical-scroll-proportion="0.27888447" vertical-offset="0" max-vertical-offset="2790">
               <folding />
             </state>
           </provider>
@@ -1055,7 +1055,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/analytic_dashboard/js/line_chart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="121" selection-start="2301" selection-end="2301" vertical-scroll-proportion="0.35325366" vertical-offset="739" max-vertical-offset="2850">
+        <state line="14" column="0" selection-start="481" selection-end="481" vertical-scroll-proportion="0.27888447" vertical-offset="0" max-vertical-offset="2790">
           <folding />
         </state>
       </provider>

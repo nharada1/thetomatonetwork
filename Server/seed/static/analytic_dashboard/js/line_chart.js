@@ -7,9 +7,7 @@ var lineChart = function() {
         lineChart_width = containerWidth - margin.left - margin.right,
         lineChart_height = containerHeight - margin.top - margin.bottom;
 
-    var parseDate = d3.time.format("%Y-%-m-%-d").parse;
-
-    var x = d3.time.scale()
+    var x = d3.scale.linear()
         .range([0, lineChart_width]);
 
     var y = d3.scale.linear()
@@ -22,8 +20,6 @@ var lineChart = function() {
     var yAxis = d3.svg.axis()
         .scale(y)
         .orient("left");
-
-    var line_color = d3.scale.category10();
 
     var line_color = d3.scale.ordinal()
         .range(['#666','#00CC66','#FF6600','#CC0000','#006600']);
