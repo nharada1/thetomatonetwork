@@ -30,24 +30,24 @@ var lineChart = function() {
 
     var area = d3.svg.area()
         .interpolate('basis')
-        .x(function(d) { return x(d.date); })
+        .x(function(d) { return x(d.timestep); })
         .y0(lineChart_height)
         .y1(function(d) { return y(d.performance); })
 
     var areaStart = d3.svg.area()
         .interpolate('basis')
-        .x(function(d) { return x(d.date); })
+        .x(function(d) { return x(d.timestep); })
         .y0(lineChart_height)
         .y1(function(d) { return y(0); })
 
     var line = d3.svg.line()
         .interpolate('basis')
-        .x(function(d) { return x(d.date); })
+        .x(function(d) { return x(d.timestep); })
         .y(function(d) { return y(d.performance); });
 
     var lineStart = d3.svg.line()
         .interpolate('basis')
-        .x(function(d) { return x(d.date); })
+        .x(function(d) { return x(d.timestep); })
         .y(function(d) { return y(0);      });
 
     var svg = d3.select("#line_chart").append("svg")
@@ -65,20 +65,17 @@ var lineChart = function() {
 
     self.render = function() {    
         d3.csv('csv', function(error, data) {
-            line_color.domain(d3.keys(data[0]).filter(function(key) { return (key !== "Date" || key !== "timestep"); }));
-            data.forEach(function(d) {
-                d.date = parseDate(d.Date);
-            });
+            line_color.domain(d3.keys(data[0]).filter(function(key) { return (key !== "Date" && key !== "timestep"); }));
             var plants = line_color.domain().map(function(name) {
                 return {
                     name: name,
                     values: data.map(function(d) {
-                        return {date: d.date, performance: +d[name]}
+                        return {timestep: d.timestep, performance: +d[name]}
                     })
                 }
             });
             
-            x.domain(d3.extent(data, function(d) { return d.date; }));
+            x.domain(d3.extent(data, function(d) { return d.timestep; }));
             y.domain([
                 d3.min(plants, function(c) { return d3.min(c.values, function(v) { return v.performance; }); }),
                 d3.max(plants, function(c) { return d3.max(c.values, function(v) { return v.performance; }); })
