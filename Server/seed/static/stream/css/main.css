@@ -21,6 +21,7 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
+    background: #eee;
 }
 
 /*
@@ -199,10 +200,11 @@ header .button {
 
 
 #live_embed_player_flash {
-   margin-left: 450px;
-   left: 50px;
+    position: fixed;
+    left: 50%;
     background: #efefef;
     padding:12px;
+    margin-left: -185px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;

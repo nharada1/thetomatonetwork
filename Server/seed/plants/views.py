@@ -151,12 +151,13 @@ def analytics(request):
 
 def db_csv(request):
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+    response['Content-Disposition'] = 'attachment; filename="data.csv"'
 
     plant_states     = plants.models.PlantState.objects.all()
     plant_objs       = plants.models.Plant.objects.all()
     line_plant_dict  = {}
     line_plant_dict['Date'] = []
+    line_plant_dict['timestep'] = []
 
     # iterate through plants
     for plant_obj in plant_objs:
@@ -167,8 +168,10 @@ def db_csv(request):
         for state in state_list:
 
             # Create date array (timestep)
-            if not state.timestep in line_plant_dict['Date']:
-                line_plant_dict['Date'].append(state.timestep)
+            if not state.timestep in line_plant_dict['timestep']:
+                date_str = str(state.date.year) + '-' + str(state.date.month) + '-' + str(state.date.day)
+                line_plant_dict['Date'].append(date_str)
+                line_plant_dict['timestep'].append(state.timestep)
 
             # Create nutrient array
             performance_value = state.performance_value
@@ -178,8 +181,11 @@ def db_csv(request):
     writer = csv.writer(response)
     writer.writerow(line_plant_dict.keys())
 
+    # turn it rowwise
     rows = zip(*line_plant_dict.values())
-    for row in rows:
+
+    # Ignore last row
+    for row in rows[:-1]:
         writer.writerow(row)
 
     return response

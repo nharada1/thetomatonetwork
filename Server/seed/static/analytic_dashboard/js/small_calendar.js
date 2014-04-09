@@ -6,7 +6,7 @@ var smallCalendar = function() {
     var day = d3.time.format("%w"),
         week = d3.time.format("%U"),
         percent = d3.format(".1%"),
-        format = d3.time.format("%Y-%m-%d");
+        format = d3.time.format("%Y-%-m-%-d");
 
     var color = d3.scale.quantize()
         .domain([0, 100])
@@ -60,9 +60,9 @@ var smallCalendar = function() {
                 .attr("d", monthPath)
                 .attr("transform", "rotate(90)scale(1,-1)");
 
-            d3.csv("data.csv", function(error, csv) {
+            d3.csv('csv', function(error, csv) {
                 var scale = d3.scale.ordinal()
-                    .domain(d3.keys(csv[0]).filter(function(key) { return key !== "Date"; }));
+                    .domain(d3.keys(csv[0]).filter(function(key) { return (key !== "Date" && key !== "timestep"); }));
                 var data = d3.nest()
                     .key(function(d) { return d.Date; })
                     .rollup(function(d) { 

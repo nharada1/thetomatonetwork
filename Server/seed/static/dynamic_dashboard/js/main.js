@@ -141,12 +141,17 @@ function collateHistData(raw_plant_data){
             {
                 // histogram y labels
                 var state = raw_plant_data[keys[i]][j];
-                plant_data_object['data'].push(state['fields']['performance_value']);
 
-                // histogram x labels
-                if(hist_labels.length < raw_plant_data[keys[i]].length)
+                if(state['fields']['performance_value'] > 0)
                 {
-                    hist_labels.push(raw_plant_data[keys[i]][j]['fields']['timestep']);
+                    plant_data_object['data'].push(state['fields']['performance_value']);
+
+
+                    // histogram x labels
+                    if(hist_labels.length < plant_data_object['data'].length)
+                    {
+                        hist_labels.push(raw_plant_data[keys[i]][j]['fields']['timestep']);
+                    }
                 }
             }
             plant_datasets.push(plant_data_object);

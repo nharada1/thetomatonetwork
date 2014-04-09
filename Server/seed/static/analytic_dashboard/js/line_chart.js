@@ -7,9 +7,7 @@ var lineChart = function() {
         lineChart_width = containerWidth - margin.left - margin.right,
         lineChart_height = containerHeight - margin.top - margin.bottom;
 
-    var parseDate = d3.time.format("%Y-%m-%d").parse;
-
-    var x = d3.time.scale()
+    var x = d3.scale.linear()
         .range([0, lineChart_width]);
 
     var y = d3.scale.linear()
@@ -23,32 +21,30 @@ var lineChart = function() {
         .scale(y)
         .orient("left");
 
-    var line_color = d3.scale.category10();
-
     var line_color = d3.scale.ordinal()
         .range(['#666','#00CC66','#FF6600','#CC0000','#006600']);
 
     var area = d3.svg.area()
         .interpolate('basis')
-        .x(function(d) { return x(d.date); })
+        .x(function(d) { return x(d.timestep); })
         .y0(lineChart_height)
         .y1(function(d) { return y(d.performance); })
 
     var areaStart = d3.svg.area()
         .interpolate('basis')
-        .x(function(d) { return x(d.date); })
+        .x(function(d) { return x(d.timestep); })
         .y0(lineChart_height)
-        .y1(function(d) { return y(2); })
+        .y1(function(d) { return y(0); })
 
     var line = d3.svg.line()
         .interpolate('basis')
-        .x(function(d) { return x(d.date); })
+        .x(function(d) { return x(d.timestep); })
         .y(function(d) { return y(d.performance); });
 
     var lineStart = d3.svg.line()
         .interpolate('basis')
-        .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(2);      });
+        .x(function(d) { return x(d.timestep); })
+        .y(function(d) { return y(0);      });
 
     var svg = d3.select("#line_chart").append("svg")
         .attr("width", lineChart_width + margin.left + margin.right)
@@ -64,21 +60,18 @@ var lineChart = function() {
         .attr('class', 'list-inline');
 
     self.render = function() {    
-        d3.csv("data.csv", function(error, data) {
-            line_color.domain(d3.keys(data[0]).filter(function(key) { return key !== "Date"; }));
-            data.forEach(function(d) {
-                d.date = parseDate(d.Date);
-            });
+        d3.csv('csv', function(error, data) {
+            line_color.domain(d3.keys(data[0]).filter(function(key) { return (key !== "Date" && key !== "timestep"); }));
             var plants = line_color.domain().map(function(name) {
                 return {
                     name: name,
                     values: data.map(function(d) {
-                        return {date: d.date, performance: +d[name]}
+                        return {timestep: d.timestep, performance: +d[name]}
                     })
                 }
             });
             
-            x.domain(d3.extent(data, function(d) { return d.date; }));
+            x.domain(d3.extent(data, function(d) { return d.timestep; }));
             y.domain([
                 d3.min(plants, function(c) { return d3.min(c.values, function(v) { return v.performance; }); }),
                 d3.max(plants, function(c) { return d3.max(c.values, function(v) { return v.performance; }); })
@@ -135,7 +128,7 @@ var lineChart = function() {
                 .style("text-anchor", "end")
                 .text("Performance");
 
-            var startPlant = "Control_Plant";
+            var startPlant = "control";
 
             svg.selectAll(".line_area")
                 .style("fill-opacity", "0.0");
@@ -166,8 +159,7 @@ var lineChart = function() {
 
     }, 
 
-    self.onLineChange = function(name) { 
-        console.log(name);              
+    self.onLineChange = function(name) {
         svg.selectAll(".line_area")
             .style("fill-opacity", "0.0");
 
