@@ -71,7 +71,7 @@ var lineChart = function() {
                 }
             });
             
-            x.domain(d3.extent(data, function(d) { return d.timestep; }));
+            x.domain(d3.extent(data, function(d) { return parseInt(d.timestep); }));
             y.domain([
                 d3.min(plants, function(c) { return d3.min(c.values, function(v) { return v.performance; }); }),
                 d3.max(plants, function(c) { return d3.max(c.values, function(v) { return v.performance; }); })

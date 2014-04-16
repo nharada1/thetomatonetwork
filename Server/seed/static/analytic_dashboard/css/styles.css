@@ -186,6 +186,7 @@ footer {
 /* Small calender view */
 #small_calendar {
     display: inline-block;
+    width: 352px;
     margin: 0px 40px 0px 0px;
 }
 

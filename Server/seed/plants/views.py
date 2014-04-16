@@ -101,7 +101,6 @@ def index(request):
             donut_plant_dict[plant_obj.plant_name.encode('utf8')] = json.loads(serializers.serialize('json', [recent_states]))
 
 
-
     hist_dict_str  = json.dumps(hist_plant_dict)
     donut_dict_str = json.dumps(donut_plant_dict)
     return render(request, 'index.html', {'hist_plant_dict': hist_dict_str, 'donut_plant_dict': donut_dict_str})
