@@ -12,7 +12,7 @@ class Command(BaseCommand):
     T = 14
     tau = 1
     L = 0
-    water_cycle_gradient = 0.042
+    water_cycle_gradient = 0.084
     water_cycle_mean = 0.5
     init_nutrients = np.array([water_cycle_mean-1.5*water_cycle_gradient,
                             water_cycle_mean-0.5*water_cycle_gradient,
