@@ -37,8 +37,8 @@ class Command(BaseCommand):
                 self.migrate_plants_for_new_experiment()
 
     def init_db(self):
-        new_ivies = self.init_plants()
-        self.init_plantstates(new_ivies)
+        new_ivies,control_ivy = self.init_plants()
+        self.init_plantstates(new_ivies,control_ivy)
         self.init_care()
         self.init_algo()
 
@@ -54,15 +54,17 @@ class Command(BaseCommand):
         control_ivy = plants.models.EnglishIvy(initial_date=datetime.datetime(year=2014,month=3,day=27,hour=20,minute=8),
                                             is_control=True,user_name='control',plant_name='control')
         control_ivy.save()
-        return new_ivies
+        return new_ivies,control_ivy
 
-    def init_plantstates(self,new_ivies):
+    def init_plantstates(self,new_ivies,control_ivy):
         plants.models.PlantState.objects.all().delete()
         # Create initial plant states
         for i in range(0,self.n):
             plant = new_ivies[i]
             new_plant_state = plants.models.PlantState(timestep=0,nutrient_value=self.init_nutrients[i],plant=plant)
             new_plant_state.save()
+        control_plant_state = plants.models.PlantState(timestep=0,nutrient_value=0,plant=control_ivy)
+
 
     def reset_plants(self):
         ivies = plants.models.Plant.objects.all()
