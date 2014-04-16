@@ -64,7 +64,7 @@ class Command(BaseCommand):
             new_plant_state = plants.models.PlantState(timestep=0,nutrient_value=self.init_nutrients[i],plant=plant)
             new_plant_state.save()
         control_plant_state = plants.models.PlantState(timestep=0,nutrient_value=0,plant=control_ivy)
-
+        control_plant_state.save()
 
     def reset_plants(self):
         ivies = plants.models.Plant.objects.all()
